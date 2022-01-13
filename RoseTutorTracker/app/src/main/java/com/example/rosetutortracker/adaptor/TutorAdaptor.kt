@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.FindTutorViewModel
@@ -44,6 +45,13 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
         private val notifyButton: Button = itemView.findViewById(R.id.notify_tutor)
         private val available = R.drawable.ic_baseline_check_24
         private val unavailable = R.drawable.ic_baseline_close_24
+
+        init {
+            itemView.setOnClickListener {
+                model.updatePos(adapterPosition)
+                fragment.findNavController().navigate(R.id.nav_tutor_detail)
+            }
+        }
 
         fun bind(tutor: Tutor){
             tutorName.text = tutor.name
