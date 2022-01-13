@@ -9,14 +9,19 @@ class FindTutorViewModel : ViewModel() {
 
     fun getTutorAt(pos: Int) = tutors[pos]
     fun getCurrentTutor() = tutors[currPos]
-    fun addQuote(tutor: Tutor?){
+    fun addTutor(tutor: Tutor?){
         val random = Random.nextInt(500)
         val newTutor = tutor ?: Tutor("Name$random")
         tutors.add(newTutor)
     }
 
-    fun updatePos(pos : Int){
-        currPos = pos
+    fun removeCurrentTutor(){
+        tutors.removeAt(currPos)
+        currPos = 0
+    }
+
+    fun clearTutors(){
+        tutors.clear()
     }
 
     fun size() = tutors.size

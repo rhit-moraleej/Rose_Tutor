@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,13 +17,22 @@
         android:id="@+id/tutor_search"
         android:autofillHints="@string/find_a_tutor_by_name_or_course"
         android:layout_below="@id/search_instruction"
+        android:inputType="text" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/search"
+        android:id="@+id/search"
+        android:layout_below="@id/tutor_search"
+        android:layout_alignParentEnd="true"
         />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFcccccc"
-        android:layout_below="@id/tutor_search"
+        android:layout_below="@id/search"
         />
 
 </RelativeLayout>

@@ -27,6 +27,16 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
 
     override fun getItemCount() = model.size()
 
+    fun addTutor(tutor: Tutor?){
+        model.addTutor(tutor)
+        notifyDataSetChanged()
+    }
+
+    fun clearTutors(){
+        model.clearTutors()
+        notifyDataSetChanged()
+    }
+
     inner class TutorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         private val tutorName: TextView = itemView.findViewById(R.id.tutor_name)
         private val tutorAvailability: ImageView = itemView.findViewById(R.id.tutor_availablity)
@@ -37,8 +47,9 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
             tutorName.text = tutor.name
             if (Random.nextBoolean()) {
                 tutorAvailability.setImageResource(available)
-            }else
+            }else{
                 tutorAvailability.setImageResource(unavailable)
+            }
         }
     }
 }

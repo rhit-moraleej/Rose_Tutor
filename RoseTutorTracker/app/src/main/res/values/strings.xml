@@ -16,4 +16,5 @@
     <string name="place_holder_name">place holder name</string>
     <string name="tutors_availablity">tutors availablity</string>
     <string name="notify_tutor">Notify Tutor</string>
+    <string name="search">Search</string>
 </resources>
