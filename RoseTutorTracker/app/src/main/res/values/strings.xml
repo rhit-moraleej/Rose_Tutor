@@ -10,4 +10,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="find_tutor">Find a tutor</string>
+    <string name="find_a_tutor">Find a Tutor</string>
+    <string name="find_a_tutor_by_name_or_course">Find a tutor by name or course</string>
+    <string name="place_holder_name">place holder name</string>
+    <string name="tutors_availablity">tutors availablity</string>
+    <string name="notify_tutor">Notify Tutor</string>
 </resources>
