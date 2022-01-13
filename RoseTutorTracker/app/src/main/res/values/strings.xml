@@ -17,4 +17,5 @@
     <string name="tutors_availablity">tutors availablity</string>
     <string name="notify_tutor">Notify Tutor</string>
     <string name="search">Search</string>
+    <string name="search_here">search here</string>
 </resources>

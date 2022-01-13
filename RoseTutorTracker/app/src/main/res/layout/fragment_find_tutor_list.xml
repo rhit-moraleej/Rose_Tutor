@@ -9,15 +9,18 @@
         android:layout_height="wrap_content"
         android:id="@+id/search_instruction"
         android:text="@string/find_a_tutor_by_name_or_course"
+        android:textSize="18sp"
         />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tutor_search"
-        android:autofillHints="@string/find_a_tutor_by_name_or_course"
+        android:hint="@string/search_here"
+        android:autofillHints="CSSE483"
         android:layout_below="@id/search_instruction"
-        android:inputType="text" />
+        android:inputType="text"
+         />
 
     <Button
         android:layout_width="wrap_content"
