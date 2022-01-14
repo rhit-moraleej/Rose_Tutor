@@ -9,14 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
-import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.ui.home.HomeFragment
 import com.example.rosetutortracker.ui.home.HomeViewModel
 
 class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutorAdaptor.TutorViewHolder>() {
 
-    val model = ViewModelProvider(fragment.requireActivity()).get(FindTutorViewModel :: class.java)
+    val model = ViewModelProvider(fragment.requireActivity()).get(HomeViewModel :: class.java)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_tutor, parent, false)

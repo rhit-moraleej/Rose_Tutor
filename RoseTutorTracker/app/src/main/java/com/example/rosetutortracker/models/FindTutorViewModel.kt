@@ -3,7 +3,7 @@ package com.example.rosetutortracker.models
 import androidx.lifecycle.ViewModel
 import kotlin.random.Random
 
-class FindTutorViewModel : ViewModel() {
+open class FindTutorViewModel : ViewModel() {
     private var tutors = ArrayList<Tutor>()
     private var currPos = 0
 

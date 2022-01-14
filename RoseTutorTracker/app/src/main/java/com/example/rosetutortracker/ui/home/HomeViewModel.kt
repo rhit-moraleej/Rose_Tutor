@@ -1,9 +1,7 @@
 package com.example.rosetutortracker.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.rosetutortracker.models.FindTutorViewModel
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel: FindTutorViewModel()  {
 
 }

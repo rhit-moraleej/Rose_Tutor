@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
-import com.example.rosetutortracker.databinding.FragmentHomeBinding
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.Tutor
@@ -18,19 +17,16 @@ import com.google.android.material.snackbar.Snackbar
 class TutorDetailFragment : Fragment() {
     private lateinit var binding: FragmentTutorDetailBinding
     private lateinit var model: FindTutorViewModel
-    private lateinit var homeBinding: FragmentHomeBinding
+    private lateinit var homeModel: HomeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         model =ViewModelProvider(requireActivity()).get(FindTutorViewModel:: class.java)
+        homeModel = ViewModelProvider(requireActivity()).get(HomeViewModel:: class.java)
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
-        homeBinding = FragmentHomeBinding.inflate(inflater, container, false)
         updateView()
-        // Need to reset alpha and clickable between searches
-//        notifyButton.alpha = 1F
-//        notifyButton.isClickable = true
         setupButtons()
         return binding.root
     }
@@ -59,6 +55,9 @@ class TutorDetailFragment : Fragment() {
             binding.notifyTutor.isClickable = false
             binding.notifyTutor.alpha = 0.5F
         }
-       
+       binding.favoriteTutor.setOnClickListener {
+           val tutor = model.getCurrentTutor()
+           homeModel.addTutor(tutor)
+       }
     }
 }
