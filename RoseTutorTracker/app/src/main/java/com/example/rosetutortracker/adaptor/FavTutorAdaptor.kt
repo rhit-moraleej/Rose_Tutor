@@ -15,7 +15,7 @@ import com.example.rosetutortracker.ui.home.HomeViewModel
 
 class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutorAdaptor.TutorViewHolder>() {
 
-    val model = ViewModelProvider(fragment.requireActivity()).get(HomeViewModel :: class.java)
+    val model = ViewModelProvider(fragment.requireActivity())[HomeViewModel :: class.java]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TutorViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.row_tutor, parent, false)

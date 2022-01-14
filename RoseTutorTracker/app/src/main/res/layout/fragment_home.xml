@@ -10,6 +10,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/fav_tutors"
         android:text="@string/your_favorited_tutors"
+        android:textSize="18sp"
+        android:layout_margin="3dp"
+        android:padding="10dp"
         />
 
     <androidx.recyclerview.widget.RecyclerView

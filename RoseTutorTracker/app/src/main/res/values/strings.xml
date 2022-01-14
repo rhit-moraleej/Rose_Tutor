@@ -14,7 +14,7 @@
     <string name="find_a_tutor">Find a Tutor</string>
     <string name="find_a_tutor_by_name_or_course">Find a tutor by name or course</string>
     <string name="place_holder_name">place holder name</string>
-    <string name="tutors_availablity">tutors availablity</string>
+    <string name="tutors_availablity">tutors availability</string>
     <string name="notify_tutor">Notify Tutor</string>
     <string name="search">Search</string>
     <string name="search_here">search here</string>
@@ -23,8 +23,9 @@
     <string name="placer_holder_email">Placer Holder Email</string>
     <string name="place_holder_classyear">Class Of xxxx</string>
     <string name="favorite_tutor">Favorite Tutor</string>
-    <string name="your_favorited_tutors">Your Favorited Tutors:</string>
+    <string name="your_favorited_tutors">Your Favorite Tutors:</string>
     <string name="enter_your_message_below">Enter your message below:</string>
     <string name="cancel">CANCEL</string>
     <string name="send">SEND</string>
+    <string name="unfav">Unfavorite</string>
 </resources>

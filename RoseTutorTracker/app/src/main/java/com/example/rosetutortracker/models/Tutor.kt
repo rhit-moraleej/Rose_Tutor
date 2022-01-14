@@ -7,7 +7,8 @@ class Tutor(){
     var available: Boolean = false
     lateinit var email: String
     var classYear: Int = 0
-    lateinit var courses: ArrayList<String>
+    private lateinit var courses: ArrayList<String>
+     var isFavorite: Boolean = false
 
     constructor(name: String, available: Boolean) : this() {
         this.name = name

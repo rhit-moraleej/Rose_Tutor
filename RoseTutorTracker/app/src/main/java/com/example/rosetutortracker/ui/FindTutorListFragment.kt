@@ -16,7 +16,6 @@ import kotlin.random.Random
 class FindTutorListFragment : Fragment() {
     private lateinit var binding: FragmentFindTutorListBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,11 +41,11 @@ class FindTutorListFragment : Fragment() {
     }
 
     // Needed to close keyboard when search button is hit
-    fun Fragment.hideKeyboard() {
+    private fun Fragment.hideKeyboard() {
         view?.let { activity?.hideKeyboard(it) }
     }
 
-    fun Context.hideKeyboard(view: View) {
+    private fun Context.hideKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }

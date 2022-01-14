@@ -23,8 +23,8 @@ class TutorDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        model =ViewModelProvider(requireActivity()).get(FindTutorViewModel:: class.java)
-        homeModel = ViewModelProvider(requireActivity()).get(HomeViewModel:: class.java)
+        model = ViewModelProvider(requireActivity())[FindTutorViewModel:: class.java]
+        homeModel = ViewModelProvider(requireActivity())[HomeViewModel:: class.java]
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
         updateView()
         setupButtons()
@@ -36,7 +36,10 @@ class TutorDetailFragment : Fragment() {
         binding.tutorName.text = "Name: ${tutor.name}"
         binding.tutorEmail.text = "Email: ${tutor.email}"
         binding.tutorClass.text = "Class of ${tutor.classYear}"
-
+        if(!tutor.isFavorite)
+            binding.favoriteTutor.text = getString(R.string.favorite_tutor)
+        else
+            binding.favoriteTutor.text = getString(R.string.unfav)
     }
 
     private fun setupButtons(){
@@ -57,7 +60,16 @@ class TutorDetailFragment : Fragment() {
         }
        binding.favoriteTutor.setOnClickListener {
            val tutor = model.getCurrentTutor()
-           homeModel.addTutor(tutor)
+           if(!homeModel.containsTutor(tutor)){
+               homeModel.addTutor(tutor)
+               model.getCurrentTutor().isFavorite = true
+           }
+
+           else{
+               model.getCurrentTutor().isFavorite = false
+               homeModel.removeCurrentTutor()
+           }
+           updateView()
        }
     }
 }
