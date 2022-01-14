@@ -1,17 +1,14 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.Tutor
-import com.example.rosetutortracker.models.TutorViewModel
 
 class TutorDetailFragment : Fragment() {
     private lateinit var binding: FragmentTutorDetailBinding
@@ -20,18 +17,17 @@ class TutorDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        model =ViewModelProvider(this).get(FindTutorViewModel:: class.java)
+    ): View {
+        model =ViewModelProvider(requireActivity()).get(FindTutorViewModel:: class.java)
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
         updateView()
         return binding.root
     }
 
     private fun updateView() {
-        Log.d("rr", "$(model.size())")
         val tutor: Tutor = model.getCurrentTutor()
-        binding.tutorName.text = tutor.name
-        binding.tutorEmail.text = tutor.email
-        binding.tutorClass.text = "$(tutor.classYear)"
+        binding.tutorName.text = "Name: ${tutor.name}"
+        binding.tutorEmail.text = "Email: ${tutor.email}"
+        binding.tutorClass.text = "Class of ${tutor.classYear}"
     }
 }
