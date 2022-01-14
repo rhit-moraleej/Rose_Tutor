@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentHomeBinding
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
@@ -49,6 +51,9 @@ class TutorDetailFragment : Fragment() {
             }
             val message = "Notifying ${model.getCurrentTutor().name} that you need help"
             Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+                .setAction("Continue") {
+                    findNavController().navigate(R.id.nav_message_tutor)
+                }
                 .show()
             //clicking button should move to message screen
             binding.notifyTutor.isClickable = false

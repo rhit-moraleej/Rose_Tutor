@@ -24,4 +24,7 @@
     <string name="place_holder_classyear">Class Of xxxx</string>
     <string name="favorite_tutor">Favorite Tutor</string>
     <string name="your_favorited_tutors">Your Favorited Tutors:</string>
+    <string name="enter_your_message_below">Enter your message below:</string>
+    <string name="cancel">CANCEL</string>
+    <string name="send">SEND</string>
 </resources>

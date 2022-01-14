@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_find_tutor_list" />
 
     <fragment
+        android:id="@+id/nav_message_tutor"
+        android:name="com.example.rosetutortracker.ui.MessageTutorFragment"
+        android:label="Message tutor"
+        tools:layout="@layout/fragment_message_tutor" />
+
+    <fragment
         android:id="@+id/nav_tutor_detail"
         android:name="com.example.rosetutortracker.ui.TutorDetailFragment"
         android:label="@string/find_tutor"
