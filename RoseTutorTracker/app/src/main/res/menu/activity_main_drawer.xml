@@ -13,8 +13,8 @@
             android:icon="@drawable/ic_baseline_search_24"
             android:title="@string/find_a_tutor" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_switch_to_tutor"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="Switch to tutor"/>
     </group>
 </menu>
