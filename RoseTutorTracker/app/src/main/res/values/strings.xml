@@ -20,4 +20,8 @@
     <string name="search_here">search here</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placer_holder_email">Placer Holder Email</string>
+    <string name="place_holder_classyear">Class Of xxxx</string>
+    <string name="favorite_tutor">Favorite Tutor</string>
+    <string name="your_favorited_tutors">Your Favorited Tutors:</string>
 </resources>

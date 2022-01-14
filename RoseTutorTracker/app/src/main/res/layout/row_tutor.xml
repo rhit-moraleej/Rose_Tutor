@@ -21,15 +21,8 @@
         android:id="@+id/tutor_availablity"
         android:contentDescription="@string/tutors_availablity"
         android:layout_centerVertical="true"
-        android:layout_toStartOf="@id/notify_tutor"
+       android:layout_alignParentEnd="true"
         android:layout_marginEnd="25dp"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notify_tutor"
-        android:id="@+id/notify_tutor"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        />
+
 </RelativeLayout>

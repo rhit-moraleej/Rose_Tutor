@@ -9,7 +9,7 @@
         android:id="@+id/tutor_name"
         style="@style/tutorDetails"
         android:layout_centerInParent="true"
-        android:text="Place Holder Name"
+        android:text="@string/place_holder_name"
         />
 
     <TextView
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tutor_email"
         style="@style/tutorDetails"
-        android:text="Placer Holder Email"
+        android:text="@string/placer_holder_email"
         android:layout_below="@id/tutor_name"
         />
     <TextView
@@ -25,9 +25,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/tutor_class"
         style="@style/tutorDetails"
-        android:text="Class Of xxxx"
+        android:text="@string/place_holder_classyear"
         android:layout_below="@id/tutor_email"
         />
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/notify_tutor"
+        android:id="@+id/notify_tutor"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favorite_tutor"
+        android:text="@string/favorite_tutor"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>
