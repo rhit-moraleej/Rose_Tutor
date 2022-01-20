@@ -23,7 +23,6 @@
 
     <style name="Theme.RoseTutorTracker.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
     <style name="tutorDetails">
-        <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textSize">20sp</item>
     </style>
 </resources>

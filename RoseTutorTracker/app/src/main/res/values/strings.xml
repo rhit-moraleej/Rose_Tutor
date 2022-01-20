@@ -13,19 +13,24 @@
     <string name="find_tutor">Find a tutor</string>
     <string name="find_a_tutor">Find a Tutor</string>
     <string name="find_a_tutor_by_name_or_course">Find a tutor by name or course</string>
-    <string name="place_holder_name">place holder name</string>
+    <string name="place_holder_name">Name: %1$s</string>
     <string name="tutors_availablity">tutors availability</string>
     <string name="notify_tutor">Notify Tutor</string>
     <string name="search">Search</string>
     <string name="search_here">search here</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="placer_holder_email">Placer Holder Email</string>
-    <string name="place_holder_classyear">Class Of xxxx</string>
+    <string name="placer_holder_email">Email: %1$s</string>
+    <string name="place_holder_classyear">Class of %1$d</string>
     <string name="favorite_tutor">Favorite Tutor</string>
     <string name="your_favorited_tutors">Your Favorite Tutors:</string>
     <string name="enter_your_message_below">Enter your message below:</string>
     <string name="cancel">CANCEL</string>
     <string name="send">SEND</string>
     <string name="unfav">Unfavorite</string>
+    <string name="place_holder_courses">Courses: </string>
+    <string name="location">Location: %1$s</string>
+    <string name="available_n_1_s">Available: \n%1$s</string>
+    <string name="tutor_rating">Rating: %1$.2f (%2$d)</string>
+    <string name="the_profile_picture_of_the_tutor">The profile picture of the tutor</string>
 </resources>

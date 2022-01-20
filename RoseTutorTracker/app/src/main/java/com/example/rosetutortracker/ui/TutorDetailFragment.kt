@@ -33,9 +33,11 @@ class TutorDetailFragment : Fragment() {
 
     private fun updateView() {
         val tutor: Tutor = model.getCurrentTutor()
-        binding.tutorName.text = "Name: ${tutor.name}"
-        binding.tutorEmail.text = "Email: ${tutor.email}"
-        binding.tutorClass.text = "Class of ${tutor.classYear}"
+        binding.tutorName.text = getString(R.string.place_holder_name, tutor.name)
+        binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.email)
+        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.classYear)
+        binding.courses.text = tutor.coursesToString()
+        binding.tutorRating.text = getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
         if(!tutor.isFavorite)
             binding.favoriteTutor.text = getString(R.string.favorite_tutor)
         else
