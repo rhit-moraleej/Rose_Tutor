@@ -33,4 +33,9 @@
     <string name="available_n_1_s">Available: \n%1$s</string>
     <string name="tutor_rating">Rating: %1$.2f (%2$d)</string>
     <string name="the_profile_picture_of_the_tutor">The profile picture of the tutor</string>
+
+    <string-array name="search_spinner">
+        <item>by name</item>
+        <item>by course</item>
+    </string-array>
 </resources>
