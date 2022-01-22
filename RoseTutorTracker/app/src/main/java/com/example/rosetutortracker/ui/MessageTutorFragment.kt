@@ -1,7 +1,6 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
-import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +56,7 @@ class MessageTutorFragment: Fragment() {
             .setMessage("${tutor.name} has marked your help request as solved, you you like to provide a rating?")
             .setPositiveButton(android.R.string.ok){ _, _ ->
                 Log.d("rating", "user chose to rate ${tutor.name}")
-                rateTutor()
+//                rateTutor()
             }
             .setNegativeButton(android.R.string.cancel, null)
             .show()

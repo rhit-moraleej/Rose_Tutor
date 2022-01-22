@@ -6,6 +6,7 @@ open class Student() {
     lateinit var name: String
     lateinit var email: String
     var classYear: Int = 0
+    var isTutor: Boolean = false
 
     constructor(name: String) : this() {
         this.name = name

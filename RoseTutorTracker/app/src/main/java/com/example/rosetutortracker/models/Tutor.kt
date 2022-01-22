@@ -1,6 +1,5 @@
 package com.example.rosetutortracker.models
 
-import java.lang.StringBuilder
 import kotlin.random.Random
 
 class Tutor: Student{
