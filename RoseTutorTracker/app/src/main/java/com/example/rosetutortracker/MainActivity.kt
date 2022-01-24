@@ -1,5 +1,6 @@
 package com.example.rosetutortracker
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
@@ -7,6 +8,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,10 +16,11 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
+import com.example.rosetutortracker.ui.tutor.TutorHomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -40,7 +43,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout = binding.drawerLayout
         navView = binding.navView
         navView.bringToFront()
-        navView.setNavigationItemSelectedListener(this)
+        //navView.setNavigationItemSelectedListener(this)
+
+        navView.menu[3].isVisible = false
+        navView.menu[4].isVisible = false
+        navView.menu[5].isVisible = false
+        navView.menu[6].isVisible = false
 
 
         val navController = findNavController(R.id.nav_host_fragment_content_main)
@@ -53,8 +61,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
 
         setupActionBarWithNavController(navController, appBarConfiguration)
-        //navView.setupWithNavController(navController)
+        navView.setupWithNavController(navController)
+
+        navView.menu[2].setOnMenuItemClickListener {
+            navView.menu[3].isVisible = true
+            navView.menu[4].isVisible = true
+            navView.menu[5].isVisible = true
+            navView.menu[6].isVisible = true
+            drawerLayout.closeDrawer(GravityCompat.START)
+            false
+        }
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -67,36 +85,42 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        var menu = navView.menu
-        var menuSize = menu.size()
-        when (item.itemId) {
-            R.id.nav_tutor_home -> {
-                Log.d("tag","tutor home")
-                menu.add(1, menuSize, menuSize, "Change timings")
-                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-                menuSize = menu.size()
+//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//        var menu = navView.menu
+//        var menuSize = menu.size()
+//        when (item.itemId) {
+//            R.id.nav_tutor_home -> {
+//
+//
+//                Log.d("tag","tutor home")
+//                val change_timings = menu.add(1, menuSize, menuSize, "Change timings")
+//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
+//                menuSize = menu.size()
+//
+//                val change_days = menu.add(1, menuSize, menuSize, "Change days")
+//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
+//                menuSize = menu.size()
+//
+//                val change_location = menu.add(1, menuSize, menuSize, "Change location")
+//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
+//                menuSize = menu.size()
+//
+//                val change_classes = menu.add(1, menuSize, menuSize, "Change classes")
+//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
+//                menuSize = menu.size()
+//
+//
+//
+//
+//                drawerLayout.openDrawer(Gravity.LEFT)
+//            }
+//
+//        }
+//        drawerLayout.closeDrawer(GravityCompat.START)
+//        return true
+//
+//    }
 
-                menu.add(1, menuSize, menuSize, "Change days")
-                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-                menuSize = menu.size()
-
-                menu.add(1, menuSize, menuSize, "Change location")
-                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-                menuSize = menu.size()
-
-                menu.add(1, menuSize, menuSize, "Change classes")
-                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-                menuSize = menu.size()
-
-
-                drawerLayout.openDrawer(Gravity.LEFT)
-            }
-        }
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
-
-    }
 
 
 }

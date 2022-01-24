@@ -16,5 +16,21 @@
             android:id="@+id/nav_tutor_home"
             android:icon="@drawable/ic_baseline_swap_horiz_24"
             android:title="Switch to tutor"/>
+        <item
+            android:id="@+id/nav_tutor_change_timings"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="Change timings"/>
+        <item
+            android:id="@+id/nav_tutor_change_days"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="Change days"/>
+        <item
+            android:id="@+id/nav_tutor_change_location"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="Change location"/>
+        <item
+            android:id="@+id/nav_tutor_change_classes"
+            android:icon="@drawable/ic_baseline_swap_horiz_24"
+            android:title="Change classes"/>
     </group>
 </menu>
