@@ -13,7 +13,7 @@
             android:icon="@drawable/ic_baseline_search_24"
             android:title="@string/find_a_tutor" />
         <item
-            android:id="@+id/nav_switch_to_tutor"
+            android:id="@+id/nav_tutor_home"
             android:icon="@drawable/ic_baseline_swap_horiz_24"
             android:title="Switch to tutor"/>
     </group>

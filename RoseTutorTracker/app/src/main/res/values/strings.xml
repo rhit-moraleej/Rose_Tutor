@@ -33,4 +33,7 @@
     <string name="available_n_1_s">Available: \n%1$s</string>
     <string name="tutor_rating">Rating: %1$.2f (%2$d)</string>
     <string name="the_profile_picture_of_the_tutor">The profile picture of the tutor</string>
+    <string name="students_who_need_help">Students who need help:</string>
+    <string name="notify">Notify</string>
+    <string name="i_need_help">I need help!</string>
 </resources>
