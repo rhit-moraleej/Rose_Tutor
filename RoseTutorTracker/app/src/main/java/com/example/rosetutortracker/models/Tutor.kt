@@ -26,7 +26,7 @@ data class Tutor(var name: String = "",
         val message = StringBuilder()
         message.append("Courses: \n")
         for(i in courses){
-            message.append("\t\t• $i\n")
+            message.append("\t\t\t• $i\n")
         }
         return message.toString()
     }

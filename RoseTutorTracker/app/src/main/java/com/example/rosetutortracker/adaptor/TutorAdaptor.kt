@@ -36,7 +36,6 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
         model.findTutor(searchBy, searchTerm){
             notifyDataSetChanged()
         }
-//        notifyDataSetChanged()
     }
 
     fun clearTutors(){

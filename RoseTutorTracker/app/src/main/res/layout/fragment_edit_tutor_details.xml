@@ -28,7 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/tutorDetails"
-                android:text="Name: "
+                android:layout_marginTop="10dp"
+                android:text="@string/name"
 
                 />
             <EditText
@@ -37,7 +38,8 @@
                 android:id="@+id/tutor_name"
                 style="@style/tutorDetails"
                 android:layout_marginTop="10dp"
-                />
+                android:autofillHints="Enter Your Name"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,13 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/tutorDetails"
-                android:text="Email: "
+                android:text="@string/email_edit"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tutor_email"
-                />
+                android:autofillHints="Enter Your Email"
+                android:inputType="textEmailAddress" />
         </LinearLayout>
 
         <LinearLayout
@@ -69,14 +72,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/tutorDetails"
-                android:text="Class: "
+                android:text="@string/class_edit"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tutor_class"
                 style="@style/tutorDetails"
-                />
+                android:autofillHints="Enter Your Graduation Year"
+                android:inputType="text" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,13 +94,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/tutorDetails"
-                android:text="Courses: " />
+                android:text="@string/courses_edit" />
 
             <EditText
                 android:id="@+id/courses"
                 style="@style/tutorDetails"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:autofillHints="Enter Your Courses"
+                android:inputType="textMultiLine" />
         </LinearLayout>
 
         <LinearLayout
@@ -109,17 +115,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/tutorDetails"
-                android:text="Location: "
+                android:text="@string/location_edit"
                 />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/location"
                 style="@style/tutorDetails"
-
-                />
+                android:autofillHints="Enter Your Location"
+                android:inputType="text" />
         </LinearLayout>
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -140,6 +145,12 @@
             android:text="@string/tutor_rating"
             android:layout_marginBottom="10dp"
             />
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_profile_button"
+            android:layout_below="@id/tutor_rating"
+            android:text="@string/update_profile"
+            />
     </RelativeLayout>
 </ScrollView>

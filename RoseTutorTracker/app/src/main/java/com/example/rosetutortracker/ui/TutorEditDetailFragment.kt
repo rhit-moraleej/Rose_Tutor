@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentEditTutorDetailsBinding
-import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.Tutor
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,7 +23,25 @@ class TutorEditDetailFragment : Fragment() {
         binding = FragmentEditTutorDetailsBinding.inflate(inflater, container, false)
         val tutor = getTutorDetails(tutorID)
         Log.d("rr", "tutor after getting: $tutor")
+        binding.updateProfileButton.setOnClickListener {
+            updateTutor(tutor)
+        }
         return binding.root
+    }
+
+    private fun updateTutor(tutor: Tutor) {
+        val updatedTutor = Tutor(
+            binding.tutorName.text.toString(),
+            binding.tutorEmail.text.toString(),
+            binding.tutorClass.text.toString().toInt(),
+            tutor.available,
+            tutor.courses,
+            tutor.isFavorite,
+            tutor.overRating,
+            tutor.numRatings
+        )
+        Log.d("rr", "updating tutor to: $updatedTutor")
+        ref.document(tutorID).set(updatedTutor)
     }
 
     private fun getTutorDetails(ID: String): Tutor{
@@ -34,12 +51,12 @@ class TutorEditDetailFragment : Fragment() {
 //                result.result!!
                 tutor = Tutor.from(result.result!!)
                 Log.d("rr", "$tutor")
-                update(tutor)
+                updateView(tutor)
             }
         return tutor
     }
 
-    private fun update(tutor: Tutor){
+    private fun updateView(tutor: Tutor){
         binding.tutorName.setText(tutor.name)
         binding.tutorEmail.setText(tutor.email)
         binding.tutorClass.setText(tutor.classYear.toString())

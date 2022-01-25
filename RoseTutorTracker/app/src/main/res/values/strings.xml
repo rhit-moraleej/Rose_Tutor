@@ -41,4 +41,10 @@
     <string name="students_who_need_help">Students who need help:</string>
     <string name="notify">Notify</string>
     <string name="i_need_help">I need help!</string>
+    <string name="name">Name:</string>
+    <string name="email_edit">Email:</string>
+    <string name="class_edit">Class:</string>
+    <string name="courses_edit">Courses:</string>
+    <string name="location_edit">Location:</string>
+    <string name="update_profile">Update Profile</string>
 </resources>
