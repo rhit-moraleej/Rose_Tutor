@@ -1,41 +1,25 @@
 package com.example.rosetutortracker.models
 
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Exclude
 import kotlin.random.Random
 
-class Tutor: Student{
-    var available: Boolean = false
-    private var courses: ArrayList<String>
-    var isFavorite: Boolean = false
-    var overRating: Double = 0.0
-    var numRatings: Int = 0
+data class Tutor(var name: String = "",
+            var email: String = "",
+            var classYear: Int = 0,
+            var available: Boolean = false,
+            var courses: ArrayList<String> = getRandomCourses(Random.nextInt(1,5)),
+            var isFavorite: Boolean = false,
+            var overRating: Double = Random.nextDouble(0.0,5.0),
+            var numRatings: Int = Random.nextInt(0, 100)){
 
-    constructor(name: String, available: Boolean) : super(name) {
-        this.available = available
-        this.courses = ArrayList()
-        this.courses.addAll(getRandomCourses(Random.nextInt(1,5)))
-        this.overRating = Random.nextDouble(0.0,5.0)
-        this.numRatings = Random.nextInt(0, 100)
-    }
-
-    constructor(name: String, email: String, classYear: Int, courses: ArrayList<String>, available: Boolean) : super(name, email, classYear) {
-        this.courses = courses
-        this.available = available
-    }
+    @get:Exclude
+    var id = ""
 
     fun addRating(rating: Double){
         val total: Double = this.overRating * numRatings
         this.numRatings++
         this.overRating = total/this.numRatings
-    }
-
-    private fun getRandomCourses(num: Int): ArrayList<String> {
-        val randomCourses = ArrayList<String>()
-        for (i in 0 until num){
-            val index = Random.nextInt(departments.size)
-            val s = departments[index] + "${Random.nextInt(100, 500)}"
-            randomCourses.add(s)
-        }
-        return randomCourses
     }
 
     fun coursesToString(): String{
@@ -48,6 +32,7 @@ class Tutor: Student{
     }
 
     companion object{
+        const val COLLECTION_BY_NAME = "Tutors"
         val departments = arrayListOf(
             "ANTHS",
             "BE",
@@ -60,5 +45,21 @@ class Tutor: Student{
             "MA",
             "PH"
         )
+        fun from(snapshot: DocumentSnapshot): Tutor{
+            val tutor = snapshot.toObject(Tutor:: class.java)!!
+            tutor.id = snapshot.id
+            return tutor
+        }
     }
 }
+
+fun getRandomCourses(num: Int): ArrayList<String> {
+    val randomCourses = ArrayList<String>()
+    for (i in 0 until num){
+        val index = Random.nextInt(Tutor.departments.size)
+        val s = Tutor.departments[index] + "${Random.nextInt(100, 500)}"
+        randomCourses.add(s)
+    }
+    return randomCourses
+}
+

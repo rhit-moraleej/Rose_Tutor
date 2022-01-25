@@ -32,9 +32,26 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
         notifyDataSetChanged()
     }
 
+    fun findTutor(searchBy: Int, searchTerm: String){
+        model.findTutor(searchBy, searchTerm){
+            notifyDataSetChanged()
+        }
+//        notifyDataSetChanged()
+    }
+
     fun clearTutors(){
         model.clearTutors()
         notifyDataSetChanged()
+    }
+
+    fun addListener(fragmentName: String) {
+        model.addListener(fragmentName){
+            notifyDataSetChanged()
+        }
+    }
+
+    fun removeLListener(fragmentName: String) {
+        model.removeListener(fragmentName)
     }
 
     inner class TutorViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
