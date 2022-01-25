@@ -18,14 +18,14 @@ open class FindTutorViewModel : ViewModel() {
 
     fun getTutorAt(pos: Int) = tutors[pos]
     fun getCurrentTutor() = tutors[currPos]
-    fun addTutor(tutor: Tutor?){
+    open fun addTutor(tutor: Tutor?){
         val newTutor = tutor ?: createRandomTutor()
 //        tutors.add(newTutor)
         Log.d("rr", "adding ${newTutor.name}")
         ref.add(newTutor)
     }
 
-    private fun createRandomTutor(): Tutor {
+    fun createRandomTutor(): Tutor {
         val name = "Name${Random.nextInt(500)}"
         val email = "$name@rose-hulman.edu"
         val classYear = Random.nextInt(2022, 2026)
@@ -109,14 +109,14 @@ open class FindTutorViewModel : ViewModel() {
             error?.let {
                 return@addSnapshotListener
             }
-            tutors.clear()
-            observer()
+//            tutors.clear()
+//            observer()
         }
         val subscription2 = ref2.addSnapshotListener{snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
             error?.let {
                 return@addSnapshotListener
             }
-            tutors.clear()
+//            tutors.clear()
             observer()
         }
         subscriptions[fragmentName+"1"] = subscription1
