@@ -78,6 +78,8 @@ open class FindTutorViewModel : ViewModel() {
                                             val tutor = doc.result!!
                                             Log.d("rr", "tutor: $tutor")
                                             tutors.add(Tutor.from(tutor))
+                                        }else{
+                                            Log.d("rr", "error happened")
                                         }
                                         function()
                                     }

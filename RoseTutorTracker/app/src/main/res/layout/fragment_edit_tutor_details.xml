@@ -1,7 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5sp"
+        android:layout_margin="10dp"
+        >
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:id="@+id/tutor_profile"
+            android:contentDescription="@string/the_profile_picture_of_the_tutor"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_person_outline_24"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tutor_profile"
+            android:id="@+id/name_row"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tutorDetails"
+                android:text="Name: "
+
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tutor_name"
+                style="@style/tutorDetails"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_row"
+            android:id="@+id/email_row"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tutorDetails"
+                android:text="Email: "
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tutor_email"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/class_row"
+            android:layout_below="@id/email_row"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tutorDetails"
+                android:text="Class: "
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tutor_class"
+                style="@style/tutorDetails"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/courses_row"
+            style="@style/tutorDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/class_row">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tutorDetails"
+                android:text="Courses: " />
+
+            <EditText
+                android:id="@+id/courses"
+                style="@style/tutorDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location_row"
+            android:layout_below="@id/courses_row"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/tutorDetails"
+                android:text="Location: "
+                />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/location"
+                style="@style/tutorDetails"
+
+                />
+        </LinearLayout>
 
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tutor_detail_availability"
+            android:layout_below="@id/location_row"
+            style="@style/tutorDetails"
+            android:text="@string/available_n_1_s"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tutor_rating"
+            android:layout_below="@id/tutor_detail_availability"
+            android:layout_alignStart="@id/tutor_detail_availability"
+            style="@style/tutorDetails"
+            android:text="@string/tutor_rating"
+            android:layout_marginBottom="10dp"
+            />
+
+    </RelativeLayout>
+</ScrollView>

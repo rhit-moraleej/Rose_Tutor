@@ -41,4 +41,10 @@
         android:name="com.example.rosetutortracker.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_tutor_change_classes"
+        android:name="com.example.rosetutortracker.ui.TutorEditDetailFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_tutor_details"
+        />
 </navigation>

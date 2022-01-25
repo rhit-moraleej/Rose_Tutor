@@ -1,11 +1,7 @@
 package com.example.rosetutortracker
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
 import android.view.Menu
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
@@ -16,7 +12,6 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
-import com.example.rosetutortracker.ui.tutor.TutorHomeFragment
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 
