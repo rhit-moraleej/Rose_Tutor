@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "531249764335",
+    "project_id": "rose-tutor-tracker-b03f7",
+    "storage_bucket": "rose-tutor-tracker-b03f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531249764335:android:2585e1510471406b62c81a",
+        "android_client_info": {
+          "package_name": "com.example.rosetutortracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531249764335-j3094ec4u1gcva2ei89cju5933v4hj0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU1MKcDwyn9V4CHiatLza_hNtWi6tfGJ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531249764335-j3094ec4u1gcva2ei89cju5933v4hj0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

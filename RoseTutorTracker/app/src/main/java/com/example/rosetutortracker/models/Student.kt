@@ -1,21 +1,32 @@
 package com.example.rosetutortracker.models
 
-import kotlin.random.Random
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Exclude
 
-open class Student() {
-    lateinit var name: String
-    lateinit var email: String
-    var classYear: Int = 0
+data class Student(var name: String,
+                   var email: String,
+                   var classYear: Int = 0,
+                   var isTutor: Boolean = false) {
+    @get:Exclude
+    var id = ""
 
-    constructor(name: String) : this() {
-        this.name = name
-        this.email = "$name@rose-hulman.edu"
-        this.classYear = Random.nextInt(2022, 2026)
-    }
+//    constructor(name: String) : this() {
+//        this.name = name
+//        this.email = "$name@rose-hulman.edu"
+//        this.classYear = Random.nextInt(2022, 2026)
+//    }
+//
+//    constructor(name: String, email: String, classYear: Int) : this() {
+//        this.name = name
+//        this.email = email
+//        this.classYear = classYear
+//    }
 
-    constructor(name: String, email: String, classYear: Int) : this() {
-        this.name = name
-        this.email = email
-        this.classYear = classYear
+    companion object{
+        fun from(snapshot: DocumentSnapshot): Student{
+            val tutor = snapshot.toObject(Student:: class.java)!!
+//            tutor.id = snapshot.id
+            return tutor
+        }
     }
 }
