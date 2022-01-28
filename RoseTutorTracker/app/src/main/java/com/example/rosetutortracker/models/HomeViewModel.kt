@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.ui.home
+package com.example.rosetutortracker.models
 
 import android.util.Log
 import com.example.rosetutortracker.models.FindTutorViewModel

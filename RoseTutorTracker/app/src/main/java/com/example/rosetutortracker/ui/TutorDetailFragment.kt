@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
+import com.example.rosetutortracker.models.HomeViewModel
 import com.example.rosetutortracker.models.Tutor
-import com.example.rosetutortracker.ui.home.HomeViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class TutorDetailFragment : Fragment() {

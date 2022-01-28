@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.ui.tutor
+package com.example.rosetutortracker.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,25 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rosetutortracker.adaptor.StudentHelpAdapter
-import com.example.rosetutortracker.databinding.FragmentTutorHomeBinding
+import com.example.rosetutortracker.adaptor.FavTutorAdaptor
+import com.example.rosetutortracker.databinding.FragmentHomeBinding
 
-
-class TutorHomeFragment: Fragment() {
-    private lateinit var binding: FragmentTutorHomeBinding
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTutorHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val adapter = StudentHelpAdapter(this)
-        binding.recyclerView.adapter = adapter
+        val adaptor = FavTutorAdaptor(this)
+        binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
         return binding.root
     }
+
 }

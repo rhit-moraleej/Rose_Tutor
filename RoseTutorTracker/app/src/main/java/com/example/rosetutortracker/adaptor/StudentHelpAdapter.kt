@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.Student
 import com.example.rosetutortracker.models.StudentHelpViewModel
-import com.example.rosetutortracker.ui.tutor.TutorHomeFragment
+import com.example.rosetutortracker.ui.TutorHomeFragment
 
 class StudentHelpAdapter(val fragment: TutorHomeFragment): RecyclerView.Adapter<StudentHelpAdapter.StudentViewHolder>() {
 

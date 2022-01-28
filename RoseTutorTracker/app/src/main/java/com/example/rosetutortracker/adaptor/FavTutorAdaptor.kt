@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.Tutor
-import com.example.rosetutortracker.ui.home.HomeFragment
-import com.example.rosetutortracker.ui.home.HomeViewModel
+import com.example.rosetutortracker.ui.HomeFragment
+import com.example.rosetutortracker.models.HomeViewModel
 
 class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutorAdaptor.TutorViewHolder>() {
 
