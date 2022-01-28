@@ -1,5 +1,6 @@
 package com.example.rosetutortracker.adaptor
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutor
         }
 
         fun bind(tutor: Tutor){
+            Log.d("tag",model.getCurrentTutor().name)
             tutorName.text = tutor.name
             if (tutor.available) {
                 tutorAvailability.setImageResource(available)

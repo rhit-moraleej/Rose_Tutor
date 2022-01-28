@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -14,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 
 class MainActivity : AppCompatActivity() {
 
@@ -64,6 +67,33 @@ class MainActivity : AppCompatActivity() {
             navView.menu[5].isVisible = true
             navView.menu[6].isVisible = true
             drawerLayout.closeDrawer(GravityCompat.START)
+            false
+        }
+
+        navView.menu[3].setOnMenuItemClickListener {
+            val startpicker =
+                MaterialTimePicker.Builder()
+                    .setTimeFormat(TimeFormat.CLOCK_12H)
+                    .setHour(12)
+                    .setMinute(10)
+                    .setTitleText("Select Start time")
+                    .build()
+            startpicker.addOnPositiveButtonClickListener {
+                val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                val endpicker =
+                    MaterialTimePicker.Builder()
+                        .setTimeFormat(TimeFormat.CLOCK_12H)
+                        .setHour(12)
+                        .setMinute(10)
+                        .setTitleText("Select End time")
+                        .build()
+                endpicker.addOnPositiveButtonClickListener {
+                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+
+                }
+                endpicker.show(supportFragmentManager,"tag")
+            }
+            startpicker.show(supportFragmentManager,"tag")
             false
         }
     }

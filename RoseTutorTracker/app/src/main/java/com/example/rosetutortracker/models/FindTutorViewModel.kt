@@ -9,7 +9,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
-open class FindTutorViewModel : ViewModel() {
+open class  FindTutorViewModel : ViewModel() {
     internal var tutors = ArrayList<Tutor>()
     private var currPos = 0
     private var ref = Firebase.firestore.collection(Tutor.COLLECTION_BY_NAME)

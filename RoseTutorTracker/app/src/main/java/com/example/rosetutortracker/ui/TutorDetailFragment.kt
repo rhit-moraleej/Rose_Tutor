@@ -1,6 +1,7 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,6 +65,7 @@ class TutorDetailFragment : Fragment() {
            val tutor = model.getCurrentTutor()
            if(!homeModel.containsTutor(tutor)){
                homeModel.addTutor(tutor)
+               Log.d("tag",model.getCurrentTutor().name)
                model.getCurrentTutor().isFavorite = true
            }
 
