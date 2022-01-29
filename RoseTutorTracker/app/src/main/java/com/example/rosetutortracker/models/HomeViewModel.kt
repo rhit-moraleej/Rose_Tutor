@@ -1,19 +1,14 @@
 package com.example.rosetutortracker.models
 
-import android.util.Log
-import com.example.rosetutortracker.models.FindTutorViewModel
-import com.example.rosetutortracker.models.Tutor
-
-class HomeViewModel: FindTutorViewModel()  {
+class HomeViewModel: BaseViewModel<Tutor>()  {
 
     fun containsTutor(tutor: Tutor): Boolean{
-        return this.tutors.contains(tutor)
+        return this.list.contains(tutor)
     }
 
-    override fun addTutor(tutor: Tutor?){
-
+    fun addTutor(tutor: Tutor?){
         if (tutor != null) {
-            this.tutors.add(tutor)
+            this.list.add(tutor)
         }
     }
 

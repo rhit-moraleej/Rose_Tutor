@@ -37,7 +37,7 @@ class FindTutorListFragment : Fragment() {
 
         binding.search.setOnClickListener {
             adaptor.clearTutors()
-            val random = Random.nextInt(20)
+//            val random = Random.nextInt(20)
 //            for (i in 0..random){
 //                adaptor.addTutor(null)
 //            }

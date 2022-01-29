@@ -33,7 +33,7 @@ class TutorDetailFragment : Fragment() {
     }
 
     private fun updateView() {
-        val tutor: Tutor = model.getCurrentTutor()
+        val tutor: Tutor = model.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.name)
         binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.email)
         binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.classYear)
@@ -47,11 +47,11 @@ class TutorDetailFragment : Fragment() {
 
     private fun setupButtons(){
         binding.notifyTutor.setOnClickListener {
-            if (!model.getCurrentTutor().available){
+            if (!model.getCurrent().available){
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
             }
-            val message = "Notifying ${model.getCurrentTutor().name} that you need help"
+            val message = "Notifying ${model.getCurrent().name} that you need help"
             Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
                 .setAction("Continue") {
                     findNavController().navigate(R.id.nav_message_tutor)
@@ -62,16 +62,16 @@ class TutorDetailFragment : Fragment() {
             binding.notifyTutor.alpha = 0.5F
         }
        binding.favoriteTutor.setOnClickListener {
-           val tutor = model.getCurrentTutor()
+           val tutor = model.getCurrent()
            if(!homeModel.containsTutor(tutor)){
                homeModel.addTutor(tutor)
-               Log.d("tag",model.getCurrentTutor().name)
-               model.getCurrentTutor().isFavorite = true
+               Log.d("tag",model.getCurrent().name)
+               model.getCurrent().isFavorite = true
            }
 
            else{
-               model.getCurrentTutor().isFavorite = false
-               homeModel.removeCurrentTutor()
+               model.getCurrent().isFavorite = false
+               homeModel.removeCurrent()
            }
            updateView()
        }

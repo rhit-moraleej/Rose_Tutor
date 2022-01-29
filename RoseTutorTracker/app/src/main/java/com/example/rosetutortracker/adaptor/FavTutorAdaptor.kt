@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
+import com.example.rosetutortracker.models.HomeViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.ui.HomeFragment
-import com.example.rosetutortracker.models.HomeViewModel
 
 class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutorAdaptor.TutorViewHolder>() {
 
@@ -24,7 +24,7 @@ class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutor
     }
 
     override fun onBindViewHolder(holder: TutorViewHolder, position: Int) {
-        holder.bind(model.getTutorAt(position))
+        holder.bind(model.getListAt(position))
     }
 
     override fun getItemCount() = model.size()
@@ -48,7 +48,7 @@ class FavTutorAdaptor(val fragment: HomeFragment): RecyclerView.Adapter<FavTutor
         }
 
         fun bind(tutor: Tutor){
-            Log.d("tag",model.getCurrentTutor().name)
+            Log.d("tag",model.getCurrent().name)
             tutorName.text = tutor.name
             if (tutor.available) {
                 tutorAvailability.setImageResource(available)

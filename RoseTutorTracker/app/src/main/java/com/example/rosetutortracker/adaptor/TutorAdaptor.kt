@@ -22,7 +22,7 @@ class TutorAdaptor(val fragment: FindTutorListFragment): RecyclerView.Adapter<Tu
     }
 
     override fun onBindViewHolder(holder: TutorViewHolder, position: Int) {
-        holder.bind(model.getTutorAt(position))
+        holder.bind(model.getListAt(position))
     }
 
     override fun getItemCount() = model.size()

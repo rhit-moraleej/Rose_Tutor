@@ -23,7 +23,7 @@ class StudentHelpAdapter(val fragment: TutorHomeFragment): RecyclerView.Adapter<
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        holder.bind(model.getStudentAt(position))
+        holder.bind(model.getListAt(position))
     }
 
     override fun getItemCount(): Int {

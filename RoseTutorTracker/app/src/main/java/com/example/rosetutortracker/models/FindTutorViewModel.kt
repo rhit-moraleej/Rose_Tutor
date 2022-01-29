@@ -1,7 +1,6 @@
 package com.example.rosetutortracker.models
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.firestore.QuerySnapshot
@@ -9,18 +8,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
-open class  FindTutorViewModel : ViewModel() {
-    internal var tutors = ArrayList<Tutor>()
-    private var currPos = 0
+open class  FindTutorViewModel :BaseViewModel<Tutor>() {
     private var ref = Firebase.firestore.collection(Tutor.COLLECTION_BY_NAME)
     private var ref2 = Firebase.firestore.collection("Course")
     private val subscriptions = HashMap<String, ListenerRegistration>()
 
-    fun getTutorAt(pos: Int) = tutors[pos]
-    fun getCurrentTutor() = tutors[currPos]
     open fun addTutor(tutor: Tutor?){
         val newTutor = tutor ?: createRandomTutor()
-//        tutors.add(newTutor)
         Log.d("rr", "adding ${newTutor.name}")
         ref.add(newTutor)
     }
@@ -51,7 +45,7 @@ open class  FindTutorViewModel : ViewModel() {
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             Log.d("rr", "$it")
-                            tutors.add(Tutor.from(it))
+                            list.add(Tutor.from(it))
                         }
                         function()
                     }
@@ -77,7 +71,7 @@ open class  FindTutorViewModel : ViewModel() {
                                         if (doc.isSuccessful){
                                             val tutor = doc.result!!
                                             Log.d("rr", "tutor: $tutor")
-                                            tutors.add(Tutor.from(tutor))
+                                            list.add(Tutor.from(tutor))
                                         }else{
                                             Log.d("rr", "error happened")
                                         }
@@ -90,33 +84,20 @@ open class  FindTutorViewModel : ViewModel() {
         }
     }
 
-    fun updatePos(pos: Int){
-        currPos = pos
-    }
-
-    fun removeCurrentTutor(){
-        tutors.removeAt(currPos)
-        currPos = 0
-    }
-
     fun clearTutors(){
-        tutors.clear()
+        list.clear()
     }
 
-    fun size() = tutors.size
     fun addListener(fragmentName: String, observer: () -> Unit) {
         val subscription1 = ref.addSnapshotListener{snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
             error?.let {
                 return@addSnapshotListener
             }
-//            tutors.clear()
-//            observer()
         }
         val subscription2 = ref2.addSnapshotListener{snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
             error?.let {
                 return@addSnapshotListener
             }
-//            tutors.clear()
             observer()
         }
         subscriptions[fragmentName+"1"] = subscription1

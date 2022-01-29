@@ -50,7 +50,7 @@ class MessageTutorFragment: Fragment() {
 
     private fun randomTutorNotification(){
         val time = Random.nextInt()
-        val tutor = model.getCurrentTutor()
+        val tutor = model.getCurrent()
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("${tutor.name} has resolved your problem")
             .setMessage("${tutor.name} has marked your help request as solved, you you like to provide a rating?")
@@ -63,7 +63,7 @@ class MessageTutorFragment: Fragment() {
     }
 
     private fun rateTutor(){
-        val tutor = model.getCurrentTutor()
+        val tutor = model.getCurrent()
         val dialogLayout = requireActivity().layoutInflater.inflate(R.layout.tutor_rating_alert_dialod, null)
         val editText = dialogLayout.findViewById<EditText>(R.id.tutor_rating_edittext)
         MaterialAlertDialogBuilder(requireContext())
