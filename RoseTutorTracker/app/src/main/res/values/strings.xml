@@ -47,4 +47,5 @@
     <string name="courses_edit">Courses:</string>
     <string name="location_edit">Location:</string>
     <string name="update_profile">Update Profile</string>
+    <string name="app_label">Rose Tutor Tracker</string>
 </resources>

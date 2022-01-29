@@ -1,9 +1,6 @@
 package com.example.rosetutortracker.models
 
 import android.util.Log
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
@@ -11,6 +8,7 @@ import kotlin.random.Random
 open class  FindTutorViewModel :BaseViewModel<Tutor>() {
     private var ref = Firebase.firestore.collection(Tutor.COLLECTION_BY_NAME)
     private var ref2 = Firebase.firestore.collection("Course")
+
 
     open fun addTutor(tutor: Tutor?){
         val newTutor = tutor ?: createRandomTutor()
@@ -86,7 +84,7 @@ open class  FindTutorViewModel :BaseViewModel<Tutor>() {
     fun clearTutors(){
         list.clear()
     }
-    
+
     companion object{
         val searchFields = arrayListOf(
             "name",

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rosetutortracker.R
@@ -33,17 +34,35 @@ class FindTutorListFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
-        binding.search.setOnClickListener {
-            adaptor.clearTutors()
+//        binding.tutorSearch.onSear
+//        binding.search.setOnClickListener {
+//            adaptor.clearTutors()
 //            val random = Random.nextInt(20)
 //            for (i in 0..random){
 //                adaptor.addTutor(null)
 //            }
-            val searchTerm = binding.tutorSearch.text.toString()
-            Log.d("rr", "search term: $searchTerm")
-            adaptor.findTutor(searchBy, searchTerm)
-            hideKeyboard()
-        }
+//            val searchTerm = binding.tutorSearch.text.toString()
+//            Log.d("rr", "search term: $searchTerm")
+//            adaptor.findTutor(searchBy, searchTerm)
+//            hideKeyboard()
+//        }
+        binding.tutorSearch.isSubmitButtonEnabled = true
+        binding.tutorSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    adaptor.clearTutors()
+                    adaptor.findTutor(searchBy, query)
+                    hideKeyboard()
+                    return true
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+
+        })
         setupSpinner()
         return binding.root
     }
