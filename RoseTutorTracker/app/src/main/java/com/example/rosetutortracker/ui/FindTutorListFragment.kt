@@ -29,7 +29,6 @@ class FindTutorListFragment : Fragment() {
         binding = FragmentFindTutorListBinding.inflate(inflater, container, false)
 
         adaptor = TutorAdaptor(this)
-        adaptor.addListener(fragmentName)
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
@@ -78,14 +77,5 @@ class FindTutorListFragment : Fragment() {
     private fun Context.hideKeyboard(view: View) {
         val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        adaptor.removeLListener(fragmentName)
-    }
-
-    companion object{
-        const val fragmentName: String = "FindTutorListFragment"
     }
 }

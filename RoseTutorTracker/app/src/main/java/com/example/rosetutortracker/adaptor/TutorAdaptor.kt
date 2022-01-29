@@ -32,14 +32,4 @@ class TutorAdaptor(fragment: FindTutorListFragment): BaseAdapter<Tutor>(fragment
         notifyDataSetChanged()
     }
 
-    fun addListener(fragmentName: String) {
-        model.addListener(fragmentName){
-            notifyDataSetChanged()
-        }
-    }
-
-    fun removeLListener(fragmentName: String) {
-        model.removeListener(fragmentName)
-    }
-
 }

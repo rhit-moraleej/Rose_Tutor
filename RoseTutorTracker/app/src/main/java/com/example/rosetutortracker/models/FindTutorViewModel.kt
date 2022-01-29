@@ -11,7 +11,6 @@ import kotlin.random.Random
 open class  FindTutorViewModel :BaseViewModel<Tutor>() {
     private var ref = Firebase.firestore.collection(Tutor.COLLECTION_BY_NAME)
     private var ref2 = Firebase.firestore.collection("Course")
-    private val subscriptions = HashMap<String, ListenerRegistration>()
 
     open fun addTutor(tutor: Tutor?){
         val newTutor = tutor ?: createRandomTutor()
@@ -87,27 +86,7 @@ open class  FindTutorViewModel :BaseViewModel<Tutor>() {
     fun clearTutors(){
         list.clear()
     }
-
-    fun addListener(fragmentName: String, observer: () -> Unit) {
-        val subscription1 = ref.addSnapshotListener{snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
-            error?.let {
-                return@addSnapshotListener
-            }
-        }
-        val subscription2 = ref2.addSnapshotListener{snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
-            error?.let {
-                return@addSnapshotListener
-            }
-            observer()
-        }
-        subscriptions[fragmentName+"1"] = subscription1
-        subscriptions[fragmentName+"2"] = subscription2
-    }
-
-    fun removeListener(fragmentName: String) {
-        subscriptions[fragmentName]?.remove()
-    }
-
+    
     companion object{
         val searchFields = arrayListOf(
             "name",
