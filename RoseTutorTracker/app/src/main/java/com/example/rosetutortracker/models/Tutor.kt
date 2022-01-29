@@ -32,7 +32,6 @@ data class Tutor(var name: String = "",
     }
 
     companion object{
-        const val COLLECTION_BY_NAME = "Tutors"
         val departments = arrayListOf(
             "ANTHS",
             "BE",

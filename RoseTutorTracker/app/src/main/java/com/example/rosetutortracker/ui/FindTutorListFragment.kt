@@ -33,19 +33,12 @@ class FindTutorListFragment : Fragment() {
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+        setupSearchView()
+        setupSpinner()
+        return binding.root
+    }
 
-//        binding.tutorSearch.onSear
-//        binding.search.setOnClickListener {
-//            adaptor.clearTutors()
-//            val random = Random.nextInt(20)
-//            for (i in 0..random){
-//                adaptor.addTutor(null)
-//            }
-//            val searchTerm = binding.tutorSearch.text.toString()
-//            Log.d("rr", "search term: $searchTerm")
-//            adaptor.findTutor(searchBy, searchTerm)
-//            hideKeyboard()
-//        }
+    private fun setupSearchView(){
         binding.tutorSearch.isSubmitButtonEnabled = true
         binding.tutorSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -63,10 +56,7 @@ class FindTutorListFragment : Fragment() {
             }
 
         })
-        setupSpinner()
-        return binding.root
     }
-
     private fun setupSpinner() {
         val choice = resources.getStringArray(R.array.search_spinner)
         val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, choice)

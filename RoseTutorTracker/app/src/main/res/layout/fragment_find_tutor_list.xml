@@ -5,37 +5,28 @@
     android:padding="12dp"
     >
 
-    <LinearLayout
+    <SearchView
+        android:id="@+id/tutor_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/search_row"
-        android:orientation="horizontal"
-        android:layout_marginBottom="2dp"
-        >
-        <SearchView
-            android:id="@+id/tutor_search"
-            android:layout_width="0dp"
-            android:layout_weight="3"
-            android:layout_height="wrap_content"
-            android:queryHint="Search by name or course"
-            android:iconifiedByDefault="false"
-            />
+        android:queryHint="Search by name or course"
+        android:iconifiedByDefault="false"
+        />
 
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown" />
-    </LinearLayout>
-
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tutor_search"
+        android:minHeight="48dp"
+        android:spinnerMode="dropdown" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFcccccc"
-        android:layout_below="@id/search_row"
+        android:layout_below="@id/spinner"
         />
 
 </RelativeLayout>
