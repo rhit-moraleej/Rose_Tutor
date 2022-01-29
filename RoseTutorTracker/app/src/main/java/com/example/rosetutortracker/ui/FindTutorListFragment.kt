@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.adaptor.TutorAdaptor
 import com.example.rosetutortracker.databinding.FragmentFindTutorListBinding
-import kotlin.random.Random
 
 class FindTutorListFragment : Fragment() {
     private lateinit var binding: FragmentFindTutorListBinding

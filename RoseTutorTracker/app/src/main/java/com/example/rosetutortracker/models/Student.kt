@@ -23,10 +23,8 @@ data class Student(var name: String,
 //    }
 
     companion object{
-        fun from(snapshot: DocumentSnapshot): Student{
-            val tutor = snapshot.toObject(Student:: class.java)!!
-//            tutor.id = snapshot.id
-            return tutor
+        fun from(snapshot: DocumentSnapshot): Student {
+            return snapshot.toObject(Student::class.java)!!
         }
     }
 }

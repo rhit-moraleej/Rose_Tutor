@@ -19,7 +19,7 @@ open class  FindTutorViewModel :BaseViewModel<Tutor>() {
         ref.add(newTutor)
     }
 
-    fun createRandomTutor(): Tutor {
+    private fun createRandomTutor(): Tutor {
         val name = "Name${Random.nextInt(500)}"
         val email = "$name@rose-hulman.edu"
         val classYear = Random.nextInt(2022, 2026)

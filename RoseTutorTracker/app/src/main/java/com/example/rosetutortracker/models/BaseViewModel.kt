@@ -3,7 +3,7 @@ package com.example.rosetutortracker.models
 import androidx.lifecycle.ViewModel
 
 abstract class BaseViewModel<T>: ViewModel() {
-    lateinit var list: ArrayList<T>
+    var list =  ArrayList<T>()
     private var currPos = 0
 
     fun getListAt(pos: Int) = list[pos]
