@@ -33,6 +33,7 @@ class FindTutorListFragment : Fragment() {
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+        //make the search view show options while typing
         setupSearchView()
         setupSpinner()
         return binding.root

@@ -1,7 +1,12 @@
 package com.example.rosetutortracker
 
+
+
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
@@ -12,10 +17,19 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
+import com.example.rosetutortracker.models.Student
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import rosefire.rosefire.Rosefire
+import rosefire.rosefire.RosefireResult
+import rosefire.rosefire.WebLoginActivity.REGISTRY_TOKEN
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +37,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
+
+    private val auth = FirebaseAuth.getInstance()
+    private var authFlag = false
+    lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    private val RC_ROSEFIRE_SIGN_IN = 1001
+    private val userRef = FirebaseFirestore.getInstance().collection("Students")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,8 +115,69 @@ class MainActivity : AppCompatActivity() {
             startpicker.show(supportFragmentManager,"tag")
             false
         }
+        initializeListeners()
     }
 
+    override fun onStart() {
+        super.onStart()
+        auth.addAuthStateListener(authStateListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        auth.removeAuthStateListener(authStateListener)
+    }
+
+
+    private fun initializeListeners() {
+        //initialize authStateListener to handle user login
+        authStateListener = FirebaseAuth.AuthStateListener {auth: FirebaseAuth ->
+            val user = auth.currentUser
+            Log.d(Constants.TAG, "Auth Listener: user = $user")
+            if (user != null){
+                Log.d(Constants.TAG, "UID = ${user.uid}")
+                userRef.document(user.uid).get().addOnSuccessListener {
+                    if(!it.exists()){
+                        //if this is a new user, add a user object to the database for them
+                        Log.d(Constants.TAG, "Adding new user for first login")
+                        userRef.document(user.uid).set(Student("Name1","name1@gmail.com",2024,false))
+                    }
+                }
+            } else if (!authFlag) {
+                //auth flag is used to prevent login screen from launching twice
+                authFlag = true
+                launchLoginUI()
+            }
+        }
+    }
+
+    private fun launchLoginUI() {
+        val signInIntent: Intent = Rosefire.getSignInIntent(this, getString(R.string.rosefire_key))
+        startActivityForResult(signInIntent, RC_ROSEFIRE_SIGN_IN)
+    }
+
+    //catches the result of the RoseFire sign in intent
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == RC_ROSEFIRE_SIGN_IN){
+            val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
+            if (!result.isSuccessful){
+                Log.d(Constants.TAG, "The user cancelled the login")
+                authFlag = false
+                return
+            }
+            //if the task is not successful, send a toast, otherwise let the authStateListener do its function
+            auth.signInWithCustomToken(result.token).addOnCompleteListener {task ->
+                Log.d(Constants.TAG, "signInWithCustomToken:onComplete:" + task.isSuccessful)
+                if (!task.isSuccessful) {
+                    Log.w(Constants.TAG, "signInWithCustomToken", task.exception)
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                    authFlag = false
+                } else authFlag = true
+            }
+        }else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -108,42 +189,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        var menu = navView.menu
-//        var menuSize = menu.size()
-//        when (item.itemId) {
-//            R.id.nav_tutor_home -> {
-//
-//
-//                Log.d("tag","tutor home")
-//                val change_timings = menu.add(1, menuSize, menuSize, "Change timings")
-//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-//                menuSize = menu.size()
-//
-//                val change_days = menu.add(1, menuSize, menuSize, "Change days")
-//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-//                menuSize = menu.size()
-//
-//                val change_location = menu.add(1, menuSize, menuSize, "Change location")
-//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-//                menuSize = menu.size()
-//
-//                val change_classes = menu.add(1, menuSize, menuSize, "Change classes")
-//                menu.getItem(menuSize).setIcon(R.drawable.ic_launcher_foreground)
-//                menuSize = menu.size()
-//
-//
-//
-//
-//                drawerLayout.openDrawer(Gravity.LEFT)
-//            }
-//
-//        }
-//        drawerLayout.closeDrawer(GravityCompat.START)
-//        return true
-//
-//    }
 
 
 

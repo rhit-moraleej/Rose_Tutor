@@ -4,7 +4,9 @@ plugins {
 }
 apply plugin: 'com.google.gms.google-services'
 
+
 android {
+
     compileSdk 31
 
     defaultConfig {
@@ -33,6 +35,14 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+//    repositories {
+////        maven { url "https://maven.csse.rose-hulman.edu/artifactory/libs-release" }
+////    }
+
+
+
+
 }
 
 dependencies {
@@ -48,6 +58,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-common-ktx:19.5.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+//    implementation 'edu.rosehulman.csse.rosefire:rosefire-android-client:2.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
