@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,7 @@ class LoginFragment : Fragment() {
 
     private var mAuth: FirebaseAuth? = null
     private var mAuthListener: AuthStateListener? = null
+    private lateinit var authStateListener: FirebaseAuth.AuthStateListener
 
 
     private lateinit var binding: FragmentLoginBinding
@@ -34,12 +36,19 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater,container,false)
         val loginButton: View = binding.loginBtn
+        val logoutButton: View = binding.logoutBtn
 
         mAuth = FirebaseAuth.getInstance()
         mAuthListener = AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             val username = user?.uid ?: "null"
+            with(user) {
+                if (user!=null) {
+                    Log.d("tag", "User: ${this?.uid}, ${this?.email}, ${this?.displayName}")
+                    findNavController().navigate(R.id.nav_user_details)
+                }
 
+            }
             loginButton.visibility = if (user != null) View.GONE else View.VISIBLE
 
         }
@@ -48,6 +57,7 @@ class LoginFragment : Fragment() {
             val data: Intent? = result.data
             val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
             FirebaseAuth.getInstance().signInWithCustomToken(result.getToken())
+            //findNavController().navigate(R.id.nav_user_details)
 
 
         }
@@ -55,6 +65,10 @@ class LoginFragment : Fragment() {
             val signInIntent = Rosefire.getSignInIntent(requireContext(), REGISTRY_TOKEN.toString())
             Log.d("tag","login")
             resultLauncher.launch(signInIntent)
+        }
+
+        logoutButton.setOnClickListener {
+            FirebaseAuth.getInstance().signOut();
         }
 
 
@@ -74,6 +88,7 @@ class LoginFragment : Fragment() {
             mAuth!!.removeAuthStateListener(mAuthListener!!)
         }
     }
+
 
 
 }
