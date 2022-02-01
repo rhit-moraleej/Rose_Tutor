@@ -2,10 +2,12 @@ package com.example.rosetutortracker
 
 
 
+//import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -18,20 +20,14 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
 import com.example.rosetutortracker.models.Student
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import rosefire.rosefire.Rosefire
 import rosefire.rosefire.RosefireResult
-import rosefire.rosefire.WebLoginActivity.REGISTRY_TOKEN
-
 
 
 class MainActivity : AppCompatActivity() {
@@ -40,15 +36,16 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
-    val signinLauncher = registerForActivityResult(
-        FirebaseAuthUIActivityResultContract()
-    ) { /* empty since the auth listener already responds .*/ }
+//    val signinLauncher = registerForActivityResult(
+//        FirebaseAuthUIActivityResultContract()
+//    ) { /* empty since the auth listener already responds .*/ }
 
     private val auth = FirebaseAuth.getInstance()
     private var authFlag = false
     lateinit var authStateListener: FirebaseAuth.AuthStateListener
     private val RC_ROSEFIRE_SIGN_IN = 1001
     private val userRef = FirebaseFirestore.getInstance().collection("Students")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
