@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TutorSetupFragment"
+    android:layout_margin="5dp"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/tutor_profile"
+        android:contentDescription="@string/the_profile_picture_of_the_tutor"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_baseline_person_outline_24"
+        />
+    <LinearLayout
+        android:id="@+id/courses_row"
+        style="@style/tutorDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tutor_profile"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tutorDetails"
+            android:text="@string/courses_edit" />
+
+        <EditText
+            android:id="@+id/courses"
+            style="@style/tutorDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="Enter Your Courses"
+            android:inputType="textMultiLine" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/location_row"
+        android:layout_below="@id/courses_row"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/tutorDetails"
+            android:text="@string/location_edit"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"
+            style="@style/tutorDetails"
+            android:autofillHints="Enter Your Location"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tutor_detail_availability"
+        android:layout_below="@id/location_row"
+        style="@style/tutorDetails"
+        android:text="@string/available_n_1_s"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/update_profile_button"
+        android:layout_below="@id/tutor_detail_availability"
+        android:text="@string/update_profile"
+        />
+
+</RelativeLayout>

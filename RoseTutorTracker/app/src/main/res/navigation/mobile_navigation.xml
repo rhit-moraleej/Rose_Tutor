@@ -53,4 +53,9 @@
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_tutor_details"
         />
+    <fragment
+        android:id="@+id/nav_tutor_setup"
+        android:name="com.example.rosetutortracker.ui.TutorSetupFragment"
+        android:label="Tutor Edit"
+        tools:layout="@layout/fragment_tutor_setup"/>
 </navigation>

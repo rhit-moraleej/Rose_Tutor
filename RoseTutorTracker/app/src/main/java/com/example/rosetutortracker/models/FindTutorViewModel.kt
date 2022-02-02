@@ -8,22 +8,22 @@ import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
 open class FindTutorViewModel : BaseViewModel<Tutor>() {
-    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR_NAME)
+    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
     private var ref2 = Firebase.firestore.collection(Constants.COLLECTION_BY_COURSE_NAME)
 
 
     open fun addTutor(tutor: Tutor?) {
-        val newTutor = tutor ?: createRandomTutor()
-        Log.d("rr", "adding ${newTutor.name}")
-        ref.add(newTutor)
+//        val newTutor = tutor ?: createRandomTutor()
+//        Log.d("rr", "adding ${newTutor.name}")
+//        ref.add(newTutor)
     }
 
-    private fun createRandomTutor(): Tutor {
-        val name = "Name${Random.nextInt(500)}"
-        val email = "$name@rose-hulman.edu"
-        val classYear = Random.nextInt(2022, 2026)
-        return Tutor(name, email, classYear, Random.nextBoolean())
-    }
+//    private fun createRandomTutor(): Tutor {
+//        val name = "Name${Random.nextInt(500)}"
+//        val email = "$name@rose-hulman.edu"
+//        val classYear = Random.nextInt(2022, 2026)
+//        return Tutor(name, email, classYear, Random.nextBoolean())
+//    }
 
     fun findTutor(searchBy: Int, searchTerm: String, function: () -> Unit) {
         when (searchBy) {

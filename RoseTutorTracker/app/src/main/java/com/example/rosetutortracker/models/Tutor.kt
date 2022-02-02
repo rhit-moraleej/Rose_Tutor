@@ -4,14 +4,13 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import kotlin.random.Random
 
-data class Tutor(var name: String = "",
-            var email: String = "",
-            var classYear: Int = 0,
-            var available: Boolean = false,
-            var courses: ArrayList<String> = getRandomCourses(Random.nextInt(1,5)),
-            var isFavorite: Boolean = false,
-            var overRating: Double = Random.nextDouble(0.0,5.0),
-            var numRatings: Int = Random.nextInt(0, 100)){
+data class Tutor(
+                 var available: Boolean = false,
+                 var courses: ArrayList<String> = getRandomCourses(Random.nextInt(1,5)),
+                 var location: String = "",
+                 var hasCompletedSetup: Boolean = false,
+                 var overRating: Double = Random.nextDouble(0.0,5.0),
+                 var numRatings: Int = Random.nextInt(0, 100)){
 
     @get:Exclude
     var id = ""

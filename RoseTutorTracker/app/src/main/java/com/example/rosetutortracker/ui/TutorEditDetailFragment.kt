@@ -31,14 +31,14 @@ class TutorEditDetailFragment : Fragment() {
 
     private fun updateTutor(tutor: Tutor) {
         val updatedTutor = Tutor(
-            binding.tutorName.text.toString(),
-            binding.tutorEmail.text.toString(),
-            binding.tutorClass.text.toString().toInt(),
-            tutor.available,
-            tutor.courses,
-            tutor.isFavorite,
-            tutor.overRating,
-            tutor.numRatings
+//            name = binding.tutorName.text.toString(),
+//            email = binding.tutorEmail.text.toString(),
+//            classYear = binding.tutorClass.text.toString().toInt(),
+            available = tutor.available,
+            courses = tutor.courses,
+//            tutor.isFavorite,
+            overRating = tutor.overRating,
+            numRatings = tutor.numRatings
         )
         Log.d("rr", "updating tutor to: $updatedTutor")
         ref.document(tutorID).set(updatedTutor)
@@ -57,9 +57,9 @@ class TutorEditDetailFragment : Fragment() {
     }
 
     private fun updateView(tutor: Tutor){
-        binding.tutorName.setText(tutor.name)
-        binding.tutorEmail.setText(tutor.email)
-        binding.tutorClass.setText(tutor.classYear.toString())
+//        binding.tutorName.setText(tutor.name)
+//        binding.tutorEmail.setText(tutor.email)
+//        binding.tutorClass.setText(tutor.classYear.toString())
         binding.courses.isClickable = false
         binding.location.isClickable = false
         binding.tutorRating.text = getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)

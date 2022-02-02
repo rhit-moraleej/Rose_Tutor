@@ -32,18 +32,6 @@ class UserDetailsFragment : Fragment() {
         }
 
         binding.updateUserProfileButton.setOnClickListener {
-//            val user = Firebase.auth.currentUser
-//            if (user != null) {
-//                Log.d("tag", "User: ${user.uid}, ${user.email}, ${user.displayName}")
-//                val userEmail = user.uid + "@rose-hulman.edu"
-//                ref = Firebase.firestore.collection("Students").document(user.uid)
-//                val username = binding.userName.text.toString()
-//                val userclass: Int = binding.userClass.text.toString().toInt()
-//                ref.update("name",username)
-//                ref.update("classYear",userclass)
-//                ref.update("email",userEmail)
-//                ref.update("hasCompletedSetup",true)
-//            val userEmail = user.uid + "@rose-hulman.edu"
             val username = binding.userName.text.toString()
             val userclass: Int = binding.userClass.text.toString().toInt()
             studentModel.update(username, userclass, true)

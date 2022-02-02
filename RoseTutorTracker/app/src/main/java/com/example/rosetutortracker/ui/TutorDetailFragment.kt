@@ -34,14 +34,14 @@ class TutorDetailFragment : Fragment() {
 
     private fun updateView() {
         val tutor: Tutor = model.getCurrent()
-        binding.tutorName.text = getString(R.string.place_holder_name, tutor.name)
-        binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.email)
-        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.classYear)
+//        binding.tutorName.text = getString(R.string.place_holder_name, tutor.name)
+//        binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.email)
+//        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.classYear)
         binding.courses.text = tutor.coursesToString()
         binding.tutorRating.text = getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
-        if(!tutor.isFavorite)
-            binding.favoriteTutor.text = getString(R.string.favorite_tutor)
-        else
+//        if(!tutor.isFavorite)
+//            binding.favoriteTutor.text = getString(R.string.favorite_tutor)
+//        else
             binding.favoriteTutor.text = getString(R.string.unfav)
     }
 
@@ -51,12 +51,12 @@ class TutorDetailFragment : Fragment() {
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
             }
-            val message = "Notifying ${model.getCurrent().name} that you need help"
-            Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
-                .setAction("Continue") {
-                    findNavController().navigate(R.id.nav_message_tutor)
-                }
-                .show()
+//            val message = "Notifying ${model.getCurrent().name} that you need help"
+//            Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+//                .setAction("Continue") {
+//                    findNavController().navigate(R.id.nav_message_tutor)
+//                }
+//                .show()
             //clicking button should move to message screen
             binding.notifyTutor.isClickable = false
             binding.notifyTutor.alpha = 0.5F
@@ -65,12 +65,12 @@ class TutorDetailFragment : Fragment() {
            val tutor = model.getCurrent()
            if(!homeModel.containsTutor(tutor)){
                homeModel.addTutor(tutor)
-               Log.d("tag",model.getCurrent().name)
-               model.getCurrent().isFavorite = true
+//               Log.d("tag",model.getCurrent().name)
+//               model.getCurrent().isFavorite = true
            }
 
            else{
-               model.getCurrent().isFavorite = false
+//               model.getCurrent().isFavorite = false
                homeModel.removeCurrent()
            }
            updateView()

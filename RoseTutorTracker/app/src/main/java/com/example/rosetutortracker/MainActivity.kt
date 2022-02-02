@@ -6,12 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
+import com.example.rosetutortracker.models.Student
+import com.example.rosetutortracker.models.StudentViewModel
+import com.example.rosetutortracker.models.Tutor
+import com.example.rosetutortracker.models.TutorViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -24,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navView: NavigationView
+    private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         navView.menu[6].isVisible = false
 
 
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
@@ -68,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             navView.menu[5].isVisible = true
             navView.menu[6].isVisible = true
             drawerLayout.closeDrawer(GravityCompat.START)
+            checkTutorStatus()
             false
         }
 
@@ -106,6 +115,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun checkTutorStatus() {
+        val tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+        tutorModel.getOrMakeUser {
+            if (tutorModel.hasCompletedSetup()) {
+                navController.navigate(R.id.nav_home)
+            } else {
+                tutorModel.tutor = Tutor()
+                navController.navigate(R.id.nav_tutor_setup)
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
@@ -116,7 +137,4 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-
-
 }
