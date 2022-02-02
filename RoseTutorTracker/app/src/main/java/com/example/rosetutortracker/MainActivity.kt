@@ -92,6 +92,13 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
+        navView.menu[7].setOnMenuItemClickListener {
+            FirebaseAuth.getInstance().signOut();
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_login)
+            false
+        }
+
         navView.menu[3].setOnMenuItemClickListener {
             val startpicker =
                 MaterialTimePicker.Builder()

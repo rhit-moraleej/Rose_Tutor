@@ -13,6 +13,9 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import rosefire.rosefire.Rosefire
 import rosefire.rosefire.RosefireResult
 
@@ -25,6 +28,7 @@ class LoginFragment : Fragment() {
     private var mAuth: FirebaseAuth? = null
     private var mAuthListener: AuthStateListener? = null
     private lateinit var authStateListener: FirebaseAuth.AuthStateListener
+    private lateinit var ref: DocumentReference
 
 
     private lateinit var binding: FragmentLoginBinding
@@ -45,7 +49,23 @@ class LoginFragment : Fragment() {
             with(user) {
                 if (user!=null) {
                     Log.d("tag", "User: ${this?.uid}, ${this?.email}, ${this?.displayName}")
-                    findNavController().navigate(R.id.nav_user_details)
+                    ref = Firebase.firestore.collection("Students").document(username)
+                    ref.get()
+                        .addOnSuccessListener { document ->
+                            val completedSetup: Boolean =
+                                document.data?.get("hasCompletedSetup") as Boolean
+                            if (completedSetup) {
+                                findNavController().navigate(R.id.nav_home)
+                            } else {
+                                findNavController().navigate(R.id.nav_user_details)
+                            }
+                        }
+                }
+                else {
+                    //findNavController().navigate(R.id.nav_user_details)
+
+
+
                 }
 
             }

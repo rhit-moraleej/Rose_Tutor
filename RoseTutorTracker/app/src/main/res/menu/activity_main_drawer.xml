@@ -16,6 +16,7 @@
             android:id="@+id/nav_tutor_home"
             android:icon="@drawable/ic_baseline_swap_horiz_24"
             android:title="Switch to tutor"/>
+
         <item
             android:id="@+id/nav_tutor_change_timings"
             android:icon="@drawable/ic_baseline_access_time_24"
@@ -32,5 +33,9 @@
             android:id="@+id/nav_tutor_change_classes"
             android:icon="@drawable/ic_baseline_class_24"
             android:title="Change classes"/>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="Sign out" />
     </group>
 </menu>

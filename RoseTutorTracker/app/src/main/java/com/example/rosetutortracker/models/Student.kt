@@ -6,7 +6,8 @@ import com.google.firebase.firestore.Exclude
 data class Student(var name: String,
                    var email: String,
                    var classYear: Int = 0,
-                   var isTutor: Boolean = false) {
+                   var isTutor: Boolean = false,
+                    var hasCompletedSetup: Boolean = false) {
     @get:Exclude
     var id = ""
 

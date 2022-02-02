@@ -42,6 +42,8 @@ class UserDetailsFragment : Fragment() {
                 val userclass = binding.userClass.text.toString()
                 ref.update("name",username)
                 ref.update("classYear",userclass)
+                ref.update("email",userEmail)
+                ref.update("hasCompletedSetup",true)
 
                 findNavController().navigate(R.id.nav_home)
             }
