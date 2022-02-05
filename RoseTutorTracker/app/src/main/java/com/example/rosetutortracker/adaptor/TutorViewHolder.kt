@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.BaseViewModel
-import com.example.rosetutortracker.models.Student
 import com.example.rosetutortracker.models.Tutor
 
 class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<Tutor>): BaseViewHolder<Tutor>(itemView){
@@ -22,7 +21,7 @@ class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<T
         }
     }
     override fun bind(item: Tutor) {
-//        tutorName.text =
+        tutorName.text = item.studentInfo.name
         if (item.available) {
             tutorAvailability.setImageResource(available)
         }else{

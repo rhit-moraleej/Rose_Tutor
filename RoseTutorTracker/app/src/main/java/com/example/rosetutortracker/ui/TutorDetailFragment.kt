@@ -1,19 +1,16 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.HomeViewModel
 import com.example.rosetutortracker.models.Tutor
-import com.google.android.material.snackbar.Snackbar
 
 class TutorDetailFragment : Fragment() {
     private lateinit var binding: FragmentTutorDetailBinding
@@ -34,10 +31,11 @@ class TutorDetailFragment : Fragment() {
 
     private fun updateView() {
         val tutor: Tutor = model.getCurrent()
-//        binding.tutorName.text = getString(R.string.place_holder_name, tutor.name)
-//        binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.email)
-//        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.classYear)
+        binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
+        binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.studentInfo.email)
+        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.studentInfo.classYear)
         binding.courses.text = tutor.coursesToString()
+        binding.location.text = getString(R.string.location, tutor.location)
         binding.tutorRating.text = getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
 //        if(!tutor.isFavorite)
 //            binding.favoriteTutor.text = getString(R.string.favorite_tutor)

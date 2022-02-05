@@ -135,21 +135,11 @@
             android:text="@string/available_n_1_s"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tutor_rating"
-            android:layout_below="@id/tutor_detail_availability"
-            android:layout_alignStart="@id/tutor_detail_availability"
-            style="@style/tutorDetails"
-            android:text="@string/tutor_rating"
-            android:layout_marginBottom="10dp"
-            />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/update_profile_button"
-            android:layout_below="@id/tutor_rating"
+            android:layout_below="@id/tutor_detail_availability"
             android:text="@string/update_profile"
             />
     </RelativeLayout>

@@ -56,24 +56,22 @@
             android:text="@string/place_holder_courses" />
 
         <TextView
+            android:id="@+id/location"
+            style="@style/tutorDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/location"
             android:layout_below="@id/courses"
             android:layout_alignStart="@id/courses"
-            style="@style/tutorDetails"
-            android:text="@string/location"
-            />
+            android:text="@string/location" />
 
         <TextView
+            android:id="@+id/tutor_detail_availability"
+            style="@style/tutorDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tutor_detail_availability"
             android:layout_below="@id/location"
             android:layout_alignStart="@id/location"
-            style="@style/tutorDetails"
-            android:text="@string/available_n_1_s"
-            />
+            android:text="@string/available_n_1_s" />
 
         <TextView
             android:layout_width="wrap_content"

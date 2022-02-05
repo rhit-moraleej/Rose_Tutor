@@ -2,14 +2,11 @@ package com.example.rosetutortracker.models
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.Constants
-import com.google.common.collect.Iterables.addAll
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.util.Collections.addAll
 
 class TutorViewModel: ViewModel() {
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)

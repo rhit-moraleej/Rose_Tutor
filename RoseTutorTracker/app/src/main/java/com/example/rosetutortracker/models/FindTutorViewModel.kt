@@ -2,10 +2,8 @@ package com.example.rosetutortracker.models
 
 import android.util.Log
 import com.example.rosetutortracker.Constants
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlin.random.Random
 
 open class FindTutorViewModel : BaseViewModel<Tutor>() {
     private var refStudents = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
@@ -36,13 +34,12 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
-                            Log.d("rr", "$it")
+                            Log.d("rr", "Found by name $it")
 //                            list.add(Tutor.from(it))
                             searchTutor(it.id, function)
-                            getTutorStudentInfo(it.id, function)
+                            getTutorStudentInfo(it.id)
                         }
 //                        function()
-
                     }
             }
             1 -> {
@@ -59,7 +56,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                             for (i in tutorId) {
                                 Log.d("rr", i)
                                 searchTutor(i, function)
-                                getTutorStudentInfo(i, function)
+                                getTutorStudentInfo(i)
                             }
                         }
                     }
@@ -85,19 +82,18 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
             }
     }
 
-    private fun getTutorStudentInfo(id: String, function: () -> Unit){
+    private fun getTutorStudentInfo(id: String){
         refStudents.document(id).get()
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful){
                     val student = doc.result!!
                     Log.d(Constants.TAG, "studentInfo: $student")
                     Log.d(Constants.TAG, "List size: ${list.size}")
-
                     getCurrent().studentInfo = Student.from(student)
                 }else{
                     Log.d("rr", "error happened")
                 }
-                function()
+
             }
     }
 

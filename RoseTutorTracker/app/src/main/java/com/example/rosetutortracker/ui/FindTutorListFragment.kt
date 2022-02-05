@@ -28,7 +28,6 @@ class FindTutorListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentFindTutorListBinding.inflate(inflater, container, false)
-
         adaptor = TutorAdaptor(this)
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -51,11 +50,9 @@ class FindTutorListFragment : Fragment() {
                 }
                 return false
             }
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
-
         })
     }
     private fun setupSpinner() {
