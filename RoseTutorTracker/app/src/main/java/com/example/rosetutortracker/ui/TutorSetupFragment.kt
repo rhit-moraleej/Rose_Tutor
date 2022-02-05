@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorSetupBinding
+import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.TutorViewModel
 
 
@@ -29,5 +30,4 @@ class TutorSetupFragment : Fragment() {
         }
         return binding.root
     }
-
 }

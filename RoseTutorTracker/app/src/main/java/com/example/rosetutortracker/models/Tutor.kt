@@ -14,6 +14,8 @@ data class Tutor(
 
     @get:Exclude
     var id = ""
+    @get:Exclude
+    var studentInfo = Student()
 
     fun addRating(rating: Double){
         val total: Double = this.overRating * numRatings

@@ -8,8 +8,9 @@ import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
 open class FindTutorViewModel : BaseViewModel<Tutor>() {
-    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
-    private var ref2 = Firebase.firestore.collection(Constants.COLLECTION_BY_COURSE_NAME)
+    private var refStudents = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
+    private var refTutors = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
+    private var refCourse = Firebase.firestore.collection(Constants.COLLECTION_BY_COURSE_NAME)
 
 
     open fun addTutor(tutor: Tutor?) {
@@ -29,20 +30,24 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
         when (searchBy) {
             0 -> {
                 val newSearchTerm = toTitle(searchTerm)
-                ref.whereGreaterThanOrEqualTo("name", newSearchTerm)
+                refStudents.whereGreaterThanOrEqualTo("name", newSearchTerm)
                     .whereLessThanOrEqualTo("name", newSearchTerm + 'z')
+                    .whereEqualTo("tutor", true)
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             Log.d("rr", "$it")
-                            list.add(Tutor.from(it))
+//                            list.add(Tutor.from(it))
+                            searchTutor(it.id, function)
+                            getTutorStudentInfo(it.id, function)
                         }
-                        function()
+//                        function()
+
                     }
             }
             1 -> {
                 val newSearchTerm = searchTerm.uppercase()
-                ref2.whereGreaterThanOrEqualTo("name", newSearchTerm)
+                refCourse.whereGreaterThanOrEqualTo("name", newSearchTerm)
                     .whereLessThanOrEqualTo("name", newSearchTerm + 'z')
                     .get()
                     .addOnCompleteListener { call ->
@@ -54,6 +59,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                             for (i in tutorId) {
                                 Log.d("rr", i)
                                 searchTutor(i, function)
+                                getTutorStudentInfo(i, function)
                             }
                         }
                     }
@@ -65,24 +71,30 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
         list.clear()
     }
 
-    private fun searchName(reference: CollectionReference, term: String, function: () -> Unit, completion: () -> Unit){
-        reference.whereGreaterThanOrEqualTo("name", term)
-            .whereLessThanOrEqualTo("name", term + 'z')
-            .get()
-            .addOnCompleteListener { call ->
-                call.result?.documents?.forEach {
-                    completion()
-                }
-            }
-    }
     private fun searchTutor(id: String, function: () -> Unit) {
-        ref.document(id).get()
+        refTutors.document(id).get()
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful) {
                     val tutor = doc.result!!
                     Log.d("rr", "tutor: $tutor")
                     list.add(Tutor.from(tutor))
                 } else {
+                    Log.d("rr", "error happened")
+                }
+                function()
+            }
+    }
+
+    private fun getTutorStudentInfo(id: String, function: () -> Unit){
+        refStudents.document(id).get()
+            .addOnCompleteListener { doc ->
+                if (doc.isSuccessful){
+                    val student = doc.result!!
+                    Log.d(Constants.TAG, "studentInfo: $student")
+                    Log.d(Constants.TAG, "List size: ${list.size}")
+
+                    getCurrent().studentInfo = Student.from(student)
+                }else{
                     Log.d("rr", "error happened")
                 }
                 function()

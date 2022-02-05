@@ -1,5 +1,6 @@
 package com.example.rosetutortracker.models
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.rosetutortracker.Constants
 import com.google.firebase.auth.ktx.auth
@@ -35,6 +36,7 @@ class StudentViewModel: ViewModel() {
             with(student!!){
                 name = newName
                 classYear = newClassYear
+                isTutor = false
                 hasCompletedSetup = newHasCompletedSetup
                 ref.set(student!!)
             }

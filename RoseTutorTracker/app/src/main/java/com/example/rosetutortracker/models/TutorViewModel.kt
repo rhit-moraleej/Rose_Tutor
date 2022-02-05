@@ -1,6 +1,8 @@
 package com.example.rosetutortracker.models
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.Constants
 import com.google.common.collect.Iterables.addAll
 import com.google.firebase.auth.ktx.auth
@@ -33,13 +35,16 @@ class TutorViewModel: ViewModel() {
 
     fun update(newCourses: String, newLocation: String, newHasCompletedSetup: Boolean){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
+        val ref2 = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)
         if(tutor != null){
-            var courses =newCourses.split(", ")
+            val course = newCourses.split(", ")
+            Log.d(Constants.TAG, "$course")
             with(tutor!!){
-                courses = courses
+                courses = course as ArrayList<String>
                 location = newLocation
                 hasCompletedSetup = newHasCompletedSetup
                 ref.set(tutor!!)
+                ref2.update("tutor", true)
             }
         }
     }
