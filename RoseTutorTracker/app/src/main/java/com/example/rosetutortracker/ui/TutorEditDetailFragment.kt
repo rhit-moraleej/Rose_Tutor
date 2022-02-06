@@ -32,18 +32,19 @@ class TutorEditDetailFragment : Fragment() {
         Log.d("rr", "tutor after getting: ${tutorModel.tutor}")
         updateView(tutorModel.tutor!!, studentModel.student!!)
         binding.updateProfileButton.setOnClickListener {
-            updateTutor(tutorModel.tutor!!)
+            updateTutor()
         }
         return binding.root
     }
 
-    private fun updateTutor(tutor: Tutor) {
+    private fun updateTutor() {
         val updatedTutor = Tutor(
-            available = tutor.available,
-            courses = tutor.courses,
-            location= tutor.location,
-            overRating = tutor.overRating,
-            numRatings = tutor.numRatings
+            available = binding.tutorDetailAvailability.text.toString().toBoolean(),
+            courses = tutorModel.tutor?.courses!!,
+            location= binding.location.text.toString(),
+            hasCompletedSetup=tutorModel.tutor?.hasCompletedSetup!!,
+            overRating = tutorModel.tutor?.overRating!!,
+            numRatings = tutorModel.tutor?.numRatings!!
         )
         Log.d("rr", "updating tutor to: $updatedTutor")
         ref.document(Firebase.auth.uid!!).set(updatedTutor)

@@ -7,10 +7,13 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class StudentViewModel: ViewModel() {
+class StudentViewModel: BaseViewModel<Tutor>() {
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)
     var student: Student? = null
 
+    fun containsTutor(tutor: Tutor): Boolean{
+        return this.list.contains(tutor)
+    }
     fun hasCompletedSetup() = student?.hasCompletedSetup ?: false
     fun getOrMakeUser(observer: () -> Unit){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)

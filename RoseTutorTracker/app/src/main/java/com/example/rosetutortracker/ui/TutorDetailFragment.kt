@@ -65,6 +65,7 @@ class TutorDetailFragment : Fragment() {
                homeModel.addTutor(tutor)
 //               Log.d("tag",model.getCurrent().name)
 //               model.getCurrent().isFavorite = true
+
            }
 
            else{

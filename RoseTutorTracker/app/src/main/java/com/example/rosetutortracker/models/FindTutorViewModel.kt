@@ -35,11 +35,12 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             Log.d("rr", "Found by name $it")
-//                            list.add(Tutor.from(it))
-                            searchTutor(it.id, function)
-                            getTutorStudentInfo(it.id)
+                            val student = Student.from(it)
+                            Log.d("rr", student.toString())
+                            searchTutor(it.id, function, student)
+
                         }
-//                        function()
+                        function()
                     }
             }
             1 -> {
@@ -55,8 +56,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                             val tutorId = results.substring(1, results.length - 1).split(", ")
                             for (i in tutorId) {
                                 Log.d("rr", i)
-                                searchTutor(i, function)
-                                getTutorStudentInfo(i)
+//                                searchTutor(i, function, student)
                             }
                         }
                     }
@@ -68,32 +68,18 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
         list.clear()
     }
 
-    private fun searchTutor(id: String, function: () -> Unit) {
+    private fun searchTutor(id: String, function: () -> Unit, student: Student) {
         refTutors.document(id).get()
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful) {
-                    val tutor = doc.result!!
+                    val tutor = Tutor.from(doc.result!!)
                     Log.d("rr", "tutor: $tutor")
-                    list.add(Tutor.from(tutor))
+                    tutor.studentInfo = student
+                    list.add(tutor)
                 } else {
                     Log.d("rr", "error happened")
                 }
                 function()
-            }
-    }
-
-    private fun getTutorStudentInfo(id: String){
-        refStudents.document(id).get()
-            .addOnCompleteListener { doc ->
-                if (doc.isSuccessful){
-                    val student = doc.result!!
-                    Log.d(Constants.TAG, "studentInfo: $student")
-                    Log.d(Constants.TAG, "List size: ${list.size}")
-                    getCurrent().studentInfo = Student.from(student)
-                }else{
-                    Log.d("rr", "error happened")
-                }
-
             }
     }
 

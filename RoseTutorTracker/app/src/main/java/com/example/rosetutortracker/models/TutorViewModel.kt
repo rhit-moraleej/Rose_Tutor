@@ -34,7 +34,7 @@ class TutorViewModel: ViewModel() {
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
         val ref2 = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)
         if(tutor != null){
-            val course = newCourses.split(", ")
+            val course = newCourses.split(", ") // will cause app to crash if entered courses have no space or if only one course is entered
             Log.d(Constants.TAG, "$course")
             with(tutor!!){
                 courses = course as ArrayList<String>
