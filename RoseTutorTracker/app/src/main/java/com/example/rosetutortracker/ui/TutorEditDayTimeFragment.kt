@@ -145,26 +145,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.tuesdayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","tuesday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[1])
+                    .setMinute(updatedTutor.startMinutes[1])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val tueStartHour = startpicker.hour
+                val tueStartMinute = startpicker.minute
+                updatedTutor.startHours[1] = tueStartHour
+                updatedTutor.startMinutes[1] = tueStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(tueStartHour)
+                        .setMinute(tueStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val tueEndHour = endpicker.hour
+                    val tueEndMinute = endpicker.minute
+                    updatedTutor.endHours[1] = tueEndHour
+                    updatedTutor.endMinutes[1] = tueEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
@@ -172,26 +182,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.wednesdayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","wednesday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[2])
+                    .setMinute(updatedTutor.startMinutes[2])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val wedStartHour = startpicker.hour
+                val wedStartMinute = startpicker.minute
+                updatedTutor.startHours[2] = wedStartHour
+                updatedTutor.startMinutes[2] = wedStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(wedStartHour)
+                        .setMinute(wedStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val wedEndHour = endpicker.hour
+                    val wedEndMinute = endpicker.minute
+                    updatedTutor.endHours[2] = wedEndHour
+                    updatedTutor.endMinutes[2] = wedEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
@@ -199,26 +219,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.thursdayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","thursday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[3])
+                    .setMinute(updatedTutor.startMinutes[3])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val thuStartHour = startpicker.hour
+                val thuStartMinute = startpicker.minute
+                updatedTutor.startHours[3] = thuStartHour
+                updatedTutor.startMinutes[3] = thuStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(thuStartHour)
+                        .setMinute(thuStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val thuEndHour = endpicker.hour
+                    val thuEndMinute = endpicker.minute
+                    updatedTutor.endHours[3] = thuEndHour
+                    updatedTutor.endMinutes[3] = thuEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
@@ -226,26 +256,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.fridayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","friday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[4])
+                    .setMinute(updatedTutor.startMinutes[4])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val friStartHour = startpicker.hour
+                val friStartMinute = startpicker.minute
+                updatedTutor.startHours[4] = friStartHour
+                updatedTutor.startMinutes[4] = friStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(friStartHour)
+                        .setMinute(friStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val friEndHour = endpicker.hour
+                    val friEndMinute = endpicker.minute
+                    updatedTutor.endHours[4] = friEndHour
+                    updatedTutor.endMinutes[4] = friEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
@@ -253,26 +293,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.saturdayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","saturday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[5])
+                    .setMinute(updatedTutor.startMinutes[5])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val satStartHour = startpicker.hour
+                val satStartMinute = startpicker.minute
+                updatedTutor.startHours[5] = satStartHour
+                updatedTutor.startMinutes[5] = satStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(satStartHour)
+                        .setMinute(satStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val satEndHour = endpicker.hour
+                    val satEndMinute = endpicker.minute
+                    updatedTutor.endHours[5] = satEndHour
+                    updatedTutor.endMinutes[5] = satEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
@@ -280,26 +330,36 @@ class TutorEditDayTimeFragment: Fragment() {
         }
 
         binding.sundayButton.setOnClickListener {
-            Log.d("rr","monday button")
+            Log.d("rr","sunday button")
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[6])
+                    .setMinute(updatedTutor.startMinutes[6])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
+                val sunStartHour = startpicker.hour
+                val sunStartMinute = startpicker.minute
+                updatedTutor.startHours[6] = sunStartHour
+                updatedTutor.startMinutes[6] = sunStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
+                Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(sunStartHour)
+                        .setMinute(sunStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
-
+                    val sunEndHour = endpicker.hour
+                    val sunEndMinute = endpicker.minute
+                    updatedTutor.endHours[5] = sunEndHour
+                    updatedTutor.endMinutes[5] = sunEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+                    Log.d("rr",t)
                 }
                 endpicker.show(parentFragmentManager,"rr")
             }
