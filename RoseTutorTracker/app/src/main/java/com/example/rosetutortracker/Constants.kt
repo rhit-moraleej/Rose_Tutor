@@ -5,4 +5,5 @@ object Constants {
     const val COLLECTION_BY_TUTOR = "Tutors"
     const val COLLECTION_BY_COURSE_NAME = "Course"
     const val COLLECTION_BY_STUDENT = "Students"
+    const val COLLECTION_OF_FAVS = "favoriteTutors"
 }

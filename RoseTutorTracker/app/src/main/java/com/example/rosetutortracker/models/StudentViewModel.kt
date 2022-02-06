@@ -3,13 +3,14 @@ package com.example.rosetutortracker.models
 import android.util.Log
 import com.example.rosetutortracker.Constants
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class StudentViewModel: BaseViewModel<Tutor>() {
-    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)
+    private lateinit var ref: DocumentReference
     var student: Student? = null
+    val subscription = HashMap<String, ListenerRegistration>()
 
     fun containsTutor(tutor: Tutor): Boolean{
         return student?.favoriteTutors?.contains(tutor.id) ?: false
@@ -23,8 +24,28 @@ class StudentViewModel: BaseViewModel<Tutor>() {
             updateFavs()
         }
     }
+
+    fun addListener(fragmentName: String, observer: () -> Unit){
+        val ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
+            .document(Firebase.auth.uid!!)
+            .collection(Constants.COLLECTION_OF_FAVS)
+            .addSnapshotListener { snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
+                error?.let {
+                    Log.d(Constants.TAG, "Error: $error")
+                    return@addSnapshotListener
+                }
+                list.clear()
+                snapshot?.documents?.forEach{
+                    val tutorStudentInfo = Student.from(it)
+//                    searchTutor(tutor, tutorStudentInfo, function)
+            }
+            }
+    }
+
     fun setupFavs(function: () -> Unit) {
+        Log.d(Constants.TAG, "Getting favs")
         val refStudent = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
+        list.clear()
         for (tutor in student?.favoriteTutors!!){
             refStudent.document(tutor).get()
                 .addOnCompleteListener {
@@ -32,18 +53,21 @@ class StudentViewModel: BaseViewModel<Tutor>() {
                         val tutorStudentInfo = Student.from(it.result!!)
                         searchTutor(tutor, tutorStudentInfo, function)
                     }
+                    function()
                 }
         }
+        Log.d(Constants.TAG, "Current fav list: $list")
     }
     private fun searchTutor(id: String, student: Student, function: () -> Unit) {
-        val refTutors = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
-        refTutors.document(id).get()
+        ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(id)
+        ref.get()
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful) {
                     val tutor = Tutor.from(doc.result!!)
                     Log.d("rr", "tutor: $tutor")
                     tutor.studentInfo = student
                     list.add(tutor)
+                    Log.d(Constants.TAG, "List after tutor search: $list")
                 } else {
                     Log.d("rr", "error happened")
                 }
@@ -84,5 +108,10 @@ class StudentViewModel: BaseViewModel<Tutor>() {
                 ref.set(student!!)
             }
         }
+    }
+
+    fun removeTutor(tutor: Tutor) {
+        list.remove(tutor)
+        student?.favoriteTutors?.remove(tutor.id)
     }
 }

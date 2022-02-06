@@ -11,14 +11,13 @@ import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
-import com.example.rosetutortracker.models.HomeViewModel
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 
-class TutorDetailFragment : Fragment() {
-    private lateinit var binding: FragmentTutorDetailBinding
+open class TutorDetailFragment : Fragment() {
+    lateinit var binding: FragmentTutorDetailBinding
     private lateinit var model: FindTutorViewModel
-    private lateinit var homeModel: StudentViewModel
+    lateinit var homeModel: StudentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,11 +27,13 @@ class TutorDetailFragment : Fragment() {
         homeModel = ViewModelProvider(requireActivity())[StudentViewModel:: class.java]
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
         updateView()
-        setupButtons()
+        setupNotifyButton()
+        setupFavButton()
         return binding.root
     }
 
-    private fun updateView() {
+    open fun updateView() {
+        Log.d(Constants.TAG, "FindTutor: ${model.list.size}, StudentModel: ${homeModel.list.size}")
         val tutor: Tutor = model.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
         binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.studentInfo.email)
@@ -47,10 +48,9 @@ class TutorDetailFragment : Fragment() {
         else{
             binding.favoriteTutor.text = getString(R.string.unfav)
         }
-
     }
 
-    private fun setupButtons(){
+    private fun setupNotifyButton(){
         binding.notifyTutor.setOnClickListener {
             if (!model.getCurrent().available){
                 binding.notifyTutor.isClickable = false
@@ -66,21 +66,18 @@ class TutorDetailFragment : Fragment() {
             binding.notifyTutor.isClickable = false
             binding.notifyTutor.alpha = 0.5F
         }
-       binding.favoriteTutor.setOnClickListener {
-           val tutor = model.getCurrent()
-           Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
-           if(!homeModel.containsTutor(tutor)){
-               homeModel.addTutor(tutor)
-//               Log.d("tag",model.getCurrent().name)
-//               model.getCurrent().isFavorite = true
+    }
 
-           }
-
-           else{
-//               model.getCurrent().isFavorite = false
-               homeModel.removeCurrent()
-           }
-           updateView()
-       }
+    open fun setupFavButton(){
+        binding.favoriteTutor.setOnClickListener {
+            val tutor = model.getCurrent()
+            Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
+            if(!homeModel.containsTutor(tutor)){
+                homeModel.addTutor(tutor)
+            }else{
+                homeModel.removeTutor(tutor)
+            }
+            updateView()
+        }
     }
 }

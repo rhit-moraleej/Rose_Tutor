@@ -38,7 +38,6 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                             val student = Student.from(it)
                             Log.d("rr", student.toString())
                             searchTutor(it.id, function, student)
-
                         }
                         function()
                     }

@@ -9,7 +9,7 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.BaseViewModel
 import com.example.rosetutortracker.models.Tutor
 
-class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<Tutor>): BaseViewHolder<Tutor>(itemView){
+open class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<Tutor>): BaseViewHolder<Tutor>(itemView){
     private val tutorName: TextView = itemView.findViewById(R.id.tutor_name)
     private val tutorAvailability: ImageView = itemView.findViewById(R.id.tutor_availablity)
     private val available = R.drawable.ic_baseline_check_24
