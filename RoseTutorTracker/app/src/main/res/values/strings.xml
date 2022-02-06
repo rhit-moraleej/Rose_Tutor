@@ -48,4 +48,11 @@
     <string name="location_edit">Location:</string>
     <string name="update_profile">Update Profile</string>
     <string name="app_label">Rose Tutor Tracker</string>
+    <string name="sign_out">Sign out</string>
+    <string name="change_classes">Change classes</string>
+    <string name="change_location">Change location</string>
+    <string name="change_days">Change days</string>
+    <string name="change_timings">Change timings</string>
+    <string name="switch_to_tutor">Switch to tutor</string>
+    <string name="course_edit_instructions">Add or edit your courses below:</string>
 </resources>

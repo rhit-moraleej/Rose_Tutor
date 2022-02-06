@@ -15,27 +15,27 @@
         <item
             android:id="@+id/nav_tutor_home"
             android:icon="@drawable/ic_baseline_swap_horiz_24"
-            android:title="Switch to tutor"/>
+            android:title="@string/switch_to_tutor"/>
 
         <item
             android:id="@+id/nav_tutor_change_timings"
             android:icon="@drawable/ic_baseline_access_time_24"
-            android:title="Change timings"/>
+            android:title="@string/change_timings"/>
         <item
             android:id="@+id/nav_tutor_change_days"
             android:icon="@drawable/ic_baseline_calendar_today_24"
-            android:title="Change days"/>
+            android:title="@string/change_days"/>
         <item
             android:id="@+id/nav_tutor_change_location"
             android:icon="@drawable/ic_baseline_location_on_24"
-            android:title="Change location"/>
+            android:title="@string/change_location"/>
         <item
             android:id="@+id/nav_tutor_change_classes"
             android:icon="@drawable/ic_baseline_class_24"
-            android:title="Change classes"/>
+            android:title="@string/change_classes"/>
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_baseline_logout_24"
-            android:title="Sign out" />
+            android:title="@string/sign_out" />
     </group>
 </menu>
