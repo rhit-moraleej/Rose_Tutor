@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/nav_tutor_edit_day_time"
         android:name="com.example.rosetutortracker.ui.TutorEditDayTimeFragment"
-        android:label="Tutor Edit Day Time"
+        android:label="Edit Days and Times"
         tools:layout="@layout/fragment_tutor_edit_day_time" />
     <fragment
         android:id="@+id/nav_tutor_change_classes"
@@ -64,6 +64,11 @@
         android:label="Edit Your Courses"
         tools:layout="@layout/fragment_change_course"
         />
+    <fragment
+        android:id="@+id/nav_tutor_edit_location"
+        android:name="com.example.rosetutortracker.ui.TutorEditLocationFragment"
+        android:label="Edit Your Location"
+        tools:layout="@layout/fragment_tutor_edit_location" />
 
     <fragment
         android:id="@+id/nav_tutor_setup"
