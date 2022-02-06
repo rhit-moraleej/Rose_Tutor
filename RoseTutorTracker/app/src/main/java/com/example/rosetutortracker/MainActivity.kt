@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -87,29 +88,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         navView.menu[3].setOnMenuItemClickListener {
-            val startpicker =
-                MaterialTimePicker.Builder()
-                    .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
-                    .setTitleText("Select Start time")
-                    .build()
-            startpicker.addOnPositiveButtonClickListener {
-                val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
-                val endpicker =
-                    MaterialTimePicker.Builder()
-                        .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
-                        .setTitleText("Select End time")
-                        .build()
-                endpicker.addOnPositiveButtonClickListener {
-                    val s = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
+            Snackbar.make(navView,"PLACEHOLDER NAV ITEM",Snackbar.LENGTH_LONG)
+                .setAction("Continue") {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                    navController.popBackStack()
+                }.show()
+            false
+        }
 
-                }
-                endpicker.show(supportFragmentManager,"tag")
-            }
-            startpicker.show(supportFragmentManager,"tag")
+        navView.menu[4].setOnMenuItemClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_tutor_edit_day_time)
+            false
+        }
+
+        navView.menu[5].setOnMenuItemClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_tutor_edit_location)
             false
         }
     }
