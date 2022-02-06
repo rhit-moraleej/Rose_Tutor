@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="25dp" >
+
+    <CheckBox
+        android:id="@+id/mondayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="20dp"
+        android:checked="false"
+        android:text="Monday" />
+    <Button
+        android:id="@+id/mondayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="50dp"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/tuesdayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mondayCB"
+        android:layout_marginBottom="20dp"
+        android:checked="false"
+        android:text="Tuesday"/>
+    <Button
+        android:id="@+id/tuesdayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/mondayButton"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/wednesdayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tuesdayCB"
+        android:layout_marginBottom="20dp"
+        android:text="Wednesday"/>
+    <Button
+        android:id="@+id/wednesdayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/tuesdayButton"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/thursdayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@+id/wednesdayCB"
+        android:text="Thursday"/>
+    <Button
+        android:id="@+id/thursdayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/wednesdayButton"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/fridayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thursdayCB"
+        android:layout_marginBottom="20dp"
+        android:text="Friday"/>
+    <Button
+        android:id="@+id/fridayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:layout_below="@id/thursdayButton"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/saturdayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fridayCB"
+        android:layout_marginBottom="20dp"
+        android:text="Saturday"/>
+    <Button
+        android:id="@+id/saturdayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/fridayButton"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+    <CheckBox
+        android:id="@+id/sundayCB"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/saturdayCB"
+        android:layout_marginBottom="20dp"
+        android:text="Sunday"/>
+    <Button
+        android:id="@+id/sundayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/saturdayButton"
+        android:layout_marginBottom="20dp"
+        android:enabled="false"
+        android:text="Select Timings" />
+
+</RelativeLayout>

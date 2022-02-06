@@ -110,6 +110,12 @@ class MainActivity : AppCompatActivity() {
             startpicker.show(supportFragmentManager,"tag")
             false
         }
+
+        navView.menu[4].setOnMenuItemClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_tutor_edit_day_time)
+            false
+        }
     }
 
     private fun checkTutorStatus() {
