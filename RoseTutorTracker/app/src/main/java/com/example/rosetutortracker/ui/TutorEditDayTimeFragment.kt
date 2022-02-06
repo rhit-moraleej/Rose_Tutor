@@ -39,7 +39,11 @@ class TutorEditDayTimeFragment: Fragment() {
             hasCompletedSetup=tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
             numRatings = tutorModel.tutor?.numRatings!!,
-            days = tutorModel.tutor?.days!!
+            days = tutorModel.tutor?.days!!,
+            startHours = tutorModel.tutor?.startHours!!,
+            startMinutes = tutorModel.tutor?.startMinutes!!,
+            endHours = tutorModel.tutor?.endHours!!,
+            endMinutes = tutorModel.tutor?.endMinutes!!
         )
 
         binding.mondayButton.isEnabled = updatedTutor.days[0]
@@ -106,25 +110,30 @@ class TutorEditDayTimeFragment: Fragment() {
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(12)
-                    .setMinute(10)
+                    .setHour(updatedTutor.startHours[0])
+                    .setMinute(updatedTutor.startMinutes[0])
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
                 val monStartHour = startpicker.hour
                 val monStartMinute = startpicker.minute
+                updatedTutor.startHours[0] = monStartHour
+                updatedTutor.startMinutes[0] = monStartMinute
                 val s = String.format("Time: %d:%02d",startpicker.hour,startpicker.minute)
                 Log.d("rr",s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(12)
-                        .setMinute(10)
+                        .setHour(monStartHour)
+                        .setMinute(monStartMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
                     val monEndHour = endpicker.hour
                     val monEndMinute = endpicker.minute
+                    updatedTutor.endHours[0] = monEndHour
+                    updatedTutor.endMinutes[0] = monEndMinute
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
                     val t = String.format("Time: %d:%02d",endpicker.hour,endpicker.minute)
                     Log.d("rr",t)
                 }
