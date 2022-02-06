@@ -20,6 +20,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val adaptor = FavTutorAdaptor(this)
+        adaptor.getFavTutors()
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
