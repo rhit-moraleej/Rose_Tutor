@@ -77,8 +77,10 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
+
+
         navView.menu[7].setOnMenuItemClickListener {
-            FirebaseAuth.getInstance().signOut();
+            FirebaseAuth.getInstance().signOut()
             drawerLayout.closeDrawer(GravityCompat.START)
             navController.navigate(R.id.nav_login)
             false

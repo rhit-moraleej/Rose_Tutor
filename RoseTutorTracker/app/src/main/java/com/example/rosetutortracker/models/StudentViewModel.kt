@@ -3,14 +3,14 @@ package com.example.rosetutortracker.models
 import android.util.Log
 import com.example.rosetutortracker.Constants
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class StudentViewModel: BaseViewModel<Tutor>() {
     private lateinit var ref: DocumentReference
     var student: Student? = null
-    val subscription = HashMap<String, ListenerRegistration>()
 
     fun containsTutor(tutor: Tutor): Boolean{
         return student?.favoriteTutors?.contains(tutor.id) ?: false
@@ -23,23 +23,6 @@ class StudentViewModel: BaseViewModel<Tutor>() {
             Log.d(Constants.TAG, "List of favorite tutors: ${student?.favoriteTutors}")
             updateFavs()
         }
-    }
-
-    fun addListener(fragmentName: String, observer: () -> Unit){
-        val ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
-            .document(Firebase.auth.uid!!)
-            .collection(Constants.COLLECTION_OF_FAVS)
-            .addSnapshotListener { snapshot: QuerySnapshot?, error: FirebaseFirestoreException? ->
-                error?.let {
-                    Log.d(Constants.TAG, "Error: $error")
-                    return@addSnapshotListener
-                }
-                list.clear()
-                snapshot?.documents?.forEach{
-                    val tutorStudentInfo = Student.from(it)
-//                    searchTutor(tutor, tutorStudentInfo, function)
-            }
-            }
     }
 
     fun setupFavs(function: () -> Unit) {

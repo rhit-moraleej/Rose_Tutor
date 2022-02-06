@@ -43,14 +43,16 @@
     <fragment
         android:id="@+id/nav_fav_tutor_detail"
         android:name="com.example.rosetutortracker.ui.FavTutorDetailFragment"
-        android:label="@string/find_tutor"
+        android:label="Favorite Tutors"
         tools:layout="@layout/fragment_tutor_detail" />
+
     <fragment
         android:id="@+id/nav_tutor_home"
         android:name="com.example.rosetutortracker.ui.TutorHomeFragment"
         android:label="Tutor Home"
         tools:layout="@layout/fragment_tutor_home"
         />
+
     <fragment
         android:id="@+id/nav_tutor_edit_day_time"
         android:name="com.example.rosetutortracker.ui.TutorEditDayTimeFragment"
@@ -58,10 +60,11 @@
         tools:layout="@layout/fragment_tutor_edit_day_time" />
     <fragment
         android:id="@+id/nav_tutor_change_classes"
-        android:name="com.example.rosetutortracker.ui.TutorEditDetailFragment"
-        android:label="Edit Profile"
-        tools:layout="@layout/fragment_edit_tutor_details"
+        android:name="com.example.rosetutortracker.ui.ChangeCourseFragment"
+        android:label="Edit Your Courses"
+        tools:layout="@layout/fragment_change_course"
         />
+
     <fragment
         android:id="@+id/nav_tutor_setup"
         android:name="com.example.rosetutortracker.ui.TutorSetupFragment"

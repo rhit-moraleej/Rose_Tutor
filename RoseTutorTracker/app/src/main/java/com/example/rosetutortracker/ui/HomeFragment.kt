@@ -13,11 +13,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adaptor: FavTutorAdaptor
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        adaptor = FavTutorAdaptor(this)
-        adaptor.getFavTutors()
-    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,8 +20,8 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        val adaptor = FavTutorAdaptor(this)
-//        adaptor.getFavTutors()
+        val adaptor = FavTutorAdaptor(this)
+        adaptor.getFavTutors()
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
