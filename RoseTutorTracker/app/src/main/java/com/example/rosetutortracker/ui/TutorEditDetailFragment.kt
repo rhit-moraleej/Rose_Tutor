@@ -44,7 +44,7 @@ class TutorEditDetailFragment : Fragment() {
             location= binding.location.text.toString(),
             hasCompletedSetup=tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
-            numRatings = tutorModel.tutor?.numRatings!!
+            numRatings = tutorModel.tutor?.numRatings!!,
         )
         Log.d("rr", "updating tutor to: $updatedTutor")
         ref.document(Firebase.auth.uid!!).set(updatedTutor)

@@ -10,7 +10,9 @@ data class Tutor(
                  var location: String = "",
                  var hasCompletedSetup: Boolean = false,
                  var overRating: Double = Random.nextDouble(0.0,5.0),
-                 var numRatings: Int = Random.nextInt(0, 100)){
+                 var numRatings: Int = Random.nextInt(0, 100),
+                 var days: ArrayList<Boolean> = arrayListOf(false,false,false,false,false,false,false)
+){
 
     @get:Exclude
     var id = ""
