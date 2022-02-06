@@ -8,6 +8,9 @@ abstract class BaseViewModel<T>: ViewModel() {
 
     fun getListAt(pos: Int) = list[pos]
     fun getCurrent() = list[currPos]
+    fun setListAt(pos: Int, item: T){
+        list[pos] = item
+    }
     fun updatePos(pos: Int){
         currPos = pos
     }

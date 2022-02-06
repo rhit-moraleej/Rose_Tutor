@@ -45,4 +45,9 @@ class TutorViewModel: ViewModel() {
             }
         }
     }
+
+    fun updateTutorCourses(list: ArrayList<String>) {
+        ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
+        ref.update("courses", list)
+    }
 }
