@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.ChangeCourseFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,14 +23,26 @@
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/instructions"
             android:background="#FFcccccc"
             />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/add_course"
-            android:text="Add a Course"
+            android:layout_below="@id/recycler_view"
+            android:layout_marginTop="10dp"
+            android:text="@string/add_a_course"
             />
-    </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/complete_btn"
+            android:text="@string/done"
+            android:layout_below="@id/recycler_view"
+            android:layout_marginTop="10dp"
+            android:layout_alignEnd="@id/recycler_view"
+            />
+    </RelativeLayout>
 
 </ScrollView>

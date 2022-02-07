@@ -55,4 +55,7 @@
     <string name="change_timings">Change timings</string>
     <string name="switch_to_tutor">Switch to tutor</string>
     <string name="course_edit_instructions">Add or edit your courses below:</string>
+    <string name="add_a_course">Add a Course</string>
+    <string name="done">Done</string>
+    <string name="save_course">Save</string>
 </resources>
