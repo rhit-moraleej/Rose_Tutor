@@ -19,6 +19,7 @@ class TutorCourseAdaptor(fragment: ChangeCourseFragment): BaseAdapter<String>(fr
     )
 
     fun setTutorCourses(courses: ArrayList<String>){
+        model.list.clear()
         model.list.addAll(courses)
     }
 
