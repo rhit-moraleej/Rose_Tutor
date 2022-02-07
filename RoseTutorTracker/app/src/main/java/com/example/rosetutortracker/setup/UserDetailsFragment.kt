@@ -33,7 +33,7 @@ class UserDetailsFragment : Fragment() {
         studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         binding.cancelUserProfileButton.setOnClickListener {
             findNavController().popBackStack()
-            FirebaseAuth.getInstance().signOut();
+            FirebaseAuth.getInstance().signOut()
         }
 
         binding.updateUserProfileButton.setOnClickListener {

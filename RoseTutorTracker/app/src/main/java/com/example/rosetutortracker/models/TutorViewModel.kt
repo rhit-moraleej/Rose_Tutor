@@ -36,7 +36,7 @@ class TutorViewModel: ViewModel() {
         if(tutor != null){
             with(tutor!!){
                 hasCompletedSetup = newHasCompletedSetup
-                ref.set(tutor!!)
+                ref.set(this)
                 ref2.update("tutor", true)
             }
         }

@@ -89,7 +89,7 @@ class StudentViewModel: BaseViewModel<Tutor>() {
                 favoriteTutors = ArrayList()
                 isTutor = false
                 hasCompletedSetup = newHasCompletedSetup
-                ref.set(student!!)
+                ref.set(this)
             }
         }
     }

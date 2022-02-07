@@ -8,8 +8,6 @@ import com.google.firebase.ktx.Firebase
 open class FindTutorViewModel : BaseViewModel<Tutor>() {
     private var refStudents = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
     private var refTutors = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
-    private var refCourse = Firebase.firestore.collection(Constants.COLLECTION_BY_COURSE_NAME)
-
 
     open fun addTutor(tutor: Tutor?) {
 //        val newTutor = tutor ?: createRandomTutor()
@@ -44,19 +42,13 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
             }
             1 -> {
                 val newSearchTerm = searchTerm.uppercase()
-                refCourse.whereGreaterThanOrEqualTo("name", newSearchTerm)
-                    .whereLessThanOrEqualTo("name", newSearchTerm + 'z')
+                refTutors.whereArrayContains("courses", newSearchTerm)
                     .get()
                     .addOnCompleteListener { call ->
-                        Log.d("rr", "results size: ${call.result?.documents?.size}")
-                        call.result?.documents?.forEach {
-                            Log.d("rr", "found: $it")
-                            val results: String = it.data?.get("tutors").toString()
-                            val tutorId = results.substring(1, results.length - 1).split(", ")
-                            for (i in tutorId) {
-                                Log.d("rr", i)
-//                                searchTutor(i, function, student)
-                            }
+                        call.result?.documents?.forEach{
+                            Log.d(Constants.TAG, "Course search found: ${it.id}")
+                            val tutor = Tutor.from(it)
+                            searchStudent(it.id, function, tutor)
                         }
                     }
             }
@@ -72,6 +64,21 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful) {
                     val tutor = Tutor.from(doc.result!!)
+                    Log.d("rr", "tutor: $tutor")
+                    tutor.studentInfo = student
+                    list.add(tutor)
+                } else {
+                    Log.d("rr", "error happened")
+                }
+                function()
+            }
+    }
+
+    private fun searchStudent(id: String, function: () -> Unit, tutor: Tutor){
+        refStudents.document(id).get()
+            .addOnCompleteListener { doc ->
+                if (doc.isSuccessful && doc.result?.exists() == true) {
+                    val student = Student.from(doc.result!!)
                     Log.d("rr", "tutor: $tutor")
                     tutor.studentInfo = student
                     list.add(tutor)

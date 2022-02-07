@@ -14,7 +14,6 @@ import com.google.firebase.ktx.Firebase
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adaptor: FavTutorAdaptor
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -59,9 +59,9 @@ class LoginFragment : Fragment() {
             loginButton.visibility = if (user != null) View.GONE else View.VISIBLE
         }
 
-        var resultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                val data: Intent? = result.data
+        val resultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { call ->
+                val data: Intent? = call.data
                 val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
                 FirebaseAuth.getInstance().signInWithCustomToken(result.token)
             }
@@ -72,7 +72,7 @@ class LoginFragment : Fragment() {
         }
 
         logoutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut();
+            FirebaseAuth.getInstance().signOut()
         }
         return binding.root
     }
