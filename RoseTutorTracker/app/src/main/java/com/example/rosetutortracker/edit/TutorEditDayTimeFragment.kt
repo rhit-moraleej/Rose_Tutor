@@ -1,10 +1,11 @@
-package com.example.rosetutortracker.ui
+package com.example.rosetutortracker.edit
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.Constants
@@ -18,8 +19,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class TutorEditDayTimeFragment: Fragment() {
-    private lateinit var binding: FragmentTutorEditDayTimeBinding
+open class TutorEditDayTimeFragment: Fragment() {
+    lateinit var binding: FragmentTutorEditDayTimeBinding
     private lateinit var tutorModel: TutorViewModel
     private lateinit var studentModel: StudentViewModel
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
@@ -364,7 +365,11 @@ class TutorEditDayTimeFragment: Fragment() {
             }
             startpicker.show(parentFragmentManager,"rr")
         }
-        
+        setupDoneButton()
         return binding.root
+    }
+
+    open fun setupDoneButton(){
+        binding.completeBtn.isVisible = false
     }
 }

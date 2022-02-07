@@ -8,8 +8,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.R
+import com.example.rosetutortracker.edit.ChangeCourseFragment
 import com.example.rosetutortracker.models.CourseViewModel
-import com.example.rosetutortracker.ui.ChangeCourseFragment
 
 class TutorCourseAdaptor(fragment: ChangeCourseFragment): BaseAdapter<String>(fragment) {
     override val model = ViewModelProvider(fragment.requireActivity())[CourseViewModel::class.java]

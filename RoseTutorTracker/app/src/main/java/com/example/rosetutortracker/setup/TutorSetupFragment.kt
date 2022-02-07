@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.ui
+package com.example.rosetutortracker.setup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,9 +25,7 @@ class TutorSetupFragment : Fragment() {
         tutorModel = ViewModelProvider(requireActivity())[TutorViewModel::class.java]
         courseModel = ViewModelProvider(requireActivity())[CourseViewModel::class.java]
         binding.updateProfileButton.setOnClickListener {
-            val courses = binding.courses.text.toString()
-            val location = binding.location.text.toString()
-            tutorModel.update(courses, location, true)
+            tutorModel.update(true)
             courseModel.list = tutorModel.tutor?.courses!!
             findNavController().navigate(R.id.nav_tutor_home)
         }

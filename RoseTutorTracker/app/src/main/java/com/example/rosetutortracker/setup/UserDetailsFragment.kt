@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.ui
+package com.example.rosetutortracker.setup
 
 import android.os.Bundle
 import android.view.LayoutInflater

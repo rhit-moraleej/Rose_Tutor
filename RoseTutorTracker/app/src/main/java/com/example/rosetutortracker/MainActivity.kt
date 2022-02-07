@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.nav_home)
             } else {
                 tutorModel.tutor = Tutor()
-                navController.navigate(R.id.nav_tutor_setup)
+                navController.navigate(R.id.nav_course_tutor_setup)
             }
         }
     }

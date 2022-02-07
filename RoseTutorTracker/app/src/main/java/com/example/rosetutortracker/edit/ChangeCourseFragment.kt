@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.ui
+package com.example.rosetutortracker.edit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,11 +11,11 @@ import com.example.rosetutortracker.adaptor.TutorCourseAdaptor
 import com.example.rosetutortracker.databinding.FragmentChangeCourseBinding
 import com.example.rosetutortracker.models.TutorViewModel
 
-class ChangeCourseFragment : Fragment() {
+open class ChangeCourseFragment : Fragment() {
 
-    private lateinit var binding: FragmentChangeCourseBinding
-    private lateinit var tutorModel: TutorViewModel
-    private lateinit var adapter: TutorCourseAdaptor
+    lateinit var binding: FragmentChangeCourseBinding
+    lateinit var tutorModel: TutorViewModel
+    lateinit var adapter: TutorCourseAdaptor
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,10 +32,17 @@ class ChangeCourseFragment : Fragment() {
             adapter.addCourse()
 //            updateView()
         }
+//        binding.completeBtn.setOnClickListener {
+//            tutorModel.updateTutorCourses(adapter.model.list)
+//        }
+        setupDoneButton()
+        return binding.root
+    }
+
+    open fun setupDoneButton(){
         binding.completeBtn.setOnClickListener {
             tutorModel.updateTutorCourses(adapter.model.list)
         }
-        return binding.root
     }
 
     private fun updateView() {
