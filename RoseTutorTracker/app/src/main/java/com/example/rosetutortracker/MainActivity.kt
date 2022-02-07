@@ -1,7 +1,9 @@
 package com.example.rosetutortracker
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
@@ -15,6 +17,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.rosetutortracker.databinding.ActivityMainBinding
+import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.models.TutorViewModel
 import com.google.android.material.navigation.NavigationView
@@ -22,6 +25,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,13 +37,41 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var drawerLayout: DrawerLayout
 
+    private lateinit var tutorModel: TutorViewModel
+    private lateinit var studentModel: StudentViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+        studentModel = ViewModelProvider(this)[StudentViewModel::class.java]
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
+
+        val auth = FirebaseAuth.getInstance();
+        auth.addAuthStateListener {
+
+            if (it.currentUser != null) {
+                Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
+                val tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+                tutorModel.getOrMakeUser {
+                    if (tutorModel.hasCompletedSetup()) {
+                        navView.menu[2].title = "Student Requests"
+                        navView.menu[3].isVisible = true
+                        navView.menu[4].isVisible = true
+                        navView.menu[5].isVisible = true
+                        navView.menu[6].isVisible = true
+                        Log.d("rr","$tutorModel.tutor.toString() zzzzzzzz")
+                    } else {
+                        tutorModel.tutor = Tutor()
+
+                    }
+                }
+            }
+        }
 
         binding.appBarMain.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -47,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.fab.hide()
         drawerLayout = binding.drawerLayout
         navView = binding.navView
+        //var navHeader: View = binding.navView.getHeaderView(0)
         navView.bringToFront()
         //navView.setNavigationItemSelectedListener(this)
 
@@ -81,6 +115,8 @@ class MainActivity : AppCompatActivity() {
 
 
         navView.menu[7].setOnMenuItemClickListener {
+            tutorModel.tutor = null
+            studentModel.student = null
             FirebaseAuth.getInstance().signOut()
             drawerLayout.closeDrawer(GravityCompat.START)
             navController.navigate(R.id.nav_login)

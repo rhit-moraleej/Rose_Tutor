@@ -61,6 +61,7 @@ class StudentViewModel: BaseViewModel<Tutor>() {
     fun getOrMakeUser(observer: () -> Unit){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT).document(Firebase.auth.uid!!)
         if(student != null){ //get
+            Log.d("rr","$student")
             observer()
         }else{ // make
             ref.get().addOnSuccessListener{ snapshot: DocumentSnapshot ->
