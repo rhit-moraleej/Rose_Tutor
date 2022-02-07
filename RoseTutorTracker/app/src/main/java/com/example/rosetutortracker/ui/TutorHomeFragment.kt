@@ -21,6 +21,7 @@ class TutorHomeFragment: Fragment() {
         binding = FragmentTutorHomeBinding.inflate(inflater, container, false)
 
         val adapter = StudentHelpAdapter(this)
+        adapter.getMessages()
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)

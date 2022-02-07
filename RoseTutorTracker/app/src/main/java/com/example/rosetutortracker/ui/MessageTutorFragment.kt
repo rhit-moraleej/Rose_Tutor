@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.databinding.FragmentMessageTutorBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
+import com.example.rosetutortracker.models.StudentRequests
 import com.example.rosetutortracker.models.StudentViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
@@ -39,10 +40,11 @@ class MessageTutorFragment: Fragment() {
                 .setTitle("Send message?")
                 .setMessage("Are you sure you want to send this message?")
                 .setPositiveButton(android.R.string.ok) { dialog, which ->
-                    val message = hashMapOf(
-                        "message" to binding.messageToTutor.text.toString(),
-                        "receiver" to homeModel.tutorToSendMessage,
-                        "sender" to Firebase.auth.uid
+                    val message = StudentRequests(
+                        binding.messageToTutor.text.toString(),
+                        homeModel.tutorToSendMessage,
+                        Firebase.auth.uid!!,
+                        homeModel.student?.name!!
                     )
                     ref.add(message)
                     //Have the message actually sent
