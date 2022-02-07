@@ -14,6 +14,8 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.example.rosetutortracker.models.Student
 import com.example.rosetutortracker.models.StudentViewModel
+import com.example.rosetutortracker.models.Tutor
+import com.example.rosetutortracker.models.TutorViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.ktx.auth
@@ -43,13 +45,17 @@ class LoginFragment : Fragment() {
             if (user != null) {
                 val studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
                 studentModel.getOrMakeUser {
+
                     if (studentModel.hasCompletedSetup()) {
                         findNavController().navigate(R.id.nav_home)
                     } else {
+
                         studentModel.student = Student(email = "$username@rose-hulman.edu")
+                        Log.d("rr", studentModel.student!!.name)
                         findNavController().navigate(R.id.nav_user_details)
                     }
                 }
+                checkTutorStatus()
             }
             loginButton.visibility = if (user != null) View.GONE else View.VISIBLE
         }
@@ -80,5 +86,13 @@ class LoginFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         Firebase.auth.removeAuthStateListener(authStateListener)
+    }
+
+    private fun checkTutorStatus() {
+        val tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+        Log.d("rr",tutorModel.toString())
+        tutorModel.getOrMakeUser {
+            null
+        }
     }
 }

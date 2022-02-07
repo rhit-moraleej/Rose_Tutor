@@ -4,17 +4,19 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.rosetutortracker.Constants
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class TutorViewModel: ViewModel() {
-    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
+    private lateinit var ref: DocumentReference
     var tutor: Tutor? = null
 
     fun hasCompletedSetup() = tutor?.hasCompletedSetup ?: false
     fun getOrMakeUser(observer: () -> Unit){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
+        Log.d("rr","${Firebase.auth.uid!!} has a tutor model")
         if(tutor != null){ //get
             observer()
         }else{ // make
@@ -37,7 +39,13 @@ class TutorViewModel: ViewModel() {
             val course = newCourses.split(", ") // will cause app to crash if entered courses have no space or if only one course is entered
             Log.d(Constants.TAG, "$course")
             with(tutor!!){
-                courses = course as ArrayList<String>
+                courses = if (course.size==1) {
+                    var courseList: ArrayList<String> = arrayListOf(course[0])
+                    courseList
+                } else {
+                    course as ArrayList<String>
+                }
+
                 location = newLocation
                 hasCompletedSetup = newHasCompletedSetup
                 ref.set(tutor!!)
