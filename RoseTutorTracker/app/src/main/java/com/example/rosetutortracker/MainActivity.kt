@@ -49,15 +49,21 @@ class MainActivity : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         auth.addAuthStateListener {
             if (it.currentUser != null) {
-                Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
+                tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+                tutorModel.getOrMakeUser {
+                    Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
+                    Log.d("rr", tutorModel.tutor.toString())
+                    Log.d("rr", tutorModel.hasCompletedSetup().toString())
                     if (tutorModel.tutor != null && tutorModel.hasCompletedSetup()) {
                         navView.menu[2].title = "Student Requests"
                         navView.menu[3].isVisible = true
                         navView.menu[4].isVisible = true
                         navView.menu[5].isVisible = true
                         navView.menu[6].isVisible = true
-                        Log.d("rr","$tutorModel.tutor.toString() zzzzzzzz")
+                        Log.d("rr", "$tutorModel.tutor.toString() zzzzzzzz")
                     }
+                }
+
             }
         }
 
@@ -112,7 +118,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         navView.menu[3].setOnMenuItemClickListener {
-            Snackbar.make(navView,"PLACEHOLDER NAV ITEM",Snackbar.LENGTH_LONG)
+            Snackbar.make(navView, "PLACEHOLDER NAV ITEM", Snackbar.LENGTH_LONG)
                 .setAction("Continue") {
                     drawerLayout.closeDrawer(GravityCompat.START)
                     navController.popBackStack()
