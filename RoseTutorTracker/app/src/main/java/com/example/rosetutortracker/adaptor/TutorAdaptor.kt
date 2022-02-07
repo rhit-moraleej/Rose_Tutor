@@ -1,10 +1,8 @@
 package com.example.rosetutortracker.adaptor
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.Tutor

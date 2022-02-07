@@ -3,7 +3,6 @@ package com.example.rosetutortracker
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
@@ -11,7 +10,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -22,11 +20,7 @@ import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.models.TutorViewModel
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,25 +45,19 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarMain.toolbar)
 
-        val auth = FirebaseAuth.getInstance();
+        // This does not work
+        val auth = FirebaseAuth.getInstance()
         auth.addAuthStateListener {
-
             if (it.currentUser != null) {
                 Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
-                val tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
-                tutorModel.getOrMakeUser {
-                    if (tutorModel.hasCompletedSetup()) {
+                    if (tutorModel.tutor != null && tutorModel.hasCompletedSetup()) {
                         navView.menu[2].title = "Student Requests"
                         navView.menu[3].isVisible = true
                         navView.menu[4].isVisible = true
                         navView.menu[5].isVisible = true
                         navView.menu[6].isVisible = true
                         Log.d("rr","$tutorModel.tutor.toString() zzzzzzzz")
-                    } else {
-                        tutorModel.tutor = Tutor()
-
                     }
-                }
             }
         }
 

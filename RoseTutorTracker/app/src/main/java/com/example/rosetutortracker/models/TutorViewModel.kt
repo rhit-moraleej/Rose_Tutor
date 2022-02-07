@@ -16,7 +16,6 @@ class TutorViewModel: ViewModel() {
     fun hasCompletedSetup() = tutor?.hasCompletedSetup ?: false
     fun getOrMakeUser(observer: () -> Unit){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
-        Log.d("rr","${Firebase.auth.uid!!} has a tutor model")
         if(tutor != null){ //get
             observer()
         }else{ // make

@@ -14,7 +14,6 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.example.rosetutortracker.models.Student
 import com.example.rosetutortracker.models.StudentViewModel
-import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.models.TutorViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
@@ -55,7 +54,7 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(R.id.nav_user_details)
                     }
                 }
-                checkTutorStatus()
+//                checkTutorStatus()
             }
             loginButton.visibility = if (user != null) View.GONE else View.VISIBLE
         }

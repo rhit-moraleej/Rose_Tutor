@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
-import com.example.rosetutortracker.adaptor.TutorCourseAdaptor
 import com.example.rosetutortracker.databinding.FragmentTutorSetupBinding
 import com.example.rosetutortracker.models.CourseViewModel
 import com.example.rosetutortracker.models.TutorViewModel

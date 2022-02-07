@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.Constants
-import com.example.rosetutortracker.databinding.FragmentEditTutorDetailsBinding
 import com.example.rosetutortracker.databinding.FragmentTutorEditDayTimeBinding
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
