@@ -7,17 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
+import com.google.android.material.snackbar.Snackbar
 
 open class TutorDetailFragment : Fragment() {
     lateinit var binding: FragmentTutorDetailBinding
     private lateinit var model: FindTutorViewModel
     lateinit var homeModel: StudentViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,14 +59,21 @@ open class TutorDetailFragment : Fragment() {
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
             }
-//            val message = "Notifying ${model.getCurrent().name} that you need help"
-//            Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
-//                .setAction("Continue") {
-//                    findNavController().navigate(R.id.nav_message_tutor)
-//                }
-//                .show()
+            else {
+                Log.d("rr","button clicked")
+                val message = "Notifying ${binding.tutorName.text.substring(6)} that you need help"
+                Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Continue") {
+                        val tutor: Tutor = model.getCurrent()
+                        homeModel.tutorToSendMessage = tutor.id
+                        Log.d("rr",tutor.id)
+                        findNavController().navigate(R.id.nav_message_tutor)
+                    }
+                    .show()
+            }
+
             //clicking button should move to message screen
-            binding.notifyTutor.isClickable = false
+            binding.notifyTutor.isClickable = true
             binding.notifyTutor.alpha = 0.5F
         }
     }

@@ -7,13 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.databinding.FragmentMessageTutorBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
+import com.example.rosetutortracker.models.StudentViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MessageTutorFragment: Fragment() {
     private lateinit var binding: FragmentMessageTutorBinding
     private lateinit var model: FindTutorViewModel
+    lateinit var homeModel: StudentViewModel
+    private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_MESSAGE)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +29,7 @@ class MessageTutorFragment: Fragment() {
     ): View {
         model = ViewModelProvider(requireActivity())[FindTutorViewModel:: class.java]
         binding = FragmentMessageTutorBinding.inflate(inflater, container, false)
-
+        homeModel = ViewModelProvider(requireActivity())[StudentViewModel:: class.java]
         binding.cancelButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -32,6 +39,12 @@ class MessageTutorFragment: Fragment() {
                 .setTitle("Send message?")
                 .setMessage("Are you sure you want to send this message?")
                 .setPositiveButton(android.R.string.ok) { dialog, which ->
+                    val message = hashMapOf(
+                        "message" to binding.messageToTutor.text.toString(),
+                        "receiver" to homeModel.tutorToSendMessage,
+                        "sender" to Firebase.auth.uid
+                    )
+                    ref.add(message)
                     //Have the message actually sent
                     findNavController().popBackStack()
                     findNavController().popBackStack()

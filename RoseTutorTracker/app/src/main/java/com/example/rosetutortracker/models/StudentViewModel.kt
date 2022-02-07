@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 class StudentViewModel: BaseViewModel<Tutor>() {
     private lateinit var ref: DocumentReference
     var student: Student? = null
+    var tutorToSendMessage: String = ""
 
     fun containsTutor(tutor: Tutor): Boolean{
         return student?.favoriteTutors?.contains(tutor.id) ?: false
