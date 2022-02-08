@@ -35,6 +35,20 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         private val resolveButton: Button = itemView.findViewById(R.id.resolve_button)
         private val helpMessage: TextView = itemView.findViewById(R.id.help_message)
 
+        init {
+            notifyCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    Log.d("notify","Notifying $studentName")
+                }
+            }
+
+            resolveButton.setOnClickListener {
+                model.resolveCurrentStudent()
+                notifyItemRemoved(adapterPosition)
+            }
+
+        }
+
         override fun bind(item: StudentRequests) {
             studentName.text = if(item.senderName.length<15) item.senderName else item.senderName.substring(0,16)
             helpMessage.text = item.message

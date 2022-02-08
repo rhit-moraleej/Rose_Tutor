@@ -2,8 +2,12 @@ package com.example.rosetutortracker.models
 
 import android.util.Log
 import com.example.rosetutortracker.Constants
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -28,6 +32,20 @@ class StudentHelpViewModel : BaseViewModel<StudentRequests>() {
     }
 
     fun resolveCurrentStudent() {
+        Log.d("notify",Firebase.auth.uid!!)
+        Log.d("notify",list[currPos].senderName)
+        Log.d("notify",list[currPos].message)
+        ref.whereEqualTo("receiver",Firebase.auth.uid!!)
+            .whereEqualTo("senderName",list[currPos].senderName)
+            .whereEqualTo("message",list[currPos].message)
+            .get().addOnSuccessListener {
+            it.forEach { queryDocumentSnapshot ->
+                Log.d("notify",queryDocumentSnapshot.toString())
+                queryDocumentSnapshot.reference.delete()
+            }
+        }
+
+
         removeCurrent()
     }
 }
