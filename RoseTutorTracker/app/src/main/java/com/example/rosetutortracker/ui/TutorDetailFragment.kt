@@ -19,9 +19,9 @@ import com.google.android.material.snackbar.Snackbar
 
 open class TutorDetailFragment : Fragment() {
     lateinit var binding: FragmentTutorDetailBinding
-    private lateinit var model: FindTutorViewModel
+    lateinit var model: FindTutorViewModel
     lateinit var homeModel: StudentViewModel
-    open var usedModel: BaseViewModel<Tutor> = model
+//    open var usedModel: BaseViewModel<Tutor> = model
 
 
     override fun onCreateView(
@@ -31,13 +31,13 @@ open class TutorDetailFragment : Fragment() {
         model = ViewModelProvider(requireActivity())[FindTutorViewModel::class.java]
         homeModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
-        updateView()
-        setupNotifyButton()
-        setupFavButton()
+        updateView(model)
+        setupNotifyButton(model)
+        setupFavButton(model)
         return binding.root
     }
 
-    open fun updateView() {
+    open fun updateView(usedModel: BaseViewModel<Tutor>) {
         Log.d(Constants.TAG, "FindTutor: ${usedModel.list.size}, StudentModel: ${homeModel.list.size}")
         val tutor: Tutor = usedModel.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
@@ -57,7 +57,7 @@ open class TutorDetailFragment : Fragment() {
         }
     }
 
-    private fun setupNotifyButton() {
+    fun setupNotifyButton(usedModel: BaseViewModel<Tutor>) {
         binding.notifyTutor.setOnClickListener {
             if (!usedModel.getCurrent().available) {
                 binding.notifyTutor.isClickable = false
@@ -81,7 +81,7 @@ open class TutorDetailFragment : Fragment() {
         }
     }
 
-    open fun setupFavButton() {
+    open fun setupFavButton(usedModel: BaseViewModel<Tutor>) {
         binding.favoriteTutor.setOnClickListener {
             val tutor = usedModel.getCurrent()
             Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
@@ -90,7 +90,7 @@ open class TutorDetailFragment : Fragment() {
             } else {
                 homeModel.removeTutor(tutor)
             }
-            updateView()
+            updateView(usedModel)
         }
     }
 }
