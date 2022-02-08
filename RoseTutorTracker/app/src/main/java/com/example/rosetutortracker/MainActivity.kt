@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         auth.addAuthStateListener {
             if (it.currentUser != null) {
-                tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
-                tutorModel.getOrMakeUser {
+//                tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
+                tutorModel.getUser {
                     Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
                     Log.d("rr", tutorModel.tutor.toString())
                     Log.d("rr", tutorModel.hasCompletedSetup().toString())

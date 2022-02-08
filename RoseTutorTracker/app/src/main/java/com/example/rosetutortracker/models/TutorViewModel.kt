@@ -13,6 +13,15 @@ class TutorViewModel: ViewModel() {
     var tutor: Tutor? = null
 
     fun hasCompletedSetup() = tutor?.hasCompletedSetup ?: false
+    fun getUser(observer: () -> Unit){
+        ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
+        ref.get().addOnSuccessListener{ snapshot: DocumentSnapshot ->
+            if(snapshot.exists()){
+                tutor = snapshot.toObject(Tutor::class.java)
+            }
+            observer()
+        }
+    }
     fun getOrMakeUser(observer: () -> Unit){
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR).document(Firebase.auth.uid!!)
         if(tutor != null){ //get

@@ -3,16 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:layout_margin="4dp">
+    android:layout_margin="4dp"
+    android:background="@color/white"
+    >
 
     <TextView
+        android:id="@+id/student_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/student_name"
-        android:text="Student 1"
         android:layout_centerVertical="true"
-        android:textSize="20sp"
-        />
+        android:text="Student 1"
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/notify_student_checkbox"
