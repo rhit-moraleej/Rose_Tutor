@@ -9,9 +9,9 @@ data class StudentRequests(
     val senderName: String = ""
 ) {
 
-    companion object{
-        fun from(snapshot: DocumentSnapshot): StudentRequests{
-            val message = snapshot.toObject(StudentRequests:: class.java)!!
+    companion object {
+        fun from(snapshot: DocumentSnapshot): StudentRequests {
+            val message = snapshot.toObject(StudentRequests::class.java)!!
             return message
         }
     }

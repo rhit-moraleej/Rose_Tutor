@@ -5,40 +5,41 @@ import com.google.firebase.firestore.Exclude
 import kotlin.random.Random
 
 data class Tutor(
-                 var available: Boolean = false,
-                 var courses: ArrayList<String> = getRandomCourses(Random.nextInt(1,5)),
-                 var location: String = "",
-                 var hasCompletedSetup: Boolean = false,
-                 var overRating: Double = Random.nextDouble(0.0,5.0),
-                 var numRatings: Int = Random.nextInt(0, 100),
-                 var days: ArrayList<Boolean> = arrayListOf(false,false,false,false,false,false,false),
-                 var startHours: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0),
-                 var startMinutes: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0),
-                 var endHours: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0),
-                 var endMinutes: ArrayList<Int> = arrayListOf(0,0,0,0,0,0,0)
-){
+    var available: Boolean = false,
+    var courses: ArrayList<String> = ArrayList(),
+    var location: String = "",
+    var hasCompletedSetup: Boolean = false,
+    var overRating: Double = Random.nextDouble(0.0, 5.0),
+    var numRatings: Int = Random.nextInt(0, 100),
+    var days: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false),
+    var startHours: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
+    var startMinutes: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
+    var endHours: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
+    var endMinutes: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0)
+) {
 
     @get:Exclude
     var id = ""
+
     @get:Exclude
     var studentInfo = Student()
 
-    fun addRating(rating: Double){
+    fun addRating(rating: Double) {
         val total: Double = this.overRating * numRatings
         this.numRatings++
-        this.overRating = total/this.numRatings
+        this.overRating = total / this.numRatings
     }
 
-    fun coursesToString(): String{
+    fun coursesToString(): String {
         val message = StringBuilder()
         message.append("Courses: \n")
-        for(i in courses){
+        for (i in courses) {
             message.append("\t\t\t• $i\n")
         }
         return message.toString()
     }
 
-    companion object{
+    companion object {
         val departments = arrayListOf(
             "ANTHS",
             "BE",
@@ -51,8 +52,9 @@ data class Tutor(
             "MA",
             "PH"
         )
-        fun from(snapshot: DocumentSnapshot): Tutor{
-            val tutor = snapshot.toObject(Tutor:: class.java)!!
+
+        fun from(snapshot: DocumentSnapshot): Tutor {
+            val tutor = snapshot.toObject(Tutor::class.java)!!
             tutor.id = snapshot.id
             return tutor
         }
@@ -61,7 +63,7 @@ data class Tutor(
 
 fun getRandomCourses(num: Int): ArrayList<String> {
     val randomCourses = ArrayList<String>()
-    for (i in 0 until num){
+    for (i in 0 until num) {
         val index = Random.nextInt(Tutor.departments.size)
         val s = Tutor.departments[index] + "${Random.nextInt(100, 500)}"
         randomCourses.add(s)

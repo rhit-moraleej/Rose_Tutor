@@ -39,17 +39,17 @@ open class ChangeCourseFragment : Fragment() {
         return binding.root
     }
 
-    open fun setupDoneButton(){
+    open fun setupDoneButton() {
         binding.completeBtn.setOnClickListener {
             tutorModel.updateTutorCourses(adapter.model.list)
         }
     }
 
     private fun updateView() {
-        if (adapter.model.list.last().isBlank()){
+        if (adapter.model.list.last().isBlank()) {
             binding.addCourse.isClickable = false
             binding.addCourse.alpha = 0.5f
-        }else{
+        } else {
             binding.addCourse.isClickable = true
             binding.addCourse.alpha = 1.0f
         }

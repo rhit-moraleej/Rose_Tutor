@@ -1,6 +1,7 @@
 package com.example.rosetutortracker.setup
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,16 +37,23 @@ class UserDetailsFragment : Fragment() {
             FirebaseAuth.getInstance().signOut()
         }
 
+        updateView()
+
         binding.updateUserProfileButton.setOnClickListener {
-            val username = binding.userName.text.toString()
+            Log.d("Student", "StudentModel before setup: ${studentModel.student}")
             val userclass: Int = binding.userClass.text.toString().toInt()
-            studentModel.update(username, userclass, true)
+            studentModel.update(userclass, true)
 
             updateNavHeader()
             findNavController().navigate(R.id.nav_home)
         }
 
         return binding.root
+    }
+
+    private fun updateView() {
+        binding.userName.text = getString(R.string.name, studentModel.student?.name)
+        binding.userEmail.text = getString(R.string.email_edit, studentModel.student?.email)
     }
 
     private fun updateNavHeader() {

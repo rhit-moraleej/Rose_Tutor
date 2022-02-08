@@ -26,8 +26,8 @@ open class TutorDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        model = ViewModelProvider(requireActivity())[FindTutorViewModel:: class.java]
-        homeModel = ViewModelProvider(requireActivity())[StudentViewModel:: class.java]
+        model = ViewModelProvider(requireActivity())[FindTutorViewModel::class.java]
+        homeModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
         updateView()
         setupNotifyButton()
@@ -40,33 +40,34 @@ open class TutorDetailFragment : Fragment() {
         val tutor: Tutor = model.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
         binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.studentInfo.email)
-        binding.tutorClass.text = getString(R.string.place_holder_classyear, tutor.studentInfo.classYear)
+        binding.tutorClass.text =
+            getString(R.string.place_holder_classyear, tutor.studentInfo.classYear)
         binding.courses.text = tutor.coursesToString()
         binding.location.text = getString(R.string.location, tutor.location)
-        binding.tutorRating.text = getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
+        binding.tutorRating.text =
+            getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
         Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
         Log.d(Constants.TAG, "Current tutors id: ${tutor.id}")
-        if(!homeModel.containsTutor(tutor))
+        if (!homeModel.containsTutor(tutor))
             binding.favoriteTutor.text = getString(R.string.favorite_tutor)
-        else{
+        else {
             binding.favoriteTutor.text = getString(R.string.unfav)
         }
     }
 
-    private fun setupNotifyButton(){
+    private fun setupNotifyButton() {
         binding.notifyTutor.setOnClickListener {
-            if (!model.getCurrent().available){
+            if (!model.getCurrent().available) {
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
-            }
-            else {
-                Log.d("rr","button clicked")
+            } else {
+                Log.d("rr", "button clicked")
                 val message = "Notifying ${binding.tutorName.text.substring(6)} that you need help"
                 Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
                     .setAction("Continue") {
                         val tutor: Tutor = model.getCurrent()
                         homeModel.tutorToSendMessage = tutor.id
-                        Log.d("rr",tutor.id)
+                        Log.d("rr", tutor.id)
                         findNavController().navigate(R.id.nav_message_tutor)
                     }
                     .show()
@@ -78,13 +79,13 @@ open class TutorDetailFragment : Fragment() {
         }
     }
 
-    open fun setupFavButton(){
+    open fun setupFavButton() {
         binding.favoriteTutor.setOnClickListener {
             val tutor = model.getCurrent()
             Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
-            if(!homeModel.containsTutor(tutor)){
+            if (!homeModel.containsTutor(tutor)) {
                 homeModel.addTutor(tutor)
-            }else{
+            } else {
                 homeModel.removeTutor(tutor)
             }
             updateView()

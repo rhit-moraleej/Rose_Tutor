@@ -45,7 +45,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                 refTutors.whereArrayContains("courses", newSearchTerm)
                     .get()
                     .addOnCompleteListener { call ->
-                        call.result?.documents?.forEach{
+                        call.result?.documents?.forEach {
                             Log.d(Constants.TAG, "Course search found: ${it.id}")
                             val tutor = Tutor.from(it)
                             searchStudent(it.id, function, tutor)
@@ -74,7 +74,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
             }
     }
 
-    private fun searchStudent(id: String, function: () -> Unit, tutor: Tutor){
+    private fun searchStudent(id: String, function: () -> Unit, tutor: Tutor) {
         refStudents.document(id).get()
             .addOnCompleteListener { doc ->
                 if (doc.isSuccessful && doc.result?.exists() == true) {

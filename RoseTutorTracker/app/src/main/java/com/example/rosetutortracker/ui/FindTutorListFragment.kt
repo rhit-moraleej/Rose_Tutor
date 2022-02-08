@@ -38,9 +38,9 @@ class FindTutorListFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupSearchView(){
+    private fun setupSearchView() {
         binding.tutorSearch.isSubmitButtonEnabled = true
-        binding.tutorSearch.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+        binding.tutorSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     adaptor.clearTutors()
@@ -50,17 +50,20 @@ class FindTutorListFragment : Fragment() {
                 }
                 return false
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 return false
             }
         })
     }
+
     private fun setupSpinner() {
         val choice = resources.getStringArray(R.array.search_spinner)
-        val arrayAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, choice)
+        val arrayAdapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, choice)
         binding.spinner.adapter = arrayAdapter
 
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -82,7 +85,8 @@ class FindTutorListFragment : Fragment() {
     }
 
     private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 
-
 public final class Rosefire {
 
     static boolean DEBUG = false;

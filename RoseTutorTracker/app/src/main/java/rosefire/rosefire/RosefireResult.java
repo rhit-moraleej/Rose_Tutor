@@ -17,7 +17,7 @@ public final class RosefireResult {
     public RosefireResult(String token) {
         this.token = token;
         if (token == null) {
-           return;
+            return;
         }
         String payload = token.split("\\.")[1];
         try {

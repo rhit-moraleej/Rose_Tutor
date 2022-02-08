@@ -10,11 +10,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.example.rosetutortracker.models.Student
 import com.example.rosetutortracker.models.StudentViewModel
-import com.example.rosetutortracker.models.TutorViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
 import com.google.firebase.auth.ktx.auth
@@ -25,10 +25,12 @@ import rosefire.rosefire.RosefireResult
 
 class LoginFragment : Fragment() {
 
-    private val REGISTRY_TOKEN: String = "0cd2cc6d-7a3e-4af7-9b45-6d3d13a927d9"//R.string.rosefire_key
+    private val REGISTRY_TOKEN: String =
+        "0cd2cc6d-7a3e-4af7-9b45-6d3d13a927d9"//R.string.rosefire_key
 
     private lateinit var authStateListener: AuthStateListener
     private lateinit var binding: FragmentLoginBinding
+    private lateinit var studentModel: StudentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,24 +39,25 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         val loginButton: View = binding.loginBtn
         val logoutButton: View = binding.logoutBtn
-
+        var name = ""
+        var  email = ""
+        studentModel =
+            ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         authStateListener = AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
             val username = user?.uid ?: "null"
             if (user != null) {
-                val studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
+//                studentModel =
+//                    ViewModelProvider(requireActivity())[StudentViewModel::class.java]
                 studentModel.getOrMakeUser {
-
                     if (studentModel.hasCompletedSetup()) {
                         findNavController().navigate(R.id.nav_home)
                     } else {
-
-                        studentModel.student = Student(email = "$username@rose-hulman.edu")
-                        Log.d("rr", studentModel.student!!.name)
+                        studentModel.student = Student(name= name, email = "$username@rose-hulman.edu")
+                        Log.d("login", studentModel.student!!.name)
                         findNavController().navigate(R.id.nav_user_details)
                     }
                 }
-//                checkTutorStatus()
             }
             loginButton.visibility = if (user != null) View.GONE else View.VISIBLE
         }
@@ -63,6 +66,12 @@ class LoginFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { call ->
                 val data: Intent? = call.data
                 val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
+                with(result) {
+                    Log.d(Constants.TAG, "results from rosefire: $name, $email, $group")
+                    studentModel.student = Student(name, email)
+                }
+                name = result.name
+                email = result.email
                 FirebaseAuth.getInstance().signInWithCustomToken(result.token)
             }
         loginButton.setOnClickListener {
@@ -70,7 +79,6 @@ class LoginFragment : Fragment() {
             Log.d("tag", "login")
             resultLauncher.launch(signInIntent)
         }
-
         logoutButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
         }
@@ -85,13 +93,5 @@ class LoginFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         Firebase.auth.removeAuthStateListener(authStateListener)
-    }
-
-    private fun checkTutorStatus() {
-        val tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
-        Log.d("rr",tutorModel.toString())
-        tutorModel.getOrMakeUser {
-            null
-        }
     }
 }

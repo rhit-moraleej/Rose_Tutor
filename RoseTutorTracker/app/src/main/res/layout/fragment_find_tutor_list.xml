@@ -2,16 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp"
-    >
+    android:padding="12dp">
 
     <SearchView
         android:id="@+id/tutor_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:queryHint="Search by name or course"
-        android:iconifiedByDefault="false"
-        />
+        android:iconifiedByDefault="false" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -26,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFcccccc"
-        android:layout_below="@id/spinner"
-        />
+        android:layout_below="@id/spinner" />
 
 </RelativeLayout>
