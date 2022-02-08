@@ -5,8 +5,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.edit.TutorEditLocationFragment
 import com.example.rosetutortracker.models.Tutor
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class LocationTutorSetupFragment : TutorEditLocationFragment() {
     override fun setLocationButton() {
