@@ -1,6 +1,7 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class MessageTutorFragment : Fragment() {
                         Firebase.auth.uid!!,
                         homeModel.student?.name!!
                     )
+                    Log.wtf("rr",message.message)
                     ref.add(message)
                     //Have the message actually sent
                     findNavController().popBackStack()

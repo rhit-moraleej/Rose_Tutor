@@ -1,5 +1,6 @@
 package com.example.rosetutortracker.adaptor
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +20,16 @@ class TutorCourseAdaptor(fragment: ChangeCourseFragment) : BaseAdapter<String>(f
     )
 
     fun setTutorCourses(courses: ArrayList<String>) {
+        var coursesCopy = ArrayList<String>()
+        coursesCopy.addAll(courses)
+        Log.d("course1.5",courses.toString())
         model.list.clear()
-        model.list.addAll(courses)
+        Log.d("course1.75",courses.toString())
+        model.list.addAll(coursesCopy)
+        Log.d("course2",courses.toString())
+        Log.d("course2",coursesCopy.toString())
+        Log.d("course3",model.list.toString())
+        notifyDataSetChanged()
     }
 
     fun addCourse() {

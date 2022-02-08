@@ -10,6 +10,7 @@ class LocationTutorSetupFragment : TutorEditLocationFragment() {
     override fun setLocationButton() {
         binding.updateLocationButton.text = "Set Location"
         binding.updateLocationButton.setOnClickListener {
+            tutorModel.tutorTemp!!.location = binding.locationEditText.text.toString()
             updatedTutor.location = binding.locationEditText.text.toString()
             Log.d("location", "updated tutor: $updatedTutor")
 //            ref.document(Firebase.auth.uid!!).set(updatedTutor)

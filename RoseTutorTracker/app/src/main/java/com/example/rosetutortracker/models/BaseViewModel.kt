@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 
 abstract class BaseViewModel<T> : ViewModel() {
     var list = ArrayList<T>()
-    private var currPos = 0
+    var currPos = 0
 
     fun getListAt(pos: Int) = list[pos]
     fun getCurrent() = list[currPos]

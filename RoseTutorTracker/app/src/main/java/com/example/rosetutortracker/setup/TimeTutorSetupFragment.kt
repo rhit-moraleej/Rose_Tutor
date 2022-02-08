@@ -11,6 +11,11 @@ class TimeTutorSetupFragment : TutorEditDayTimeFragment() {
         binding.completeBtn.isVisible = true
         binding.completeBtn.text = "Complete Setup"
         binding.completeBtn.setOnClickListener {
+            tutorModel.tutorTemp!!.startHours = updatedTutor.startHours
+            tutorModel.tutorTemp!!.startMinutes = updatedTutor.startMinutes
+            tutorModel.tutorTemp!!.endHours = updatedTutor.endHours
+            tutorModel.tutorTemp!!.endMinutes = updatedTutor.endMinutes
+            tutorModel.tutorTemp!!.days = updatedTutor.days
             findNavController().navigate(R.id.nav_tutor_setup)
         }
     }

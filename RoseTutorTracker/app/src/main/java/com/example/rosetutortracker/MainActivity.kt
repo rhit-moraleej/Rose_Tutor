@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         navView.menu[2].setOnMenuItemClickListener {
+            navView.menu[2].title = "Student Requests"
             navView.menu[3].isVisible = true
             navView.menu[4].isVisible = true
             navView.menu[5].isVisible = true

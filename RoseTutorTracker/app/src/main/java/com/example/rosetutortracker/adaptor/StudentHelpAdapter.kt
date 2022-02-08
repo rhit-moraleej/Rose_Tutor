@@ -36,7 +36,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         private val helpMessage: TextView = itemView.findViewById(R.id.help_message)
 
         override fun bind(item: StudentRequests) {
-            studentName.text = item.senderName
+            studentName.text = if(item.senderName.length<15) item.senderName else item.senderName.substring(0,16)
             helpMessage.text = item.message
         }
 
