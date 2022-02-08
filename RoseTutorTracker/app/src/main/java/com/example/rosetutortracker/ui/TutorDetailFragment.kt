@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentTutorDetailBinding
+import com.example.rosetutortracker.models.BaseViewModel
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
@@ -20,6 +21,7 @@ open class TutorDetailFragment : Fragment() {
     lateinit var binding: FragmentTutorDetailBinding
     private lateinit var model: FindTutorViewModel
     lateinit var homeModel: StudentViewModel
+    open var usedModel: BaseViewModel<Tutor> = model
 
 
     override fun onCreateView(
@@ -36,8 +38,8 @@ open class TutorDetailFragment : Fragment() {
     }
 
     open fun updateView() {
-        Log.d(Constants.TAG, "FindTutor: ${model.list.size}, StudentModel: ${homeModel.list.size}")
-        val tutor: Tutor = model.getCurrent()
+        Log.d(Constants.TAG, "FindTutor: ${usedModel.list.size}, StudentModel: ${homeModel.list.size}")
+        val tutor: Tutor = usedModel.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
         binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.studentInfo.email)
         binding.tutorClass.text =
@@ -57,7 +59,7 @@ open class TutorDetailFragment : Fragment() {
 
     private fun setupNotifyButton() {
         binding.notifyTutor.setOnClickListener {
-            if (!model.getCurrent().available) {
+            if (!usedModel.getCurrent().available) {
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
             } else {
@@ -65,7 +67,7 @@ open class TutorDetailFragment : Fragment() {
                 val message = "Notifying ${binding.tutorName.text.substring(6)} that you need help"
                 Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
                     .setAction("Continue") {
-                        val tutor: Tutor = model.getCurrent()
+                        val tutor: Tutor = usedModel.getCurrent()
                         homeModel.tutorToSendMessage = tutor.id
                         Log.d("rr", tutor.id)
                         findNavController().navigate(R.id.nav_message_tutor)
@@ -81,7 +83,7 @@ open class TutorDetailFragment : Fragment() {
 
     open fun setupFavButton() {
         binding.favoriteTutor.setOnClickListener {
-            val tutor = model.getCurrent()
+            val tutor = usedModel.getCurrent()
             Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
             if (!homeModel.containsTutor(tutor)) {
                 homeModel.addTutor(tutor)

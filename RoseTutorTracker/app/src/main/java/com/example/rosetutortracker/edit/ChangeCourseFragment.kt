@@ -27,14 +27,9 @@ open class ChangeCourseFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 //        binding.recyclerView.setHasFixedSize(true)
-//        updateView()
         binding.addCourse.setOnClickListener {
             adapter.addCourse()
-//            updateView()
         }
-//        binding.completeBtn.setOnClickListener {
-//            tutorModel.updateTutorCourses(adapter.model.list)
-//        }
         setupDoneButton()
         return binding.root
     }

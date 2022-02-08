@@ -6,7 +6,7 @@ import com.google.firebase.firestore.Exclude
 data class Student(
     var name: String = "",
     var email: String = "",
-    val major: String = "",
+    var major: String = "",
     var classYear: Int = 0,
     var favoriteTutors: ArrayList<String> = ArrayList(),
     var isTutor: Boolean = false,

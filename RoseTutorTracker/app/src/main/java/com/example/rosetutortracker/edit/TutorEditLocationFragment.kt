@@ -1,6 +1,7 @@
 package com.example.rosetutortracker.edit
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +19,7 @@ import com.google.firebase.ktx.Firebase
 open class TutorEditLocationFragment : Fragment() {
 
     lateinit var binding: FragmentTutorEditLocationBinding
-    private lateinit var tutorModel: TutorViewModel
+    lateinit var tutorModel: TutorViewModel
     private lateinit var studentModel: StudentViewModel
     lateinit var updatedTutor: Tutor
     var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
@@ -32,6 +33,22 @@ open class TutorEditLocationFragment : Fragment() {
         tutorModel = ViewModelProvider(requireActivity())[TutorViewModel::class.java]
         studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
 
+        updateTutor()
+        Log.d("location", "current tutor: ${tutorModel.tutor}")
+        tutorModel.tutor = updatedTutor
+        binding.locationEditText.setText(updatedTutor.location)
+        setLocationButton()
+        return binding.root
+    }
+
+    open fun setLocationButton() {
+        binding.updateLocationButton.setOnClickListener {
+            updatedTutor.location = binding.locationEditText.text.toString()
+            ref.document(Firebase.auth.uid!!).set(updatedTutor)
+        }
+    }
+
+    open fun updateTutor(){
         updatedTutor = Tutor(
             available = tutorModel.tutor?.available!!,
             courses = tutorModel.tutor?.courses!!,
@@ -45,24 +62,5 @@ open class TutorEditLocationFragment : Fragment() {
             endHours = tutorModel.tutor?.endHours!!,
             endMinutes = tutorModel.tutor?.endMinutes!!
         )
-        tutorModel.tutor = updatedTutor
-        binding.locationEditText.setText(updatedTutor.location)
-
-//        binding.updateLocationButton.setOnClickListener {
-//            updatedTutor.location = binding.locationEditText.text.toString()
-//            ref.document(Firebase.auth.uid!!).set(updatedTutor)
-//        }
-        setLocationButton()
-
-
-        return binding.root
     }
-
-    open fun setLocationButton() {
-        binding.updateLocationButton.setOnClickListener {
-            updatedTutor.location = binding.locationEditText.text.toString()
-            ref.document(Firebase.auth.uid!!).set(updatedTutor)
-        }
-    }
-
 }

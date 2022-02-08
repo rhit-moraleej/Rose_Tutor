@@ -21,8 +21,9 @@ import com.google.firebase.ktx.Firebase
 
 open class TutorEditDayTimeFragment : Fragment() {
     lateinit var binding: FragmentTutorEditDayTimeBinding
-    private lateinit var tutorModel: TutorViewModel
+    lateinit var tutorModel: TutorViewModel
     private lateinit var studentModel: StudentViewModel
+    lateinit var updatedTutor: Tutor
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,19 +33,7 @@ open class TutorEditDayTimeFragment : Fragment() {
         tutorModel = ViewModelProvider(requireActivity())[TutorViewModel::class.java]
         studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
 
-        val updatedTutor = Tutor(
-            available = tutorModel.tutor?.available!!,
-            courses = tutorModel.tutor?.courses!!,
-            location = tutorModel.tutor?.location!!,
-            hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
-            overRating = tutorModel.tutor?.overRating!!,
-            numRatings = tutorModel.tutor?.numRatings!!,
-            days = tutorModel.tutor?.days!!,
-            startHours = tutorModel.tutor?.startHours!!,
-            startMinutes = tutorModel.tutor?.startMinutes!!,
-            endHours = tutorModel.tutor?.endHours!!,
-            endMinutes = tutorModel.tutor?.endMinutes!!
-        )
+        updateTutor()
 
         binding.mondayButton.isEnabled = updatedTutor.days[0]
         binding.tuesdayButton.isEnabled = updatedTutor.days[1]
@@ -367,6 +356,22 @@ open class TutorEditDayTimeFragment : Fragment() {
         }
         setupDoneButton()
         return binding.root
+    }
+
+    open fun updateTutor() {
+        updatedTutor = Tutor(
+            available = tutorModel.tutor?.available!!,
+            courses = tutorModel.tutor?.courses!!,
+            location = tutorModel.tutor?.location!!,
+            hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
+            overRating = tutorModel.tutor?.overRating!!,
+            numRatings = tutorModel.tutor?.numRatings!!,
+            days = tutorModel.tutor?.days!!,
+            startHours = tutorModel.tutor?.startHours!!,
+            startMinutes = tutorModel.tutor?.startMinutes!!,
+            endHours = tutorModel.tutor?.endHours!!,
+            endMinutes = tutorModel.tutor?.endMinutes!!
+        )
     }
 
     open fun setupDoneButton() {

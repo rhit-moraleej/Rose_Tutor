@@ -24,6 +24,8 @@ class UserDetailsFragment : Fragment() {
     private lateinit var navUserName: TextView
     private lateinit var navUserEmail: TextView
     private lateinit var studentModel: StudentViewModel
+    private var name = ""
+    private var email = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +44,16 @@ class UserDetailsFragment : Fragment() {
         binding.updateUserProfileButton.setOnClickListener {
             Log.d("Student", "StudentModel before setup: ${studentModel.student}")
             val userclass: Int = binding.userClass.text.toString().toInt()
-            studentModel.update(userclass, true)
-
-            updateNavHeader()
+            val temp = studentModel.studentTemp
+            val major = binding.userMajor.text.toString()
+            Log.d("studentTemp", "$temp")
+//            if (temp != null) {
+//                Log.d("update", "${temp.name}, ${temp.email}, ${temp.major}")
+//                studentModel.update(temp.name, temp.email, temp.major, userclass, true)
+//            }
+//            studentModel.update(userclass, true)
+            studentModel.update(name, email, major, userclass, true)
+//            updateNavHeader()
             findNavController().navigate(R.id.nav_home)
         }
 
@@ -52,15 +61,19 @@ class UserDetailsFragment : Fragment() {
     }
 
     private fun updateView() {
-        binding.userName.text = getString(R.string.name, studentModel.student?.name)
-        binding.userEmail.text = getString(R.string.email_edit, studentModel.student?.email)
+        val temp = studentModel.studentTemp // for some reason temp loses its values
+        Log.d("update", "temp while updating view: ${temp?.name}, ${temp?.email}")
+        name = studentModel.studentTemp?.name!!
+        email = studentModel.studentTemp?.email!!
+        binding.userName.text = getString(R.string.name, studentModel.studentTemp?.name)
+        binding.userEmail.text = getString(R.string.email_edit, studentModel.studentTemp?.email)
     }
 
-    private fun updateNavHeader() {
-        navUserName = navBinding.navView.getHeaderView(0).findViewById(R.id.user_name)
-        navUserEmail = navBinding.navView.getHeaderView(0).findViewById(R.id.user_email)
-        navUserName.text = studentModel.student?.name!!
-
-    }
+//    private fun updateNavHeader() {
+//        navUserName = navBinding.navView.getHeaderView(0).findViewById(R.id.user_name)
+//        navUserEmail = navBinding.navView.getHeaderView(0).findViewById(R.id.user_email)
+//        navUserName.text = studentModel.student?.name!!
+//
+//    }
 
 }

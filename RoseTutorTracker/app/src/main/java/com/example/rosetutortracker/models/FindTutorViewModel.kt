@@ -2,6 +2,7 @@ package com.example.rosetutortracker.models
 
 import android.util.Log
 import com.example.rosetutortracker.Constants
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -29,13 +30,16 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                 refStudents.whereGreaterThanOrEqualTo("name", newSearchTerm)
                     .whereLessThanOrEqualTo("name", newSearchTerm + 'z')
                     .whereEqualTo("tutor", true)
+
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             Log.d("rr", "Found by name $it")
-                            val student = Student.from(it)
-                            Log.d("rr", student.toString())
-                            searchTutor(it.id, function, student)
+                            if (it.id != Firebase.auth.uid!!){
+                                val student = Student.from(it)
+                                Log.d("rr", student.toString())
+                                searchTutor(it.id, function, student)
+                            }
                         }
                         function()
                     }
@@ -46,9 +50,11 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
-                            Log.d(Constants.TAG, "Course search found: ${it.id}")
-                            val tutor = Tutor.from(it)
-                            searchStudent(it.id, function, tutor)
+                            if (it.id != Firebase.auth.uid!!){
+                                Log.d(Constants.TAG, "Course search found: ${it}")
+                                val tutor = Tutor.from(it)
+                                searchStudent(it.id, function, tutor)
+                            }
                         }
                     }
             }

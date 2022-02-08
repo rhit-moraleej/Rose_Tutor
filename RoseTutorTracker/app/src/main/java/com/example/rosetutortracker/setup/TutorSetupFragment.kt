@@ -25,7 +25,7 @@ class TutorSetupFragment : Fragment() {
         tutorModel = ViewModelProvider(requireActivity())[TutorViewModel::class.java]
         courseModel = ViewModelProvider(requireActivity())[CourseViewModel::class.java]
         binding.updateProfileButton.setOnClickListener {
-            tutorModel.update(true)
+            tutorModel.completeSetup(true)
             courseModel.list = tutorModel.tutor?.courses!!
             findNavController().navigate(R.id.nav_tutor_home)
         }

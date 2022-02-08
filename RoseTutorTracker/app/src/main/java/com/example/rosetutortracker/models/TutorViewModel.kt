@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 class TutorViewModel : ViewModel() {
     private lateinit var ref: DocumentReference
     var tutor: Tutor? = null
+    var tutorTemp: Tutor? = null
 
     fun hasCompletedSetup() = tutor?.hasCompletedSetup ?: false
     fun getUser(observer: () -> Unit){
@@ -30,10 +31,11 @@ class TutorViewModel : ViewModel() {
             ref.get().addOnSuccessListener { snapshot: DocumentSnapshot ->
                 if (snapshot.exists()) {
                     tutor = snapshot.toObject(Tutor::class.java)
-                } else {
-                    tutor = Tutor()
-                    ref.set(tutor!!)
                 }
+//                else {
+//                    tutor = Tutor()
+////                    ref.set(tutor!!)
+//                }
                 observer()
             }
         }
@@ -57,5 +59,14 @@ class TutorViewModel : ViewModel() {
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
             .document(Firebase.auth.uid!!)
         ref.update("courses", list)
+    }
+
+    fun setTempCourses(list: ArrayList<String>) {
+        tutorTemp?.courses?.addAll(list)
+    }
+
+    fun completeSetup(complete: Boolean) {
+        tutor = tutorTemp
+        update(complete)
     }
 }

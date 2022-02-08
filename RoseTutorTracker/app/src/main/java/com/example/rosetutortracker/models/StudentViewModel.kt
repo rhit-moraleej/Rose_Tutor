@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 class StudentViewModel : BaseViewModel<Tutor>() {
     private lateinit var ref: DocumentReference
     var student: Student? = null
+    var studentTemp: Student? = null
     var tutorToSendMessage: String = ""
 
     fun containsTutor(tutor: Tutor): Boolean {
@@ -74,7 +75,7 @@ class StudentViewModel : BaseViewModel<Tutor>() {
                     student = snapshot.toObject(Student::class.java)
                 } else {
                     student = Student()
-                    ref.set(student!!)
+//                    ref.set(student!!)
                 }
                 observer()
             }
@@ -87,15 +88,20 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         ref.update("favoriteTutors", student?.favoriteTutors)
     }
 
-    fun update(newClassYear: Int, newHasCompletedSetup: Boolean) {
+    fun update(newName: String, newEmail: String, newMajor: String, newClassYear: Int, newHasCompletedSetup: Boolean) {
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
             .document(Firebase.auth.uid!!)
+        Log.d("update", "$newName, $newEmail, $newMajor, $newClassYear")
         if (student != null) {
             with(student!!) {
+                name = newName
+                email = newEmail
+                major = newMajor
                 classYear = newClassYear
                 favoriteTutors = ArrayList()
                 isTutor = false
                 hasCompletedSetup = newHasCompletedSetup
+                Log.d("update", "$student")
                 ref.set(this)
             }
         }

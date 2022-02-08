@@ -10,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.FragmentLoginBinding
 import com.example.rosetutortracker.models.Student
@@ -53,7 +52,7 @@ class LoginFragment : Fragment() {
                     if (studentModel.hasCompletedSetup()) {
                         findNavController().navigate(R.id.nav_home)
                     } else {
-                        studentModel.student = Student(name= name, email = "$username@rose-hulman.edu")
+                        studentModel.studentTemp = Student(name= name, email = email)
                         Log.d("login", studentModel.student!!.name)
                         findNavController().navigate(R.id.nav_user_details)
                     }
@@ -66,10 +65,10 @@ class LoginFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { call ->
                 val data: Intent? = call.data
                 val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
-                with(result) {
-                    Log.d(Constants.TAG, "results from rosefire: $name, $email, $group")
-                    studentModel.student = Student(name, email)
-                }
+//                with(result) {
+//                    Log.d(Constants.TAG, "results from rosefire: $name, $email, $group")
+//                    studentModel.studentTemp = Student(name, email)
+//                }
                 name = result.name
                 email = result.email
                 FirebaseAuth.getInstance().signInWithCustomToken(result.token)

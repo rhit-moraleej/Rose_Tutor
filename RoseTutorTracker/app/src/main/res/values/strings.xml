@@ -62,4 +62,6 @@
     <string name="start_tutoring">Start tutoring!</string>
     <string name="tutor_setup_completion_message">Thank you for becoming a tutor. \n\nYou are now done with your tutor setup.\n\nIf you\'d like to change any of the information you provided, you can change them in the settings screen.</string>
     <string name="major">Major:</string>
+    <string name="major_placement">Major: %1$s</string>
+    <string name="location_placeholder">Location: %1$s</string>
 </resources>
