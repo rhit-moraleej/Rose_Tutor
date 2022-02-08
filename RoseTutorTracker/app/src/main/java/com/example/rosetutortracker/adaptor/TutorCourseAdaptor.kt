@@ -11,24 +11,25 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.edit.ChangeCourseFragment
 import com.example.rosetutortracker.models.CourseViewModel
 
-class TutorCourseAdaptor(fragment: ChangeCourseFragment): BaseAdapter<String>(fragment) {
+class TutorCourseAdaptor(fragment: ChangeCourseFragment) : BaseAdapter<String>(fragment) {
     override val model = ViewModelProvider(fragment.requireActivity())[CourseViewModel::class.java]
     override fun setViewHolder(parent: ViewGroup, viewType: Int) = CourseViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.row_course, parent, false),
         model
     )
 
-    fun setTutorCourses(courses: ArrayList<String>){
+    fun setTutorCourses(courses: ArrayList<String>) {
         model.list.clear()
         model.list.addAll(courses)
     }
 
-    fun addCourse(){
+    fun addCourse() {
         model.list.add("")
         notifyDataSetChanged()
     }
 
-    inner class CourseViewHolder(itemView: View, model: CourseViewModel) : BaseViewHolder<String>(itemView){
+    inner class CourseViewHolder(itemView: View, model: CourseViewModel) :
+        BaseViewHolder<String>(itemView) {
         private val deleteIcon: ImageView = itemView.findViewById(R.id.delete_course)
         private val editText: EditText = itemView.findViewById(R.id.course_edit)
         private val saveButton: Button = itemView.findViewById(R.id.save_btn)
@@ -46,6 +47,7 @@ class TutorCourseAdaptor(fragment: ChangeCourseFragment): BaseAdapter<String>(fr
                 notifyItemChanged(adapterPosition)
             }
         }
+
         override fun bind(item: String) {
             deleteIcon.setImageResource(close)
             editText.setText(item)

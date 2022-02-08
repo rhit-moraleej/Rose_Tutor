@@ -10,7 +10,7 @@ import com.example.rosetutortracker.adaptor.StudentHelpAdapter
 import com.example.rosetutortracker.databinding.FragmentTutorHomeBinding
 
 
-class TutorHomeFragment: Fragment() {
+class TutorHomeFragment : Fragment() {
     private lateinit var binding: FragmentTutorHomeBinding
 
     override fun onCreateView(

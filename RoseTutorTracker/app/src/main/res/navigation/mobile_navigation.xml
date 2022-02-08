@@ -50,8 +50,7 @@
         android:id="@+id/nav_tutor_home"
         android:name="com.example.rosetutortracker.ui.TutorHomeFragment"
         android:label="Tutor Home"
-        tools:layout="@layout/fragment_tutor_home"
-        />
+        tools:layout="@layout/fragment_tutor_home" />
 
     <fragment
         android:id="@+id/nav_tutor_edit_day_time"
@@ -62,8 +61,7 @@
         android:id="@+id/nav_tutor_change_classes"
         android:name="com.example.rosetutortracker.edit.ChangeCourseFragment"
         android:label="Edit Your Courses"
-        tools:layout="@layout/fragment_change_course"
-        />
+        tools:layout="@layout/fragment_change_course" />
     <fragment
         android:id="@+id/nav_tutor_edit_location"
         android:name="com.example.rosetutortracker.edit.TutorEditLocationFragment"
@@ -74,20 +72,20 @@
         android:id="@+id/nav_tutor_setup"
         android:name="com.example.rosetutortracker.setup.TutorSetupFragment"
         android:label="Tutor Edit"
-        tools:layout="@layout/fragment_tutor_setup"/>
+        tools:layout="@layout/fragment_tutor_setup" />
     <fragment
         android:id="@+id/nav_course_tutor_setup"
         android:name="com.example.rosetutortracker.setup.CourseTutorSetupFragment"
         android:label="Add Your Courses"
-        tools:layout="@layout/fragment_change_course"/>
+        tools:layout="@layout/fragment_change_course" />
     <fragment
         android:id="@+id/nav_location_tutor_setup"
         android:name="com.example.rosetutortracker.setup.LocationTutorSetupFragment"
         android:label="Set Your Tutoring Location"
-        tools:layout="@layout/fragment_tutor_edit_location"/>
+        tools:layout="@layout/fragment_tutor_edit_location" />
     <fragment
         android:id="@+id/nav_time_tutor_setup"
         android:name="com.example.rosetutortracker.setup.TimeTutorSetupFragment"
         android:label="Set Your Tutoring Times"
-        tools:layout="@layout/fragment_tutor_edit_day_time"/>
+        tools:layout="@layout/fragment_tutor_edit_day_time" />
 </navigation>

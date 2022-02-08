@@ -13,22 +13,23 @@ import com.example.rosetutortracker.models.StudentHelpViewModel
 import com.example.rosetutortracker.models.StudentRequests
 import com.example.rosetutortracker.ui.TutorHomeFragment
 
-class StudentHelpAdapter(fragment: TutorHomeFragment): BaseAdapter<StudentRequests>(fragment){
+class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentRequests>(fragment) {
 
-    override val model = ViewModelProvider(fragment.requireActivity())[StudentHelpViewModel::class.java]
+    override val model =
+        ViewModelProvider(fragment.requireActivity())[StudentHelpViewModel::class.java]
 
     override fun setViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.row_student, parent, false)
     )
 
-    fun getMessages(){
+    fun getMessages() {
         model.list.clear()
-        model.getRequests(){notifyDataSetChanged()}
+        model.getRequests() { notifyDataSetChanged() }
         Log.d("message", "in list after getting messages: ${model.list}")
     }
 
 
-    inner class StudentViewHolder(itemView: View): BaseViewHolder<StudentRequests>(itemView) {
+    inner class StudentViewHolder(itemView: View) : BaseViewHolder<StudentRequests>(itemView) {
         private val studentName: TextView = itemView.findViewById(R.id.student_name)
         private val notifyCheckbox: CheckBox = itemView.findViewById(R.id.notify_student_checkbox)
         private val resolveButton: Button = itemView.findViewById(R.id.resolve_button)

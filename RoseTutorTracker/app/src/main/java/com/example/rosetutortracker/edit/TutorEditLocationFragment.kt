@@ -35,8 +35,8 @@ open class TutorEditLocationFragment : Fragment() {
         updatedTutor = Tutor(
             available = tutorModel.tutor?.available!!,
             courses = tutorModel.tutor?.courses!!,
-            location= tutorModel.tutor?.location!!,
-            hasCompletedSetup=tutorModel.tutor?.hasCompletedSetup!!,
+            location = tutorModel.tutor?.location!!,
+            hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
             numRatings = tutorModel.tutor?.numRatings!!,
             days = tutorModel.tutor?.days!!,
@@ -58,7 +58,7 @@ open class TutorEditLocationFragment : Fragment() {
         return binding.root
     }
 
-    open fun setLocationButton(){
+    open fun setLocationButton() {
         binding.updateLocationButton.setOnClickListener {
             updatedTutor.location = binding.locationEditText.text.toString()
             ref.document(Firebase.auth.uid!!).set(updatedTutor)

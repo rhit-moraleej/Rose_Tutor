@@ -6,7 +6,7 @@ import com.example.rosetutortracker.edit.TutorEditLocationFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LocationTutorSetupFragment: TutorEditLocationFragment() {
+class LocationTutorSetupFragment : TutorEditLocationFragment() {
     override fun setLocationButton() {
         binding.updateLocationButton.text = "Set Location"
         binding.updateLocationButton.setOnClickListener {

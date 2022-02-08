@@ -11,8 +11,7 @@
         android:id="@+id/student_name"
         android:text="Student 1"
         android:layout_centerVertical="true"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/notify_student_checkbox"
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/notify" />
-<!--        android:onClick="onCheckboxClicked"-->
+    <!--        android:onClick="onCheckboxClicked"-->
 
     <Button
         android:id="@+id/resolve_button"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Resolve"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <TextView
         android:id="@+id/help_message"
@@ -39,7 +38,6 @@
         android:text="@string/i_need_help"
         android:background="@color/rosered"
         android:textColor="@color/white" />
-
 
 
 </RelativeLayout>

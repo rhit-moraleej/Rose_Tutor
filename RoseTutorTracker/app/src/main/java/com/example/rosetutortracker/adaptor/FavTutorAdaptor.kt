@@ -12,16 +12,16 @@ import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.ui.HomeFragment
 
-class FavTutorAdaptor(fragment: HomeFragment): BaseAdapter<Tutor>(fragment){
+class FavTutorAdaptor(fragment: HomeFragment) : BaseAdapter<Tutor>(fragment) {
 
-    override val model = ViewModelProvider(fragment.requireActivity())[StudentViewModel :: class.java]
+    override val model = ViewModelProvider(fragment.requireActivity())[StudentViewModel::class.java]
 
-    fun addTutor(tutor: Tutor?){
+    fun addTutor(tutor: Tutor?) {
         model.addTutor(tutor)
         notifyDataSetChanged()
     }
 
-    fun getFavTutors(){
+    fun getFavTutors() {
         model.setupFavs {
             notifyDataSetChanged()
         }
@@ -33,7 +33,11 @@ class FavTutorAdaptor(fragment: HomeFragment): BaseAdapter<Tutor>(fragment){
         model
     )
 
-    inner class FavTutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<Tutor>): TutorViewHolder(itemView, fragment, model){
+    inner class FavTutorViewHolder(
+        itemView: View,
+        fragment: Fragment,
+        model: BaseViewModel<Tutor>
+    ) : TutorViewHolder(itemView, fragment, model) {
         init {
             itemView.setOnClickListener {
                 model.updatePos(adapterPosition)

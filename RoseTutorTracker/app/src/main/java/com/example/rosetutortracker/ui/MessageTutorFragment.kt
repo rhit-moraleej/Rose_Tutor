@@ -17,7 +17,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class MessageTutorFragment: Fragment() {
+class MessageTutorFragment : Fragment() {
     private lateinit var binding: FragmentMessageTutorBinding
     private lateinit var model: FindTutorViewModel
     lateinit var homeModel: StudentViewModel
@@ -28,9 +28,9 @@ class MessageTutorFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        model = ViewModelProvider(requireActivity())[FindTutorViewModel:: class.java]
+        model = ViewModelProvider(requireActivity())[FindTutorViewModel::class.java]
         binding = FragmentMessageTutorBinding.inflate(inflater, container, false)
-        homeModel = ViewModelProvider(requireActivity())[StudentViewModel:: class.java]
+        homeModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         binding.cancelButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -52,7 +52,7 @@ class MessageTutorFragment: Fragment() {
                     findNavController().popBackStack()
 //                    randomTutorNotification()
                 }
-                .setNegativeButton(android.R.string.cancel,null)
+                .setNegativeButton(android.R.string.cancel, null)
                 .show()
         }
 

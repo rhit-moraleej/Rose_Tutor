@@ -41,8 +41,8 @@ class TutorEditDetailFragment : Fragment() {
         val updatedTutor = Tutor(
             available = binding.tutorDetailAvailability.text.toString().toBoolean(),
             courses = tutorModel.tutor?.courses!!,
-            location= binding.location.text.toString(),
-            hasCompletedSetup=tutorModel.tutor?.hasCompletedSetup!!,
+            location = binding.location.text.toString(),
+            hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
             numRatings = tutorModel.tutor?.numRatings!!,
         )
@@ -51,7 +51,7 @@ class TutorEditDetailFragment : Fragment() {
     }
 
 
-    private fun updateView(tutor: Tutor, student: Student){
+    private fun updateView(tutor: Tutor, student: Student) {
         binding.tutorName.setText(student.name)
         binding.tutorEmail.setText(student.email)
         binding.tutorClass.setText(student.classYear.toString())
