@@ -22,7 +22,7 @@ class TutorHomeFragment : Fragment() {
         binding = FragmentTutorHomeBinding.inflate(inflater, container, false)
 
         adaptor = StudentHelpAdapter(this)
-        adaptor.getMessages()
+//        adaptor.getMessages()
         adaptor.addListener(fragmentName)
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -37,6 +37,6 @@ class TutorHomeFragment : Fragment() {
     }
 
     companion object{
-        val fragmentName: String = "TutorHomeFragment"
+        const val fragmentName: String = "TutorHomeFragment"
     }
 }

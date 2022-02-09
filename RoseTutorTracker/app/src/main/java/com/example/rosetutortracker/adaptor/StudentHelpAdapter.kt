@@ -22,11 +22,11 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         LayoutInflater.from(parent.context).inflate(R.layout.row_student, parent, false)
     )
 
-    fun getMessages() {
-        model.list.clear()
-        model.getRequests() { notifyDataSetChanged() }
-        Log.d("message", "in list after getting messages: ${model.list}")
-    }
+//    fun getMessages() {
+//        model.list.clear()
+//        model.getRequests() { notifyDataSetChanged() }
+//        Log.d("message", "in list after getting messages: ${model.list}")
+//    }
 
     fun addListener(fragmentName: String){
         model.addListener(fragmentName){
