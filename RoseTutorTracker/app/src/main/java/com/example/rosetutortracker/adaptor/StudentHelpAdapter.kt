@@ -28,6 +28,14 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         Log.d("message", "in list after getting messages: ${model.list}")
     }
 
+    fun addListener(fragmentName: String){
+        model.addListener(fragmentName){
+            notifyDataSetChanged()
+        }
+    }
+    fun removeListener(fragmentName: String){
+        model.removeListener(fragmentName)
+    }
 
     inner class StudentViewHolder(itemView: View) : BaseViewHolder<StudentRequests>(itemView) {
         private val studentName: TextView = itemView.findViewById(R.id.student_name)
@@ -43,6 +51,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
             }
 
             resolveButton.setOnClickListener {
+                model.updatePos(adapterPosition)
                 model.resolveCurrentStudent()
                 notifyItemRemoved(adapterPosition)
             }

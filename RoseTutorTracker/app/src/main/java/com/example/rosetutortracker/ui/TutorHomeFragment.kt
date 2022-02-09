@@ -12,6 +12,7 @@ import com.example.rosetutortracker.databinding.FragmentTutorHomeBinding
 
 class TutorHomeFragment : Fragment() {
     private lateinit var binding: FragmentTutorHomeBinding
+    private lateinit var adaptor: StudentHelpAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,12 +21,22 @@ class TutorHomeFragment : Fragment() {
     ): View {
         binding = FragmentTutorHomeBinding.inflate(inflater, container, false)
 
-        val adapter = StudentHelpAdapter(this)
-        adapter.getMessages()
-        binding.recyclerView.adapter = adapter
+        adaptor = StudentHelpAdapter(this)
+        adaptor.getMessages()
+        adaptor.addListener(fragmentName)
+        binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        adaptor.removeListener(fragmentName)
+    }
+
+    companion object{
+        val fragmentName: String = "TutorHomeFragment"
     }
 }

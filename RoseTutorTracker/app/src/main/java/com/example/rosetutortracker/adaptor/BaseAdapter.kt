@@ -17,4 +17,5 @@ abstract class BaseAdapter<T>(val fragment: Fragment) : RecyclerView.Adapter<Bas
     }
 
     override fun getItemCount() = model.size()
+
 }
