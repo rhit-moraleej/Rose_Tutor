@@ -9,6 +9,8 @@ import android.widget.CheckBox
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.R
+import com.example.rosetutortracker.abstracts.BaseAdapter
+import com.example.rosetutortracker.abstracts.BaseViewHolder
 import com.example.rosetutortracker.models.StudentHelpViewModel
 import com.example.rosetutortracker.models.StudentRequests
 import com.example.rosetutortracker.ui.TutorHomeFragment
@@ -21,12 +23,6 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
     override fun setViewHolder(parent: ViewGroup, viewType: Int) = StudentViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.row_student, parent, false)
     )
-
-//    fun getMessages() {
-//        model.list.clear()
-//        model.getRequests() { notifyDataSetChanged() }
-//        Log.d("message", "in list after getting messages: ${model.list}")
-//    }
 
     fun addListener(fragmentName: String){
         model.addListener(fragmentName){
@@ -44,7 +40,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         private val helpMessage: TextView = itemView.findViewById(R.id.help_message)
 
         init {
-            notifyCheckbox.setOnCheckedChangeListener { buttonView, isChecked ->
+            notifyCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     Log.d("notify","Notifying $studentName")
                 }

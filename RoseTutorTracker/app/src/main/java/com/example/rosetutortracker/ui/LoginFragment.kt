@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -20,10 +21,10 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import rosefire.rosefire.Rosefire
 import rosefire.rosefire.RosefireResult
+import java.time.LocalDateTime
 
 
 class LoginFragment : Fragment() {
-
     private val REGISTRY_TOKEN: String =
         "0cd2cc6d-7a3e-4af7-9b45-6d3d13a927d9"//R.string.rosefire_key
 
@@ -37,17 +38,15 @@ class LoginFragment : Fragment() {
     ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         val loginButton: View = binding.loginBtn
-        val logoutButton: View = binding.logoutBtn
         var name = ""
         var  email = ""
+        var date = LocalDateTime.now()
+        binding.loadingBar.isVisible = false
         studentModel =
             ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         authStateListener = AuthStateListener { firebaseAuth ->
             val user = firebaseAuth.currentUser
-            val username = user?.uid ?: "null"
             if (user != null) {
-//                studentModel =
-//                    ViewModelProvider(requireActivity())[StudentViewModel::class.java]
                 studentModel.getOrMakeUser {
                     if (studentModel.hasCompletedSetup()) {
                         findNavController().navigate(R.id.nav_home)
@@ -65,21 +64,19 @@ class LoginFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { call ->
                 val data: Intent? = call.data
                 val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
-//                with(result) {
-//                    Log.d(Constants.TAG, "results from rosefire: $name, $email, $group")
-//                    studentModel.studentTemp = Student(name, email)
-//                }
                 name = result.name
                 email = result.email
+                with(date){
+                    Log.d("date", "Todays date is $dayOfWeek, $hour, $minute")
+                }
                 FirebaseAuth.getInstance().signInWithCustomToken(result.token)
             }
         loginButton.setOnClickListener {
             val signInIntent = Rosefire.getSignInIntent(requireContext(), REGISTRY_TOKEN)
             Log.d("tag", "login")
+
             resultLauncher.launch(signInIntent)
-        }
-        logoutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+            binding.loadingBar.isVisible = true
         }
         return binding.root
     }

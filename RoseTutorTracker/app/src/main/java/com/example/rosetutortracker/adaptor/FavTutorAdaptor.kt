@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
-import com.example.rosetutortracker.models.BaseViewModel
+import com.example.rosetutortracker.abstracts.BaseAdapter
+import com.example.rosetutortracker.abstracts.BaseViewModel
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.ui.HomeFragment

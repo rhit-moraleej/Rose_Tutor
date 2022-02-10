@@ -2,6 +2,7 @@ package com.example.rosetutortracker.models
 
 import android.util.Log
 import com.example.rosetutortracker.Constants
+import com.example.rosetutortracker.abstracts.BaseViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot

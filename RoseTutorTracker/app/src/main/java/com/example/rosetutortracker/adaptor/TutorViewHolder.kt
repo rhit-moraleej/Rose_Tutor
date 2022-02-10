@@ -6,7 +6,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
-import com.example.rosetutortracker.models.BaseViewModel
+import com.example.rosetutortracker.abstracts.BaseViewHolder
+import com.example.rosetutortracker.abstracts.BaseViewModel
 import com.example.rosetutortracker.models.Tutor
 
 open class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewModel<Tutor>) :

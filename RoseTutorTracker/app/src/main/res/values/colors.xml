@@ -10,4 +10,8 @@
     <color name="green">#FF42f56c</color>
     <color name="red">#FFf50a0a</color>
     <color name="rosered">#FF800000</color>
+    <color name="primaryColor">#ff800000</color>
+    <color name="primaryLightColor">#b73d2a</color>
+    <color name="primaryDarkColor">#4f0000</color>
+    <color name="primaryTextColor">#ffffff</color>
 </resources>

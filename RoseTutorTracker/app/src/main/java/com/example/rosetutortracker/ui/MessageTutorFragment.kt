@@ -40,7 +40,7 @@ class MessageTutorFragment : Fragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Send message?")
                 .setMessage("Are you sure you want to send this message?")
-                .setPositiveButton(android.R.string.ok) { dialog, which ->
+                .setPositiveButton(android.R.string.ok) { _, _ ->
                     val message = StudentRequests(
                         binding.messageToTutor.text.toString(),
                         homeModel.tutorToSendMessage,

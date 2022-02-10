@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         val auth = FirebaseAuth.getInstance()
         auth.addAuthStateListener {
             if (it.currentUser != null) {
-//                tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
                 tutorModel.getUser {
                     Log.d("rr", "AuthState changed to ${it.currentUser?.uid}")
                     Log.d("rr", tutorModel.tutor.toString())
@@ -63,7 +62,6 @@ class MainActivity : AppCompatActivity() {
                         Log.d("rr", "$tutorModel.tutor.toString() zzzzzzzz")
                     }
                 }
-
             }
         }
 
@@ -74,9 +72,7 @@ class MainActivity : AppCompatActivity() {
         binding.appBarMain.fab.hide()
         drawerLayout = binding.drawerLayout
         navView = binding.navView
-        //var navHeader: View = binding.navView.getHeaderView(0)
         navView.bringToFront()
-        //navView.setNavigationItemSelectedListener(this)
 
         navView.menu[3].isVisible = false
         navView.menu[4].isVisible = false
@@ -106,8 +102,6 @@ class MainActivity : AppCompatActivity() {
             checkTutorStatus()
             false
         }
-
-
 
         navView.menu[7].setOnMenuItemClickListener {
             tutorModel.tutor = null

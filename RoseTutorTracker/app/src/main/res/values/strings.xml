@@ -64,4 +64,5 @@
     <string name="major">Major:</string>
     <string name="major_placement">Major: %1$s</string>
     <string name="location_placeholder">Location: %1$s</string>
+    <string name="login">Login</string>
 </resources>

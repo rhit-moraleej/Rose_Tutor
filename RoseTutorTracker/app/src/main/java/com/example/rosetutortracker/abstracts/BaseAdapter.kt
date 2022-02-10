@@ -1,9 +1,8 @@
-package com.example.rosetutortracker.adaptor
+package com.example.rosetutortracker.abstracts
 
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.example.rosetutortracker.models.BaseViewModel
 
 abstract class BaseAdapter<T>(val fragment: Fragment) : RecyclerView.Adapter<BaseViewHolder<T>>() {
     abstract val model: BaseViewModel<T>

@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.models
+package com.example.rosetutortracker.abstracts
 
 import androidx.lifecycle.ViewModel
 

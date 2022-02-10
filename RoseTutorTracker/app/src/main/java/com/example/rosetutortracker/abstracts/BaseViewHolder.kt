@@ -1,4 +1,4 @@
-package com.example.rosetutortracker.adaptor
+package com.example.rosetutortracker.abstracts
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

@@ -9,6 +9,8 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.R
+import com.example.rosetutortracker.abstracts.BaseAdapter
+import com.example.rosetutortracker.abstracts.BaseViewHolder
 import com.example.rosetutortracker.edit.ChangeCourseFragment
 import com.example.rosetutortracker.models.CourseViewModel
 

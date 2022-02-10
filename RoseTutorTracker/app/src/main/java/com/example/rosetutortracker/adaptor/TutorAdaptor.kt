@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.rosetutortracker.R
+import com.example.rosetutortracker.abstracts.BaseAdapter
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.ui.FindTutorListFragment
