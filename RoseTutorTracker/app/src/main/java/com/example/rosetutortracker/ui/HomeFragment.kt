@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
             transformations(CircleCropTransformation())
         }
 
-
         Log.d("rr", Firebase.auth.currentUser!!.uid)
 
         return binding.root
