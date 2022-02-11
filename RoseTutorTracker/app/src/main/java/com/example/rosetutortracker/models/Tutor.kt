@@ -1,7 +1,12 @@
 package com.example.rosetutortracker.models
 
+import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 data class Tutor(
@@ -24,6 +29,12 @@ data class Tutor(
         val total: Double = this.overRating * numRatings
         this.numRatings++
         this.overRating = total / this.numRatings
+    }
+
+    fun checkAvailabilaty(): Boolean{
+        val date = LocalDateTime.now()
+        Log.d("Date", "${date.dayOfWeek}")
+        return false
     }
 
     fun coursesToString(): String {
