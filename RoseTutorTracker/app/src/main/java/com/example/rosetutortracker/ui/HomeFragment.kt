@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         userProfile.load(studentModel.student!!.storageUriString) {
             crossfade(true)
             transformations(CircleCropTransformation())
-            size(350,350)
+            size(200,200)
         }
 
         Log.d("rr", Firebase.auth.currentUser!!.uid)
