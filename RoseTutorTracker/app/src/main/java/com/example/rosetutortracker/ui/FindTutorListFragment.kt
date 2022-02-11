@@ -29,6 +29,7 @@ class FindTutorListFragment : Fragment() {
     ): View {
         binding = FragmentFindTutorListBinding.inflate(inflater, container, false)
         adaptor = TutorAdaptor(this)
+        adaptor.model.list.clear()
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
