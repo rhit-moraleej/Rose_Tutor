@@ -10,7 +10,8 @@ data class Student(
     var classYear: Int = 0,
     var favoriteTutors: ArrayList<String> = ArrayList(),
     var isTutor: Boolean = false,
-    var hasCompletedSetup: Boolean = false
+    var hasCompletedSetup: Boolean = false,
+    var storageUriString: String = ""
 ) {
     @get:Exclude
     var id = ""

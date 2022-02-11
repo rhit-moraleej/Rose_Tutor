@@ -14,10 +14,20 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/ic_baseline_person_outline_24" />
 
+    <Button
+        android:id="@+id/user_edit_upload_photo_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_profile"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Upload Photo" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/user_profile"
+        android:layout_below="@id/user_edit_upload_photo_button"
         android:id="@+id/name_row">
 
         <TextView
@@ -86,21 +96,25 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/update_user_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/cancel_user_profile_button"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/major_row"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:text="@string/cancel" />
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/update_profile" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/update_user_profile_button"
-        android:layout_above="@+id/cancel_user_profile_button"
-        android:layout_marginBottom="50dp"
+        android:layout_below="@+id/update_user_profile_button"
+        android:id="@+id/cancel_user_profile_button"
+
         android:layout_centerHorizontal="true"
-        android:text="@string/update_profile" />
+        android:layout_marginBottom="50dp"
+        android:text="@string/cancel" />
+
+
 
 </RelativeLayout>

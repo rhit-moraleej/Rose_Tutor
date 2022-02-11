@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.abstracts.BaseViewModel
@@ -54,6 +56,13 @@ open class TutorDetailFragment : Fragment() {
             binding.favoriteTutor.text = getString(R.string.favorite_tutor)
         else {
             binding.favoriteTutor.text = getString(R.string.unfav)
+        }
+        if (tutor.studentInfo.storageUriString.isNotEmpty()) {
+            Log.d("image","Not empty")
+            binding.tutorProfile.load(tutor.studentInfo.storageUriString) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
+            }
         }
     }
 
