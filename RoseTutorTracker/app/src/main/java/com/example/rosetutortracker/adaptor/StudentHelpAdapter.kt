@@ -42,6 +42,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         init {
             notifyCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
+                    notifyCheckbox.isEnabled = false
                     Log.d("notify","Notifying $studentName")
                 }
             }
