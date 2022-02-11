@@ -56,11 +56,7 @@ open class TutorEditLocationFragment : Fragment() {
             hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
             numRatings = tutorModel.tutor?.numRatings!!,
-            days = tutorModel.tutor?.days!!,
-            startHours = tutorModel.tutor?.startHours!!,
-            startMinutes = tutorModel.tutor?.startMinutes!!,
-            endHours = tutorModel.tutor?.endHours!!,
-            endMinutes = tutorModel.tutor?.endMinutes!!
+            days = tutorModel.tutor?.days!!
         )
     }
 }

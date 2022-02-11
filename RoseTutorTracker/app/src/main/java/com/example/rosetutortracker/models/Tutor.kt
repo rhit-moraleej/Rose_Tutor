@@ -11,11 +11,7 @@ data class Tutor(
     var hasCompletedSetup: Boolean = false,
     var overRating: Double = 0.0,
     var numRatings: Int = 0,
-    var days: ArrayList<Boolean> = arrayListOf(false, false, false, false, false, false, false),
-    var startHours: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
-    var startMinutes: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
-    var endHours: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0),
-    var endMinutes: ArrayList<Int> = arrayListOf(0, 0, 0, 0, 0, 0, 0)
+    var days: ArrayList<TutorDate> = daySetup()
 ) {
 
     @get:Exclude
@@ -59,6 +55,14 @@ data class Tutor(
             return tutor
         }
     }
+}
+
+fun daySetup(): ArrayList<TutorDate> {
+    val days = ArrayList<TutorDate>()
+    for (i in 0 until 7 ){
+        days.add(TutorDate())
+    }
+    return days
 }
 
 fun getRandomCourses(num: Int): ArrayList<String> {

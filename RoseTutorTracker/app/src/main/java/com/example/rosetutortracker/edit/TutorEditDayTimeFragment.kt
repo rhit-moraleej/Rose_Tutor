@@ -14,6 +14,7 @@ import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.databinding.FragmentTutorEditDayTimeBinding
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
+import com.example.rosetutortracker.models.TutorDate
 import com.example.rosetutortracker.models.TutorViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -26,8 +27,8 @@ open class TutorEditDayTimeFragment : Fragment() {
     lateinit var tutorModel: TutorViewModel
     private lateinit var studentModel: StudentViewModel
     lateinit var updatedTutor: Tutor
-    lateinit var checkboxs: ArrayList<CheckBox>
-    lateinit var buttons: ArrayList<Button>
+    var checkboxs = ArrayList<CheckBox>()
+    var buttons = ArrayList<Button>()
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +39,6 @@ open class TutorEditDayTimeFragment : Fragment() {
         studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
 
         updateTutor()
-
-        buttons = ArrayList()
-        checkboxs = ArrayList()
         buttons.add(binding.mondayButton)
         buttons.add(binding.tuesdayButton)
         buttons.add(binding.wednesdayButton)
@@ -57,14 +55,14 @@ open class TutorEditDayTimeFragment : Fragment() {
         checkboxs.add(binding.sundayCB)
 
         for (i in 0 until buttons.size){
-            buttons[i].isEnabled = updatedTutor.days[i]
+            buttons[i].isEnabled = updatedTutor.days[i].working
             updateButton(buttons[i], i)
-            checkboxs[i].isChecked = updatedTutor.days[i]
+            checkboxs[i].isChecked = updatedTutor.days[i].working
             checkboxs[i].setOnCheckedChangeListener { _, isChecked ->
                 buttons[i].isEnabled = isChecked
-                updatedTutor.days[i] = isChecked
+                updatedTutor.days[i].working = isChecked
                 Log.d("rr", "updating tutor to: $updatedTutor")
-                ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                ref.document(Firebase.auth.uid!!).collection(Constants.COLLECTION_BY_DAY)
             }
         }
         setupDoneButton()
@@ -77,30 +75,30 @@ open class TutorEditDayTimeFragment : Fragment() {
             val startpicker =
                 MaterialTimePicker.Builder()
                     .setTimeFormat(TimeFormat.CLOCK_12H)
-                    .setHour(updatedTutor.startHours[index])
-                    .setMinute(updatedTutor.startMinutes[index])
+                    .setHour(updatedTutor.days[index].startHour)
+                    .setMinute(updatedTutor.days[index].startMin)
                     .setTitleText("Select Start time")
                     .build()
             startpicker.addOnPositiveButtonClickListener {
-                val sunStartHour = startpicker.hour
-                val sunStartMinute = startpicker.minute
-                updatedTutor.startHours[index] = sunStartHour
-                updatedTutor.startMinutes[index] = sunStartMinute
+                val startHour = startpicker.hour
+                val startMinute = startpicker.minute
+                updatedTutor.days[index].startHour = startHour
+                updatedTutor.days[index].startMin = startMinute
                 val s = String.format("Time: %d:%02d", startpicker.hour, startpicker.minute)
                 Log.d("rr", s)
                 val endpicker =
                     MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_12H)
-                        .setHour(sunStartHour)
-                        .setMinute(sunStartMinute)
+                        .setHour(startHour)
+                        .setMinute(startMinute)
                         .setTitleText("Select End time")
                         .build()
                 endpicker.addOnPositiveButtonClickListener {
-                    val sunEndHour = endpicker.hour
-                    val sunEndMinute = endpicker.minute
-                    updatedTutor.endHours[index] = sunEndHour
-                    updatedTutor.endMinutes[index] = sunEndMinute
-                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
+                    val endHour = endpicker.hour
+                    val endMinute = endpicker.minute
+                    updatedTutor.days[index].endHour = endHour
+                    updatedTutor.days[index].endMin = endMinute
+                    ref.document(Firebase.auth.uid!!).collection(Constants.COLLECTION_BY_DAY)
                     val t = String.format("Time: %d:%02d", endpicker.hour, endpicker.minute)
                     Log.d("rr", t)
                 }
@@ -118,11 +116,7 @@ open class TutorEditDayTimeFragment : Fragment() {
             hasCompletedSetup = tutorModel.tutor?.hasCompletedSetup!!,
             overRating = tutorModel.tutor?.overRating!!,
             numRatings = tutorModel.tutor?.numRatings!!,
-            days = tutorModel.tutor?.days!!,
-            startHours = tutorModel.tutor?.startHours!!,
-            startMinutes = tutorModel.tutor?.startMinutes!!,
-            endHours = tutorModel.tutor?.endHours!!,
-            endMinutes = tutorModel.tutor?.endMinutes!!
+            days = tutorModel.tutor?.days!!
         )
     }
 
