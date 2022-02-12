@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5sp"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:padding="5sp">
 
         <ImageView
+            android:id="@+id/tutor_profile"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:id="@+id/tutor_profile"
-            android:contentDescription="@string/the_profile_picture_of_the_tutor"
             android:layout_centerHorizontal="true"
+            android:contentDescription="@string/the_profile_picture_of_the_tutor"
             android:src="@drawable/ic_baseline_person_outline_24" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tutor_name"
             style="@style/tutorDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/tutor_profile"
             android:layout_marginTop="10dp"
             android:text="@string/place_holder_name" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/tutor_email"
             style="@style/tutorDetails"
-            android:text="@string/placer_holder_email"
-            android:layout_below="@id/tutor_name" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tutor_name"
+            android:text="@string/placer_holder_email" />
+
+        <TextView
             android:id="@+id/tutor_class"
             style="@style/tutorDetails"
-            android:text="@string/place_holder_classyear"
-            android:layout_below="@id/tutor_email" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tutor_email"
+            android:text="@string/place_holder_classyear" />
 
         <TextView
             android:id="@+id/courses"
@@ -71,31 +71,31 @@
             android:text="@string/available_n_1_s" />
 
         <TextView
+            android:id="@+id/tutor_rating"
+            style="@style/tutorDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tutor_rating"
             android:layout_below="@id/tutor_detail_availability"
             android:layout_alignStart="@id/tutor_detail_availability"
-            style="@style/tutorDetails"
-            android:text="@string/tutor_rating"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:text="@string/tutor_rating" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/notify_tutor"
             android:id="@+id/notify_tutor"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@id/tutor_rating"
-            android:layout_marginEnd="15dp" />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/favorite_tutor"
-            android:text="@string/favorite_tutor"
-            android:layout_alignParentStart="true"
             android:layout_below="@id/tutor_rating"
-            android:layout_marginStart="15dp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:text="@string/notify_tutor" />
+
+        <Button
+            android:id="@+id/favorite_tutor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tutor_rating"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="15dp"
+            android:text="@string/favorite_tutor" />
     </RelativeLayout>
 </ScrollView>

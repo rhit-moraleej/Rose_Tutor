@@ -30,7 +30,7 @@ open class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewMo
         tutorName.text = item.studentInfo.name
         tutorMajor.text = "Major: ${item.studentInfo.major}"
         tutorLocation.text = "Location: ${item.location}"
-        if (item.checkAvailabilaty()) {
+        if (item.checkAvailability()) {
             tutorAvailability.setImageResource(available)
         } else {
             tutorAvailability.setImageResource(unavailable)

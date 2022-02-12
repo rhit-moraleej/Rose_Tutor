@@ -2,19 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
     android:layout_margin="4dp"
     android:background="@color/white"
-    >
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/student_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Student 1"
         android:layout_centerVertical="true"
-        android:textSize="20sp"
-        />
+        android:text="Student 1"
+        android:textSize="20sp" />
 
     <CheckBox
         android:id="@+id/notify_student_checkbox"
@@ -28,9 +26,9 @@
         android:id="@+id/resolve_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resolve"
         android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:text="Resolve" />
 
     <TextView
         android:id="@+id/help_message"
@@ -38,10 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/notify_student_checkbox"
         android:layout_marginTop="20dp"
-        android:text="@string/i_need_help"
         android:background="@color/rosered"
+        android:text="@string/i_need_help"
         android:textColor="@color/white" />
-
 
 
 </RelativeLayout>

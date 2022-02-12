@@ -3,23 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".setup.TutorSetupFragment"
     android:layout_margin="5dp"
-    android:padding="10dp">
+    android:padding="10dp"
+    tools:context=".setup.TutorSetupFragment">
 
     <TextView
+        android:id="@+id/completion_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/completion_message"
         android:layout_centerInParent="true"
+        android:text="@string/tutor_setup_completion_message"
         android:textSize="25sp"
-        android:textStyle="bold"
-        android:text="@string/tutor_setup_completion_message" />
+        android:textStyle="bold" />
 
     <Button
+        android:id="@+id/update_profile_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/update_profile_button"
         android:layout_below="@+id/completion_message"
         android:text="@string/start_tutoring" />
 

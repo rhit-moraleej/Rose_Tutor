@@ -34,9 +34,6 @@ class UserDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentUserDetailsBinding
     private lateinit var navBinding: ActivityMainBinding
-    private lateinit var navProfile: ImageView
-    private lateinit var navUserName: TextView
-    private lateinit var navUserEmail: TextView
     private lateinit var studentModel: StudentViewModel
     private var name = ""
     private var email = ""
@@ -86,14 +83,8 @@ class UserDetailsFragment : Fragment() {
             val temp = studentModel.studentTemp
             val major = binding.userMajor.text.toString()
             Log.d("studentTemp", "$temp")
-//            if (temp != null) {
-//                Log.d("update", "${temp.name}, ${temp.email}, ${temp.major}")
-//                studentModel.update(temp.name, temp.email, temp.major, userclass, true)
-//            }
-//            studentModel.update(userclass, true)
             studentModel.update(name, email, major, userclass, true, storageUriStringInFragment)
-            Log.d("image",storageUriStringInFragment)
-//            updateNavHeader()
+            Log.d("image", storageUriStringInFragment)
             findNavController().navigate(R.id.nav_home)
         }
 
@@ -112,13 +103,6 @@ class UserDetailsFragment : Fragment() {
         binding.userName.text = getString(R.string.name, studentModel.studentTemp?.name)
         binding.userEmail.text = getString(R.string.email_edit, studentModel.studentTemp?.email)
     }
-
-//    private fun updateNavHeader() {
-//        navUserName = navBinding.navView.getHeaderView(0).findViewById(R.id.user_name)
-//        navUserEmail = navBinding.navView.getHeaderView(0).findViewById(R.id.user_email)
-//        navUserName.text = studentModel.student?.name!!
-//
-//    }
 
     private fun showPictureDialog() {
         val builder = AlertDialog.Builder(requireContext())
@@ -148,7 +132,8 @@ class UserDetailsFragment : Fragment() {
     }
 
     private fun getTmpFileUri(): Uri {
-        val storageDir: File = requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
+        val storageDir: File =
+            requireActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES)!!
         val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val tmpFile = File.createTempFile("JPEG_${timeStamp}_", ".png", storageDir).apply {
             createNewFile()

@@ -2,28 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="horizontal"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="horizontal">
 
     <EditText
-        android:layout_width="0dp"
-        android:layout_weight="5"
         android:id="@+id/course_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:layout_height="wrap_content" />
+        android:layout_weight="5" />
 
     <Button
-        android:layout_width="0dp"
-        android:layout_weight="2"
-        android:layout_height="wrap_content"
         android:id="@+id/save_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
+        android:layout_weight="2"
         android:text="@string/save_course" />
 
     <ImageView
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
         android:id="@+id/delete_course"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:src="@drawable/ic_baseline_close_24" />
 </LinearLayout>

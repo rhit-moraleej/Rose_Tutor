@@ -14,7 +14,6 @@ import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.databinding.FragmentTutorEditDayTimeBinding
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
-import com.example.rosetutortracker.models.TutorDate
 import com.example.rosetutortracker.models.TutorViewModel
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -54,7 +53,7 @@ open class TutorEditDayTimeFragment : Fragment() {
         checkboxs.add(binding.saturdayCB)
         checkboxs.add(binding.sundayCB)
 
-        for (i in 0 until buttons.size){
+        for (i in 0 until buttons.size) {
             buttons[i].isEnabled = updatedTutor.days[i].working
             updateButton(buttons[i], i)
             checkboxs[i].isChecked = updatedTutor.days[i].working

@@ -23,10 +23,10 @@ open class ChangeCourseFragment : Fragment() {
     ): View {
         binding = FragmentChangeCourseBinding.inflate(inflater, container, false)
         tutorModel = ViewModelProvider(requireActivity())[TutorViewModel::class.java]
-        Log.d("course1",tutorModel.tutor?.courses.toString())
+        Log.d("course1", tutorModel.tutor?.courses.toString())
         adapter = TutorCourseAdaptor(this)
         adapter.setTutorCourses(tutorModel.tutor?.courses!!)
-        Log.d("course4",tutorModel.tutor?.courses.toString())
+        Log.d("course4", tutorModel.tutor?.courses.toString())
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 //        binding.recyclerView.setHasFixedSize(true)

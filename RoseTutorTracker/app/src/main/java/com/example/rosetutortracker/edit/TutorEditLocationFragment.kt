@@ -48,7 +48,7 @@ open class TutorEditLocationFragment : Fragment() {
         }
     }
 
-    open fun updateTutor(){
+    open fun updateTutor() {
         updatedTutor = Tutor(
             available = tutorModel.tutor?.available!!,
             courses = tutorModel.tutor?.courses!!,

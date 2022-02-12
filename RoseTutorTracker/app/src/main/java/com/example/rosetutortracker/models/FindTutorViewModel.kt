@@ -36,7 +36,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             Log.d("rr", "Found by name $it")
-                            if (it.id != Firebase.auth.uid!!){
+                            if (it.id != Firebase.auth.uid!!) {
                                 val student = Student.from(it)
                                 Log.d("rr", student.toString())
                                 searchTutor(it.id, function, student)
@@ -51,7 +51,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
-                            if (it.id != Firebase.auth.uid!!){
+                            if (it.id != Firebase.auth.uid!!) {
                                 Log.d(Constants.TAG, "Course search found: ${it}")
                                 val tutor = Tutor.from(it)
                                 searchStudent(it.id, function, tutor)

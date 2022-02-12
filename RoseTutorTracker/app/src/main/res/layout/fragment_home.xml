@@ -6,18 +6,18 @@
     tools:context=".ui.HomeFragment">
 
     <TextView
+        android:id="@+id/fav_tutors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fav_tutors"
-        android:text="@string/your_favorited_tutors"
-        android:textSize="18sp"
         android:layout_margin="3dp"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:text="@string/your_favorited_tutors"
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFcccccc"
-        android:layout_below="@id/fav_tutors" />
+        android:layout_below="@id/fav_tutors"
+        android:background="#FFcccccc" />
 </RelativeLayout>

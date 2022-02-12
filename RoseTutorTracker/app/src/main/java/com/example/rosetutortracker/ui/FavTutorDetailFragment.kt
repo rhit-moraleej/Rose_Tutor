@@ -16,19 +16,19 @@ import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 
 class FavTutorDetailFragment : TutorDetailFragment() {
-//    override var usedModel: BaseViewModel<Tutor> = homeModel
-override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?,
-    savedInstanceState: Bundle?
-): View {
-    model = ViewModelProvider(requireActivity())[FindTutorViewModel::class.java]
-    homeModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
-    binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
-    updateView(homeModel)
-    setupNotifyButton(homeModel)
-    setupFavButton(homeModel)
-    return binding.root
-}
+    //    override var usedModel: BaseViewModel<Tutor> = homeModel
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        model = ViewModelProvider(requireActivity())[FindTutorViewModel::class.java]
+        homeModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
+        binding = FragmentTutorDetailBinding.inflate(inflater, container, false)
+        updateView(homeModel)
+        setupNotifyButton(homeModel)
+        setupFavButton(homeModel)
+        return binding.root
+    }
 
     override fun setupFavButton(usedModel: BaseViewModel<Tutor>) {
         binding.favoriteTutor.setOnClickListener {

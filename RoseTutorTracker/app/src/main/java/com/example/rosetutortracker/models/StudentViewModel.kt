@@ -89,7 +89,14 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         ref.update("favoriteTutors", student?.favoriteTutors)
     }
 
-    fun update(newName: String, newEmail: String, newMajor: String, newClassYear: Int, newHasCompletedSetup: Boolean, newStorageUriString: String) {
+    fun update(
+        newName: String,
+        newEmail: String,
+        newMajor: String,
+        newClassYear: Int,
+        newHasCompletedSetup: Boolean,
+        newStorageUriString: String
+    ) {
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
             .document(Firebase.auth.uid!!)
         Log.d("update", "$newName, $newEmail, $newMajor, $newClassYear")

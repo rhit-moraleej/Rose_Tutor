@@ -37,20 +37,20 @@ class HomeFragment : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
 
-        var studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
-        var navView: NavigationView = requireActivity().findViewById(R.id.nav_view)
+        val studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
+        val navView: NavigationView = requireActivity().findViewById(R.id.nav_view)
         val navHeaderView = navView.getHeaderView(0)
         val userName: TextView = navHeaderView.findViewById(R.id.user_name)
         val userEmail: TextView = navHeaderView.findViewById(R.id.user_email)
         val userProfile: ImageView = navHeaderView.findViewById(R.id.user_profile)
-        Log.d("navView",userName.text.toString())
-        Log.d("navView",userEmail.text.toString())
+        Log.d("navView", userName.text.toString())
+        Log.d("navView", userEmail.text.toString())
         userName.text = studentModel.student?.name ?: ""
         userEmail.text = studentModel.student?.email ?: ""
         userProfile.load(studentModel.student!!.storageUriString) {
             crossfade(true)
             transformations(CircleCropTransformation())
-            size(200,200)
+            size(200, 200)
         }
 
         Log.d("rr", Firebase.auth.currentUser!!.uid)

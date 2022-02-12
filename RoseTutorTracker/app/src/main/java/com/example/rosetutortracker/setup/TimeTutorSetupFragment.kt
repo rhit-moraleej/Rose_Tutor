@@ -16,7 +16,7 @@ class TimeTutorSetupFragment : TutorEditDayTimeFragment() {
         }
     }
 
-    override fun updateTutor(){
+    override fun updateTutor() {
         updatedTutor = Tutor(
             courses = tutorModel.tutorTemp?.courses!!,
             location = tutorModel.tutorTemp?.location!!,

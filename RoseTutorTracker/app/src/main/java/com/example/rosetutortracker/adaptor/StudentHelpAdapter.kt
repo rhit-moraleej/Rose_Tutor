@@ -24,12 +24,13 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         LayoutInflater.from(parent.context).inflate(R.layout.row_student, parent, false)
     )
 
-    fun addListener(fragmentName: String){
-        model.addListener(fragmentName){
+    fun addListener(fragmentName: String) {
+        model.addListener(fragmentName) {
             notifyDataSetChanged()
         }
     }
-    fun removeListener(fragmentName: String){
+
+    fun removeListener(fragmentName: String) {
         model.removeListener(fragmentName)
     }
 
@@ -43,7 +44,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
             notifyCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     notifyCheckbox.isEnabled = false
-                    Log.d("notify","Notifying $studentName")
+                    Log.d("notify", "Notifying $studentName")
                 }
             }
 
@@ -56,7 +57,11 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         }
 
         override fun bind(item: StudentRequests) {
-            studentName.text = if(item.senderName.length<15) item.senderName else item.senderName.substring(0,16)
+            studentName.text =
+                if (item.senderName.length < 15) item.senderName else item.senderName.substring(
+                    0,
+                    16
+                )
             helpMessage.text = item.message
         }
 

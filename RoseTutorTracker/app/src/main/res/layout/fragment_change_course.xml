@@ -12,11 +12,11 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/instructions"
+            style="@style/tutorDetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/instructions"
-            android:text="@string/course_edit_instructions"
-            style="@style/tutorDetails" />
+            android:text="@string/course_edit_instructions" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -26,21 +26,21 @@
             android:background="#FFcccccc" />
 
         <Button
+            android:id="@+id/add_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/add_course"
             android:layout_below="@id/recycler_view"
             android:layout_marginTop="10dp"
             android:text="@string/add_a_course" />
 
         <Button
+            android:id="@+id/complete_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/complete_btn"
-            android:text="@string/done"
             android:layout_below="@id/recycler_view"
+            android:layout_alignEnd="@id/recycler_view"
             android:layout_marginTop="10dp"
-            android:layout_alignEnd="@id/recycler_view" />
+            android:text="@string/done" />
     </RelativeLayout>
 
 </ScrollView>

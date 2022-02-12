@@ -36,7 +36,7 @@ class TutorHomeFragment : Fragment() {
         adaptor.removeListener(fragmentName)
     }
 
-    companion object{
+    companion object {
         const val fragmentName: String = "TutorHomeFragment"
     }
 }

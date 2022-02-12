@@ -4,9 +4,6 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
-import java.time.LocalTime
-import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
 data class Tutor(
@@ -31,10 +28,24 @@ data class Tutor(
         this.overRating = total / this.numRatings
     }
 
-    fun checkAvailabilaty(): Boolean{
+    fun checkAvailability(): Boolean {
         val date = LocalDateTime.now()
         Log.d("Date", "${date.dayOfWeek}")
-        return false
+        Log.d(
+            "Date",
+            "Index of the day:${TutorDate.Day.valueOf(date.dayOfWeek.toString()).dayOfWeek}."
+        )
+        val index = TutorDate.Day.valueOf(date.dayOfWeek.toString()).dayOfWeek
+        val hour = LocalDateTime.now().hour
+        val min = LocalDateTime.now().minute
+        Log.d("Date", "currTime: $hour : $min")
+        Log.d(
+            "Date",
+            "Hour check:${days[index!!].startHour <= hour && hour < days[index].endHour} "
+        )
+        Log.d("Date", "Min check: ${days[index].startMin <= min}")
+        return days[index].working && (days[index].startHour <= hour
+                && hour < days[index].endHour) && (days[index].startMin <= min)
     }
 
     fun coursesToString(): String {
@@ -70,7 +81,7 @@ data class Tutor(
 
 fun daySetup(): ArrayList<TutorDate> {
     val days = ArrayList<TutorDate>()
-    for (i in 0 until 7 ){
+    for (i in 0 until 7) {
         days.add(TutorDate())
     }
     return days

@@ -13,11 +13,11 @@ data class StudentRequests(
 
     @ServerTimestamp
     var created: Timestamp? = null
+
     companion object {
         const val CREATED_KEY = "created"
         fun from(snapshot: DocumentSnapshot): StudentRequests {
-            val message = snapshot.toObject(StudentRequests::class.java)!!
-            return message
+            return snapshot.toObject(StudentRequests::class.java)!!
         }
     }
 }

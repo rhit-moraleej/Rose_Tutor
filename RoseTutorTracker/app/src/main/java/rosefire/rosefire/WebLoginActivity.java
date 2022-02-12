@@ -13,11 +13,10 @@ import java.net.URLEncoder;
 
 public final class WebLoginActivity extends Activity {
 
-    private WebView mLoginScreen;
-
     public static final String REGISTRY_TOKEN = "registry";
     public static final String JWT_TOKEN = "token";
     public static final String ERROR = "error";
+    private WebView mLoginScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -3,8 +3,6 @@ package com.example.rosetutortracker
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
-import android.view.View
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
@@ -81,17 +79,8 @@ class MainActivity : AppCompatActivity() {
         navView.menu[5].isVisible = false
         navView.menu[6].isVisible = false
 
-
         tutorModel = ViewModelProvider(this)[TutorViewModel::class.java]
         studentModel = ViewModelProvider(this)[StudentViewModel::class.java]
-        val navHeaderView = navView.getHeaderView(0)
-        val userProfile: TextView = navHeaderView.findViewById(R.id.user_name)
-        val userEmail: TextView = navHeaderView.findViewById(R.id.user_email)
-//        Log.d("navView",userProfile.text.toString())
-//        Log.d("navView",userEmail.text.toString())
-//        userProfile.text = studentModel.student?.name ?: ""
-//        userEmail.text = studentModel.student?.email ?: ""
-
         navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

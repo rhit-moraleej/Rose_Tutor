@@ -39,8 +39,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         val loginButton: View = binding.loginBtn
         var name = ""
-        var  email = ""
-        var date = LocalDateTime.now()
+        var email = ""
         binding.loadingBar.isVisible = false
         studentModel =
             ViewModelProvider(requireActivity())[StudentViewModel::class.java]
@@ -51,7 +50,7 @@ class LoginFragment : Fragment() {
                     if (studentModel.hasCompletedSetup()) {
                         findNavController().navigate(R.id.nav_home)
                     } else {
-                        studentModel.studentTemp = Student(name= name, email = email)
+                        studentModel.studentTemp = Student(name = name, email = email)
                         Log.d("login", studentModel.student!!.name)
                         findNavController().navigate(R.id.nav_user_details)
                     }
@@ -66,9 +65,6 @@ class LoginFragment : Fragment() {
                 val result: RosefireResult = Rosefire.getSignInResultFromIntent(data)
                 name = result.name
                 email = result.email
-                with(date){
-                    Log.d("date", "Todays date is $dayOfWeek, $hour, $minute")
-                }
                 FirebaseAuth.getInstance().signInWithCustomToken(result.token)
             }
         loginButton.setOnClickListener {

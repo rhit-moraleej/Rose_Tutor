@@ -40,7 +40,10 @@ open class TutorDetailFragment : Fragment() {
     }
 
     open fun updateView(usedModel: BaseViewModel<Tutor>) {
-        Log.d(Constants.TAG, "FindTutor: ${usedModel.list.size}, StudentModel: ${homeModel.list.size}")
+        Log.d(
+            Constants.TAG,
+            "FindTutor: ${usedModel.list.size}, StudentModel: ${homeModel.list.size}"
+        )
         val tutor: Tutor = usedModel.getCurrent()
         binding.tutorName.text = getString(R.string.place_holder_name, tutor.studentInfo.name)
         binding.tutorEmail.text = getString(R.string.placer_holder_email, tutor.studentInfo.email)
@@ -58,7 +61,7 @@ open class TutorDetailFragment : Fragment() {
             binding.favoriteTutor.text = getString(R.string.unfav)
         }
         if (tutor.studentInfo.storageUriString.isNotEmpty()) {
-            Log.d("image","Not empty")
+            Log.d("image", "Not empty")
             binding.tutorProfile.load(tutor.studentInfo.storageUriString) {
                 crossfade(true)
                 transformations(CircleCropTransformation())

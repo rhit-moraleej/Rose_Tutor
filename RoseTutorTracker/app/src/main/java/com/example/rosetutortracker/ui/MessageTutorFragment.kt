@@ -47,7 +47,7 @@ class MessageTutorFragment : Fragment() {
                         Firebase.auth.uid!!,
                         homeModel.student?.name!!
                     )
-                    Log.wtf("rr",message.message)
+                    Log.wtf("rr", message.message)
                     ref.add(message)
                     //Have the message actually sent
                     findNavController().popBackStack()
