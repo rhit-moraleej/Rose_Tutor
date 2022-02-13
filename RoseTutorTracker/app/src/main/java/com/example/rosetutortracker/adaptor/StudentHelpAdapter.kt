@@ -8,12 +8,16 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.abstracts.BaseAdapter
 import com.example.rosetutortracker.abstracts.BaseViewHolder
 import com.example.rosetutortracker.models.StudentHelpViewModel
 import com.example.rosetutortracker.models.StudentRequests
 import com.example.rosetutortracker.ui.TutorHomeFragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentRequests>(fragment) {
 
@@ -45,6 +49,9 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
                 if (isChecked) {
                     notifyCheckbox.isEnabled = false
                     Log.d("notify", "Notifying $studentName")
+                    val refNotification = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
+                    val notifToAdd = hashMapOf("sender" to Firebase.auth.uid, "receiver" to model.list[adapterPosition].sender)
+                    refNotification.add(notifToAdd)
                 }
             }
 

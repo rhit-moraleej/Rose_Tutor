@@ -1,11 +1,15 @@
 package com.example.rosetutortracker.models
 
 import android.util.Log
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.abstracts.BaseViewModel
+import com.example.rosetutortracker.utils.NotificationUtils
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -15,9 +19,36 @@ class StudentViewModel : BaseViewModel<Tutor>() {
     var studentTemp: Student? = null
     var tutorToSendMessage: String = ""
 
+    var firstTime = true
+    var subscriptions = HashMap<String, ListenerRegistration>()
+
     fun containsTutor(tutor: Tutor): Boolean {
         return student?.favoriteTutors?.contains(tutor.id) ?: false
     }
+
+    fun addListener(fragmentName: String, observer: () -> Unit) {
+        val refMessage = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
+        val subscription = refMessage.addSnapshotListener { snapshot: QuerySnapshot?, error ->
+            error?.let {
+                Log.d(Constants.TAG,"Error: $error")
+                return@addSnapshotListener
+            }
+
+            snapshot?.documentChanges?.forEach {
+                Log.d("notify",it.type.toString())
+                Log.d("notify",it.document.data.toString())
+                if (it.document.data?.get("receiver")==Firebase.auth.uid && !firstTime && it.type.toString()=="ADDED") {
+                    observer()
+
+                }
+
+
+            }
+            firstTime = false
+        }
+        subscriptions[fragmentName] = subscription
+    }
+
 
     fun addTutor(tutor: Tutor?) {
         if (tutor != null) {

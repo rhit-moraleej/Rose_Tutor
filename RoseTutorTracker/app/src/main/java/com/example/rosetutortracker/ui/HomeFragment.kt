@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.adaptor.FavTutorAdaptor
 import com.example.rosetutortracker.databinding.FragmentHomeBinding
 import com.example.rosetutortracker.models.StudentViewModel
+import com.example.rosetutortracker.utils.NotificationUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -32,10 +34,16 @@ class HomeFragment : Fragment() {
 
         val adaptor = FavTutorAdaptor(this)
         adaptor.getFavTutors()
+        adaptor.model.addListener("") {NotificationUtils.createAndLaunch(
+            requireContext(),
+            "is now ready to help ${Firebase.auth.uid}"
+        )}
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+
+        NotificationUtils.createChannel(requireContext())
 
         val studentModel = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
         val navView: NavigationView = requireActivity().findViewById(R.id.nav_view)
