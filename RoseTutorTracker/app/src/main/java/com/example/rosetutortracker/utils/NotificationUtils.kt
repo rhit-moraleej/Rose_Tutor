@@ -42,7 +42,7 @@ object NotificationUtils {
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun createAndLaunch(context: Context, data: String) {
+    fun createAndLaunch(context: Context, data: String, title: String="Rose Tutor Tracker") {
         val notificationManager = context.getSystemService(NotificationManager::class.java)
 
         // TODO 4 Create an intent and pending intent and set it in the notification
@@ -61,7 +61,7 @@ object NotificationUtils {
         // TODO 2 Create a basic notification with at least title, text,
         //  small icon, and high priority. Use the data passed in as part of the text.
         val builder = NotificationCompat.Builder(context, channelId)
-            .setContentTitle("Rose Tutor Tracker")
+            .setContentTitle(title)
             .setContentText("$data")
             .setSmallIcon(R.drawable.ic_baseline_access_alarm_24)
             .setContentIntent(contentPendingIntent)

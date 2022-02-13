@@ -1,5 +1,6 @@
 package com.example.rosetutortracker.adaptor
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,8 +29,8 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         LayoutInflater.from(parent.context).inflate(R.layout.row_student, parent, false)
     )
 
-    fun addListener(fragmentName: String) {
-        model.addListener(fragmentName) {
+    fun addListener(fragmentName: String, requireContext: Context) {
+        model.addListener(fragmentName,requireContext) {
             notifyDataSetChanged()
         }
     }

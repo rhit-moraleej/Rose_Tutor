@@ -71,7 +71,8 @@ open class TutorDetailFragment : Fragment() {
 
     fun setupNotifyButton(usedModel: BaseViewModel<Tutor>) {
         binding.notifyTutor.setOnClickListener {
-            if (!usedModel.getCurrent().available) {
+            if (!usedModel.getCurrent().checkAvailability()) {
+                Log.d("button",usedModel.getCurrent().studentInfo.name)
                 binding.notifyTutor.isClickable = false
                 return@setOnClickListener
             } else {

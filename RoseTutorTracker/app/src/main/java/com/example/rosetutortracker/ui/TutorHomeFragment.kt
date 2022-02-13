@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rosetutortracker.adaptor.StudentHelpAdapter
 import com.example.rosetutortracker.databinding.FragmentTutorHomeBinding
+import com.example.rosetutortracker.utils.NotificationUtils
 
 
 class TutorHomeFragment : Fragment() {
@@ -23,10 +24,13 @@ class TutorHomeFragment : Fragment() {
 
         adaptor = StudentHelpAdapter(this)
 //        adaptor.getMessages()
-        adaptor.addListener(fragmentName)
+        adaptor.model.firstTime = true
+        adaptor.addListener(fragmentName,requireContext())
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+
+        NotificationUtils.createChannel(requireContext())
 
         return binding.root
     }
