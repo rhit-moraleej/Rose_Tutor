@@ -34,10 +34,12 @@ class HomeFragment : Fragment() {
 
         val adaptor = FavTutorAdaptor(this)
         adaptor.getFavTutors()
-        adaptor.model.addListener("") {NotificationUtils.createAndLaunch(
-            requireContext(),
-            "is now ready to help ${Firebase.auth.uid}"
-        )}
+        adaptor.model.firstTime = true
+        adaptor.model.addListener("",requireContext())
+//        {NotificationUtils.createAndLaunch(
+//            requireContext(),
+//            "is now ready to help ${Firebase.auth.uid}"
+//        )}
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

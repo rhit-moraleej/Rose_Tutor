@@ -8,7 +8,8 @@ data class StudentRequests(
     val message: String = "",
     val receiver: String = "",
     val sender: String = "",
-    val senderName: String = ""
+    val senderName: String = "",
+    val receiverName: String = ""
 ) {
 
     @ServerTimestamp

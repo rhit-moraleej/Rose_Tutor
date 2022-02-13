@@ -50,7 +50,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
                     notifyCheckbox.isEnabled = false
                     Log.d("notify", "Notifying $studentName")
                     val refNotification = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
-                    val notifToAdd = hashMapOf("sender" to Firebase.auth.uid, "receiver" to model.list[adapterPosition].sender)
+                    val notifToAdd = hashMapOf("sender" to Firebase.auth.uid, "receiver" to model.list[adapterPosition].sender, "receiverName" to model.list[adapterPosition].receiverName)
                     refNotification.add(notifToAdd)
                 }
             }

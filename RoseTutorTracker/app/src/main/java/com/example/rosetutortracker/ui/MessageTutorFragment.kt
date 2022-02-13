@@ -45,7 +45,8 @@ class MessageTutorFragment : Fragment() {
                         binding.messageToTutor.text.toString(),
                         homeModel.tutorToSendMessage,
                         Firebase.auth.uid!!,
-                        homeModel.student?.name!!
+                        homeModel.student?.name!!,
+                        model.getCurrent().studentInfo.name
                     )
                     Log.wtf("rr", message.message)
                     ref.add(message)
