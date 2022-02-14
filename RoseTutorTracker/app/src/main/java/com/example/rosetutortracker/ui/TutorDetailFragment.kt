@@ -51,6 +51,7 @@ open class TutorDetailFragment : Fragment() {
             getString(R.string.place_holder_classyear, tutor.studentInfo.classYear)
         binding.courses.text = tutor.coursesToString()
         binding.location.text = getString(R.string.location, tutor.location)
+        binding.tutorDetailAvailability.text= "Available: " + if (tutor.checkAvailability()) "Yes" else "No"
         binding.tutorRating.text =
             getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
         Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")

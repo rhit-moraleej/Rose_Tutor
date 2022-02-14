@@ -47,7 +47,8 @@ object NotificationUtils {
         data: String,
         title: String = "Rose Tutor Tracker",
         dest: String = "",
-        messageKey: String = ""
+        messageKey: String = "",
+        name: String = ""
     ) {
         val notificationManager = context.getSystemService(NotificationManager::class.java)
         // so that it can launch the app.
@@ -55,6 +56,7 @@ object NotificationUtils {
             it.putExtra(MESSAGE_KEY, data)
             it.putExtra("fragment", messageKey)
             it.putExtra("tutorid", dest)
+            it.putExtra("tutorName",name)
         }
         val contentPendingIntent = PendingIntent.getActivity(
             context,
