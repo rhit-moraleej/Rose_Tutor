@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.RatingFragment"
+    android:padding="12dp"
+    >
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/tutor_resolved_message"
+       android:text="@string/resolve_message"
+       />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating_instruction"
+        android:layout_below="@id/tutor_resolved_message"
+        android:text="@string/rating_inst"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rating_instruction"
+        android:id="@+id/rating"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/close_btn"
+        android:layout_below="@id/rating"
+        android:text="close"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rate_btn"
+        android:layout_below="@id/rating"
+        android:layout_alignEnd="@id/tutor_resolved_message"
+        android:text="Rate Tutor"
+        />
+
+</RelativeLayout>

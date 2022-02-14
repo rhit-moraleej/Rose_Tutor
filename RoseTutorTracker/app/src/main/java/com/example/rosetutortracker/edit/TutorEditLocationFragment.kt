@@ -12,6 +12,7 @@ import com.example.rosetutortracker.databinding.FragmentTutorEditLocationBinding
 import com.example.rosetutortracker.models.StudentViewModel
 import com.example.rosetutortracker.models.Tutor
 import com.example.rosetutortracker.models.TutorViewModel
+import com.example.rosetutortracker.utils.KeyBoardUtils
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -44,6 +45,7 @@ open class TutorEditLocationFragment : Fragment() {
     open fun setLocationButton() {
         binding.updateLocationButton.setOnClickListener {
             updatedTutor.location = binding.locationEditText.text.toString()
+            KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
             ref.document(Firebase.auth.uid!!).set(updatedTutor)
         }
     }

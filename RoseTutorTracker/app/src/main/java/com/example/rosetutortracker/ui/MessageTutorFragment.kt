@@ -13,6 +13,7 @@ import com.example.rosetutortracker.databinding.FragmentMessageTutorBinding
 import com.example.rosetutortracker.models.FindTutorViewModel
 import com.example.rosetutortracker.models.StudentRequests
 import com.example.rosetutortracker.models.StudentViewModel
+import com.example.rosetutortracker.utils.KeyBoardUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -51,6 +52,7 @@ class MessageTutorFragment : Fragment() {
                     Log.wtf("rr", message.message)
                     ref.add(message)
                     //Have the message actually sent
+                    KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
                     findNavController().popBackStack()
                     findNavController().popBackStack()
 //                    randomTutorNotification()

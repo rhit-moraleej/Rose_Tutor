@@ -8,8 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -21,7 +19,7 @@ import com.example.rosetutortracker.R
 import com.example.rosetutortracker.databinding.ActivityMainBinding
 import com.example.rosetutortracker.databinding.FragmentUserDetailsBinding
 import com.example.rosetutortracker.models.StudentViewModel
-
+import com.example.rosetutortracker.utils.KeyBoardUtils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -85,6 +83,7 @@ class UserDetailsFragment : Fragment() {
             Log.d("studentTemp", "$temp")
             studentModel.update(name, email, major, userclass, true, storageUriStringInFragment)
             Log.d("image", storageUriStringInFragment)
+            KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
             findNavController().navigate(R.id.nav_home)
         }
 

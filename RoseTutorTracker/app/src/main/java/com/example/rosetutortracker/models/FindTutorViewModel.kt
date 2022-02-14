@@ -31,7 +31,6 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                 refStudents.whereGreaterThanOrEqualTo("name", newSearchTerm)
                     .whereLessThanOrEqualTo("name", newSearchTerm + 'z')
                     .whereEqualTo("tutor", true)
-
                     .get()
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {

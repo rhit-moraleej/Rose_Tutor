@@ -21,7 +21,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import rosefire.rosefire.Rosefire
 import rosefire.rosefire.RosefireResult
-import java.time.LocalDateTime
 
 
 class LoginFragment : Fragment() {

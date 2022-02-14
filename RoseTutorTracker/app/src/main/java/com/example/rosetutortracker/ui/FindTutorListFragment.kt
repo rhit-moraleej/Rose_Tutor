@@ -1,13 +1,10 @@
 package com.example.rosetutortracker.ui
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.SearchView
@@ -16,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.adaptor.TutorAdaptor
 import com.example.rosetutortracker.databinding.FragmentFindTutorListBinding
+import com.example.rosetutortracker.utils.KeyBoardUtils
 
 class FindTutorListFragment : Fragment() {
     private lateinit var binding: FragmentFindTutorListBinding
@@ -46,7 +44,7 @@ class FindTutorListFragment : Fragment() {
                 if (query != null) {
                     adaptor.clearTutors()
                     adaptor.findTutor(searchBy, query)
-                    hideKeyboard()
+                    KeyBoardUtils.hideKeyboard(view!!, activity!!)
                     return true
                 }
                 return false
@@ -78,16 +76,5 @@ class FindTutorListFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
-    }
-
-    // Needed to close keyboard when search button is hit
-    private fun Fragment.hideKeyboard() {
-        view?.let { activity?.hideKeyboard(it) }
-    }
-
-    private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager =
-            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

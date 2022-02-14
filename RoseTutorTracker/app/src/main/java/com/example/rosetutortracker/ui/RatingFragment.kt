@@ -1,0 +1,49 @@
+package com.example.rosetutortracker.ui
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.text.isDigitsOnly
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.rosetutortracker.R
+import com.example.rosetutortracker.databinding.FragmentRatingBinding
+import com.example.rosetutortracker.models.RatingTutorViewModel
+
+
+class RatingFragment() : Fragment() {
+    private lateinit var binding: FragmentRatingBinding
+    private lateinit var model: RatingTutorViewModel
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentRatingBinding.inflate(inflater, container, false)
+        model = ViewModelProvider(requireActivity())[RatingTutorViewModel::class.java]
+        model.getTutorInfo("id") // get id from intent somehow
+        updateView()
+        setupButton()
+        return binding.root
+    }
+
+    private fun setupButton() {
+        binding.closeBtn.setOnClickListener {
+            findNavController().navigate(R.id.nav_home)
+        }
+        binding.rateBtn.setOnClickListener {
+            if (binding.rating.text.isBlank() || !binding.rating.text.isDigitsOnly()){
+                binding.ratingInstruction.text = getString(R.string.rating_error_inst)
+            }else{
+                val rating = binding.rating.text.toString().toDouble()
+                model.addRating(rating)
+            }
+        }
+    }
+
+    private fun updateView() {
+        binding.tutorResolvedMessage.text = getString(R.string.resolve_message, model.tutorName())
+    }
+
+}

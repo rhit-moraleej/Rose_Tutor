@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.rosetutortracker.adaptor.TutorCourseAdaptor
 import com.example.rosetutortracker.databinding.FragmentChangeCourseBinding
 import com.example.rosetutortracker.models.TutorViewModel
+import com.example.rosetutortracker.utils.KeyBoardUtils
 
 open class ChangeCourseFragment : Fragment() {
 
@@ -40,6 +42,8 @@ open class ChangeCourseFragment : Fragment() {
     open fun setupDoneButton() {
         binding.completeBtn.setOnClickListener {
             tutorModel.updateTutorCourses(adapter.model.list)
+            KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
+            findNavController().popBackStack()
         }
     }
 

@@ -2,10 +2,8 @@ package com.example.rosetutortracker.models
 
 import android.content.Context
 import android.util.Log
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.rosetutortracker.Constants
 import com.example.rosetutortracker.abstracts.BaseViewModel
-import com.example.rosetutortracker.ui.HomeFragment
 import com.example.rosetutortracker.utils.NotificationUtils
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentReference

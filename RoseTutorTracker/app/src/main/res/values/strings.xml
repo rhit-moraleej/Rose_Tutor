@@ -65,4 +65,7 @@
     <string name="major_placement">Major: %1$s</string>
     <string name="location_placeholder">Location: %1$s</string>
     <string name="login">Login</string>
+    <string name="resolve_message">%1$s has resolved your request. Feel free to rate your experience below.</string>
+    <string name="rating_inst">Please rate your experience from 0 to 5 or close</string>
+    <string name="rating_error_inst">Please provide a rating between 0 and 5 or hit the close button</string>
 </resources>

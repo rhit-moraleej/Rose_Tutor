@@ -50,6 +50,12 @@
         <entry key="..\:/Users/ramjia/AndroidStudioProjects/Rose_Tutor/RoseTutorTracker/app/src/main/res/menu/main.xml" value="0.1234375" />
         <entry key="..\:/Users/ramjia/AndroidStudioProjects/Rose_Tutor/RoseTutorTracker/app/src/main/res/xml/file_paths.xml" value="0.12129629629629629" />
         <entry key="app/src/main/res/drawable/ic_baseline_access_time_24.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_message_tutor.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_rating.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_tutor_detail.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_tutor_edit_day_time.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/fragment_user_details.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/tutor_rating_alert_dialod.xml" value="0.1890625" />
       </map>
     </option>
   </component>

@@ -88,4 +88,10 @@
         android:name="com.example.rosetutortracker.setup.TimeTutorSetupFragment"
         android:label="Set Your Tutoring Times"
         tools:layout="@layout/fragment_tutor_edit_day_time" />
+    <fragment
+        android:id="@+id/nav_rating"
+        android:name="com.example.rosetutortracker.ui.RatingFragment"
+        android:label="Tutor Rating"
+        tools:layout="@layout/fragment_rating"
+        />
 </navigation>

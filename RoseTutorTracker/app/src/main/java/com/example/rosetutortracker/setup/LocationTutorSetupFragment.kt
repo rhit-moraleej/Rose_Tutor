@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.rosetutortracker.R
 import com.example.rosetutortracker.edit.TutorEditLocationFragment
 import com.example.rosetutortracker.models.Tutor
+import com.example.rosetutortracker.utils.KeyBoardUtils
 
 class LocationTutorSetupFragment : TutorEditLocationFragment() {
     override fun setLocationButton() {
@@ -13,6 +14,7 @@ class LocationTutorSetupFragment : TutorEditLocationFragment() {
             tutorModel.tutorTemp!!.location = binding.locationEditText.text.toString()
             updatedTutor.location = binding.locationEditText.text.toString()
             Log.d("location", "updated tutor: $updatedTutor")
+            KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
 //            ref.document(Firebase.auth.uid!!).set(updatedTutor)
             findNavController().navigate(R.id.nav_time_tutor_setup)
         }
