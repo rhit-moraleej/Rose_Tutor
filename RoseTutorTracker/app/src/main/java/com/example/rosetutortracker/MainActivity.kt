@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.core.view.get
 import androidx.drawerlayout.widget.DrawerLayout
@@ -93,6 +94,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+
+
         navView.menu[2].setOnMenuItemClickListener {
             navView.menu[2].title = "Student Requests"
             navView.menu[3].isVisible = true
@@ -132,6 +135,11 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawer(GravityCompat.START)
             navController.navigate(R.id.nav_tutor_edit_location)
             false
+        }
+
+        if(intent.getStringExtra("fragment")=="ratings") {
+            val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"))
+            navController.navigate(R.id.nav_rating,bundle)
         }
     }
 

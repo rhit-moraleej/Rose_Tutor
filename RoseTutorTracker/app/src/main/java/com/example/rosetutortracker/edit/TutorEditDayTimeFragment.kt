@@ -97,7 +97,7 @@ open class TutorEditDayTimeFragment : Fragment() {
                     val endMinute = endpicker.minute
                     updatedTutor.days[index].endHour = endHour
                     updatedTutor.days[index].endMin = endMinute
-                    ref.document(Firebase.auth.uid!!).collection(Constants.COLLECTION_BY_DAY)
+                    ref.document(Firebase.auth.uid!!).set(updatedTutor)
                     val t = String.format("Time: %d:%02d", endpicker.hour, endpicker.minute)
                     Log.d("rr", t)
                 }

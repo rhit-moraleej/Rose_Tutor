@@ -20,8 +20,9 @@ class TutorViewModel : ViewModel() {
         ref.get().addOnSuccessListener { snapshot: DocumentSnapshot ->
             if (snapshot.exists()) {
                 tutor = snapshot.toObject(Tutor::class.java)
+                observer()
             }
-            observer()
+
         }
     }
 

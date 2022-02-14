@@ -21,6 +21,7 @@ class StudentViewModel : BaseViewModel<Tutor>() {
 
     var firstTime = true
     var subscriptions = HashMap<String, ListenerRegistration>()
+    var subscriptionsRemoved = HashMap<String, ListenerRegistration>()
     val refMessage = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
 
     fun containsTutor(tutor: Tutor): Boolean {
@@ -48,10 +49,40 @@ class StudentViewModel : BaseViewModel<Tutor>() {
                 }
 
 
+
             }
             firstTime = false
         }
+
+        val subscriptionRemoved = Firebase.firestore.collection(Constants.COLLECTION_BY_MESSAGE)
+            .addSnapshotListener { snapshot: QuerySnapshot?, error ->
+                error?.let {
+                    Log.d(Constants.TAG,"Error: $error")
+                    return@addSnapshotListener
+                }
+
+                snapshot?.documentChanges?.forEach {
+                    Log.d("notify",it.type.toString())
+                    Log.d("notify",it.document.data.toString())
+
+
+                if (it.document.data?.get("sender")==Firebase.auth.uid && it.type.toString()=="REMOVED") {
+
+                    NotificationUtils.createAndLaunch(
+                        context,
+                        "${it.document.data?.get("receiverName")} has resolved your help request. Please leave a rating.",
+                        "Request complete",
+                        "${it.document.data?.get("receiver")}",
+                        "ratings"
+                    )
+                }
+
+                }
+            }
+
+
         subscriptions[fragmentName] = subscription
+        subscriptionsRemoved[fragmentName] = subscriptionRemoved
     }
 
 

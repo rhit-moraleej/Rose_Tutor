@@ -42,13 +42,15 @@ object NotificationUtils {
     }
 
     @SuppressLint("UnspecifiedImmutableFlag")
-    fun createAndLaunch(context: Context, data: String, title: String="Rose Tutor Tracker") {
+    fun createAndLaunch(context: Context, data: String, title: String="Rose Tutor Tracker", dest:String="", messageKey: String="") {
         val notificationManager = context.getSystemService(NotificationManager::class.java)
 
         // TODO 4 Create an intent and pending intent and set it in the notification
         // so that it can launch the app.
         val contentIntent = Intent(context, MainActivity::class.java).also {
             it.putExtra(MESSAGE_KEY, data)
+            it.putExtra("fragment",messageKey)
+            it.putExtra("tutorid",dest)
         }
         val contentPendingIntent = PendingIntent.getActivity(
             context,
