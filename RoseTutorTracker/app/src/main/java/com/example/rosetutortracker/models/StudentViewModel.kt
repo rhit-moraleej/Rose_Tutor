@@ -63,7 +63,8 @@ class StudentViewModel : BaseViewModel<Tutor>() {
                             "${it.document.data["receiverName"]} has resolved your help request. Please leave a rating.",
                             "Request complete",
                             "${it.document.data["receiver"]}",
-                            "ratings"
+                            "ratings",
+                            "${it.document.data["receiverName"]}"
                         )
                     }
                 }

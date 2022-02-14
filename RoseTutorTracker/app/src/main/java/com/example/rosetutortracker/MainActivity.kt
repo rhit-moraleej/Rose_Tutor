@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (intent.getStringExtra("fragment") == "ratings") {
-            val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"))
+            val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"),"tutorName" to intent.getStringExtra("tutorName"))
             navController.navigate(R.id.nav_rating, bundle)
         }
     }

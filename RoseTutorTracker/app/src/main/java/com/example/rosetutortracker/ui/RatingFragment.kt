@@ -32,7 +32,8 @@ class RatingFragment : Fragment() {
 
     private fun setupButton() {
         binding.closeBtn.setOnClickListener {
-            findNavController().navigate(R.id.nav_home)
+//            findNavController().navigate(R.id.nav_home)
+            findNavController().popBackStack()
         }
         binding.rateBtn.setOnClickListener {
             if (binding.rating.text.isBlank() || !binding.rating.text.isDigitsOnly()) {
@@ -49,7 +50,7 @@ class RatingFragment : Fragment() {
     }
 
     private fun updateView() {
-        binding.tutorResolvedMessage.text = getString(R.string.resolve_message, model.tutorName())
+        binding.tutorResolvedMessage.text = getString(R.string.resolve_message, (arguments?.getString("tutorName")!!))
     }
 
 }

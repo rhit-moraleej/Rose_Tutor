@@ -22,6 +22,8 @@ import com.google.firebase.ktx.Firebase
 
 class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentRequests>(fragment) {
 
+
+
     override val model =
         ViewModelProvider(fragment.requireActivity())[StudentHelpViewModel::class.java]
 
@@ -45,9 +47,15 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
         private val resolveButton: Button = itemView.findViewById(R.id.resolve_button)
         private val helpMessage: TextView = itemView.findViewById(R.id.help_message)
 
+        val ref = Firebase.firestore.collection(Constants.COLLECTION_BY_MESSAGE)
+
         init {
+
+            Log.d("checked","checked $itemCount")
             notifyCheckbox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
+                    model.list[adapterPosition].notified = true
+                    ref.document(model.list[adapterPosition].id).update("notified",true)
                     notifyCheckbox.isEnabled = false
                     Log.d("notify", "Notifying $studentName")
                     val refNotification =
@@ -62,20 +70,34 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
             }
 
             resolveButton.setOnClickListener {
+                val posTemp = adapterPosition
                 model.updatePos(adapterPosition)
+                Log.d("cc",adapterPosition.toString())
                 model.resolveCurrentStudent()
+
                 notifyItemRemoved(adapterPosition)
+                notifyItemRangeChanged(posTemp,itemCount)
+                Log.d("cc",adapterPosition.toString())
             }
 
         }
 
         override fun bind(item: StudentRequests) {
+            Log.d("bind","checked $itemCount")
             studentName.text =
                 if (item.senderName.length < 15) item.senderName else item.senderName.substring(
                     0,
                     16
                 )
             helpMessage.text = item.message
+            if (item.notified) {
+                notifyCheckbox.isChecked = true
+                notifyCheckbox.isEnabled = false
+            }
+            else {
+                notifyCheckbox.isChecked = false
+                notifyCheckbox.isEnabled = true
+            }
         }
 
     }
