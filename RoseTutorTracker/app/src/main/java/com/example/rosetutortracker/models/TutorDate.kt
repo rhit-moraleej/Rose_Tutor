@@ -9,22 +9,25 @@ data class TutorDate(
     var endMin: Int = 0
 ) {
     enum class Day {
-        MONDAY(0),
-        TUESDAY(1),
-        WEDNESDAY(2),
-        THURSDAY(3),
-        FRIDAY(4),
-        SATURDAY(5),
-        SUNDAY(6);
+        MONDAY(0, "Monday"),
+        TUESDAY(1, "Tuesday"),
+        WEDNESDAY(2, "Wednesday"),
+        THURSDAY(3, "Thursday"),
+        FRIDAY(4, "Friday"),
+        SATURDAY(5, "Saturday"),
+        SUNDAY(6, "Sunday");
 
         var dayOfWeek: Int? = null
+        var dayPrint: String? = null
 
         constructor()
 
         constructor(
-            dayOfWeek: Int
+            dayOfWeek: Int,
+            dayPrint: String
         ) {
             this.dayOfWeek = dayOfWeek
+            this.dayPrint = dayPrint
         }
     }
 
