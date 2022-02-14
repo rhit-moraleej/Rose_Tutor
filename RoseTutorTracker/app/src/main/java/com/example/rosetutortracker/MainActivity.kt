@@ -137,10 +137,10 @@ class MainActivity : AppCompatActivity() {
             false
         }
 
-//        if(intent.getStringExtra("fragment")=="ratings") {
-//            val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"))
-//            navController.navigate(R.id.nav_rating,bundle)
-//        }
+        if(intent.getStringExtra("fragment")=="ratings") {
+            val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"))
+            navController.navigate(R.id.nav_rating,bundle)
+        }
     }
 
     private fun checkTutorStatus() {

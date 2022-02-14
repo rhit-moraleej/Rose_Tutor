@@ -11,6 +11,7 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:id="@+id/tutor_resolved_message"
+       android:textSize="20sp"
        android:text="@string/resolve_message"
        />
     <TextView
@@ -19,12 +20,14 @@
         android:id="@+id/rating_instruction"
         android:layout_below="@id/tutor_resolved_message"
         android:text="@string/rating_inst"
+        android:textSize="20sp"
         />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rating_instruction"
         android:id="@+id/rating"
+        android:hint="Rate From 0 to 5"
         />
 
     <Button

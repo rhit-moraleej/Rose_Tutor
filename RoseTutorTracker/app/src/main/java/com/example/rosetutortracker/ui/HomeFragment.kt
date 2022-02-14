@@ -37,10 +37,6 @@ class HomeFragment : Fragment() {
         adaptor.getFavTutors()
         adaptor.model.firstTime = true
         adaptor.model.addListener("",requireContext())
-//        {NotificationUtils.createAndLaunch(
-//            requireContext(),
-//            "is now ready to help ${Firebase.auth.uid}"
-//        )}
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -65,11 +61,6 @@ class HomeFragment : Fragment() {
         }
 
         Log.d("rr", Firebase.auth.currentUser!!.uid)
-
-        if(activity?.intent?.getStringExtra("fragment") =="ratings") {
-            val bundle = bundleOf("tutorid" to activity?.intent!!.getStringExtra("tutorid"))
-            findNavController().navigate(R.id.nav_rating,bundle)
-        }
 
         return binding.root
     }

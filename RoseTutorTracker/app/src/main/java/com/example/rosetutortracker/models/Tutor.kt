@@ -23,8 +23,9 @@ data class Tutor(
     var studentInfo = Student()
 
     fun addRating(rating: Double) {
-        val total: Double = this.overRating * numRatings
+        var total: Double = this.overRating * numRatings
         this.numRatings++
+        total += rating
         this.overRating = total / this.numRatings
     }
 

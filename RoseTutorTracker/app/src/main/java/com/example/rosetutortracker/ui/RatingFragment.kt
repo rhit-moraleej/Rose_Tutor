@@ -1,6 +1,7 @@
 package com.example.rosetutortracker.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,10 @@ class RatingFragment() : Fragment() {
             }else{
                 val rating = binding.rating.text.toString().toDouble()
                 model.addRating(rating)
+                Log.d("debug", "rating btn pressed!!")
+//                findNavController().navigate(R.id.nav_home)
+                findNavController().popBackStack()
+                Log.d("debug", "rating btn pressed222!!")
             }
         }
     }
