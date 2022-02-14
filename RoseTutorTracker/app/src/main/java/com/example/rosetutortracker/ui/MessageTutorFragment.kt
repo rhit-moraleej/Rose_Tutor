@@ -22,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 class MessageTutorFragment : Fragment() {
     private lateinit var binding: FragmentMessageTutorBinding
     private lateinit var model: FindTutorViewModel
-    lateinit var homeModel: StudentViewModel
+    private lateinit var homeModel: StudentViewModel
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_MESSAGE)
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class MessageTutorFragment : Fragment() {
         }
 
         binding.sendButton.setOnClickListener {
-            val useModel = if(model.size() == 0) homeModel else model
+            val useModel = if (model.size() == 0) homeModel else model
             Log.d("debug", "size of model: ${model.size()}")
             Log.d("debug", "size of studenTModel: ${homeModel.size()}")
             MaterialAlertDialogBuilder(requireContext())
@@ -58,7 +58,6 @@ class MessageTutorFragment : Fragment() {
                     KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
                     findNavController().popBackStack()
                     findNavController().popBackStack()
-//                    randomTutorNotification()
                 }
                 .setNegativeButton(android.R.string.cancel, null)
                 .show()
@@ -66,33 +65,4 @@ class MessageTutorFragment : Fragment() {
 
         return binding.root
     }
-
-//    private fun randomTutorNotification(){
-//        val time = Random.nextInt()
-//        val tutor = model.getCurrent()
-//        MaterialAlertDialogBuilder(requireContext())
-//            .setTitle("${tutor.name} has resolved your problem")
-//            .setMessage("${tutor.name} has marked your help request as solved, you you like to provide a rating?")
-//            .setPositiveButton(android.R.string.ok){ _, _ ->
-//                Log.d("rating", "user chose to rate ${tutor.name}")
-////                rateTutor()
-//            }
-//            .setNegativeButton(android.R.string.cancel, null)
-//            .show()
-//    }
-
-//    private fun rateTutor(){
-//        val tutor = model.getCurrent()
-//        val dialogLayout = requireActivity().layoutInflater.inflate(R.layout.tutor_rating_alert_dialod, null)
-//        val editText = dialogLayout.findViewById<EditText>(R.id.tutor_rating_edittext)
-//        MaterialAlertDialogBuilder(requireContext())
-//            .setTitle("Please rate ${tutor.name}")
-//            .setMessage("On a scale from 1 to 5, please rate your experience with ${tutor.name}")
-//            .setView(dialogLayout)
-//            .setPositiveButton(android.R.string.ok){ _, _ ->
-//
-//            }
-//            .setNegativeButton(android.R.string.cancel, null)
-//            .show()
-//    }
 }

@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -36,7 +34,7 @@ class HomeFragment : Fragment() {
         val adaptor = FavTutorAdaptor(this)
         adaptor.getFavTutors()
         adaptor.model.firstTime = true
-        adaptor.model.addListener("",requireContext())
+        adaptor.model.addListener("", requireContext())
         //option to drag and drop items
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())

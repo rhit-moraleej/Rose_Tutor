@@ -92,6 +92,5 @@
         android:id="@+id/nav_rating"
         android:name="com.example.rosetutortracker.ui.RatingFragment"
         android:label="Tutor Rating"
-        tools:layout="@layout/fragment_rating"
-        />
+        tools:layout="@layout/fragment_rating" />
 </navigation>

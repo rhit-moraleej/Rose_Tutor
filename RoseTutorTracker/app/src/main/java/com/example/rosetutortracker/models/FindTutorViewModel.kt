@@ -11,19 +11,6 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
     private var refStudents = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
     private var refTutors = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
 
-    open fun addTutor(tutor: Tutor?) {
-//        val newTutor = tutor ?: createRandomTutor()
-//        Log.d("rr", "adding ${newTutor.name}")
-//        ref.add(newTutor)
-    }
-
-//    private fun createRandomTutor(): Tutor {
-//        val name = "Name${Random.nextInt(500)}"
-//        val email = "$name@rose-hulman.edu"
-//        val classYear = Random.nextInt(2022, 2026)
-//        return Tutor(name, email, classYear, Random.nextBoolean())
-//    }
-
     fun findTutor(searchBy: Int, searchTerm: String, function: () -> Unit) {
         when (searchBy) {
             0 -> {
@@ -51,7 +38,7 @@ open class FindTutorViewModel : BaseViewModel<Tutor>() {
                     .addOnCompleteListener { call ->
                         call.result?.documents?.forEach {
                             if (it.id != Firebase.auth.uid!!) {
-                                Log.d(Constants.TAG, "Course search found: ${it}")
+                                Log.d(Constants.TAG, "Course search found: $it")
                                 val tutor = Tutor.from(it)
                                 searchStudent(it.id, function, tutor)
                             }

@@ -6,13 +6,14 @@ import android.util.Log;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+@SuppressWarnings("unused")
 public final class RosefireResult {
 
+    private final String token;
     private String username;
     private String group;
     private String name;
     private String email;
-    private String token;
 
     public RosefireResult(String token) {
         this.token = token;

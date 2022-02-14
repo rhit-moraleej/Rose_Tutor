@@ -3,48 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RatingFragment"
     android:padding="12dp"
-    >
+    tools:context=".ui.RatingFragment">
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/tutor_resolved_message"
-       android:textSize="20sp"
-       android:text="@string/resolve_message"
-       />
     <TextView
+        android:id="@+id/tutor_resolved_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/resolve_message"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/rating_instruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tutor_resolved_message"
         android:text="@string/rating_inst"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
+
     <EditText
+        android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rating_instruction"
-        android:id="@+id/rating"
-        android:hint="Rate From 0 to 5"
-        />
+        android:hint="Rate From 0 to 5" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/close_btn"
-        android:layout_below="@id/rating"
-        android:text="close"
-        />
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/rating"
+        android:text="close" />
+
+    <Button
         android:id="@+id/rate_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rating"
         android:layout_alignEnd="@id/tutor_resolved_message"
-        android:text="Rate Tutor"
-        />
+        android:text="Rate Tutor" />
 
 </RelativeLayout>

@@ -45,7 +45,7 @@ class TutorViewModel : ViewModel() {
         }
     }
 
-    fun update(newHasCompletedSetup: Boolean) {
+    private fun update(newHasCompletedSetup: Boolean) {
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
             .document(Firebase.auth.uid!!)
         val ref2 = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)

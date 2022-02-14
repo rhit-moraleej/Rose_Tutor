@@ -46,14 +46,14 @@ class StudentHelpViewModel : BaseViewModel<StudentRequests>() {
                     list.add(StudentRequests.from(it))
                 }
                 snapshot?.documentChanges?.forEach {
-                    Log.d("notify",it.type.toString())
-                    Log.d("notify",it.document.data.toString())
-                    if (it.document.data?.get("receiver")==Firebase.auth.uid && !firstTime && it.type.toString()=="ADDED") {
+                    Log.d("notify", it.type.toString())
+                    Log.d("notify", it.document.data.toString())
+                    if (it.document.data.get("receiver") == Firebase.auth.uid && !firstTime && it.type.toString() == "ADDED") {
 
                         NotificationUtils.createAndLaunch(
                             requireContext,
-                            "${it.document.data?.get("message")}",
-                            "${it.document.data?.get("senderName")} needs help:"
+                            "${it.document.data.get("message")}",
+                            "${it.document.data.get("senderName")} needs help:"
                         )
 
                     }

@@ -20,9 +20,9 @@ class StudentViewModel : BaseViewModel<Tutor>() {
     var tutorToSendMessage: String = ""
 
     var firstTime = true
-    var subscriptions = HashMap<String, ListenerRegistration>()
-    var subscriptionsRemoved = HashMap<String, ListenerRegistration>()
-    val refMessage = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
+    private var subscriptions = HashMap<String, ListenerRegistration>()
+    private var subscriptionsRemoved = HashMap<String, ListenerRegistration>()
+    private val refMessage = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
 
     fun containsTutor(tutor: Tutor): Boolean {
         return student?.favoriteTutors?.contains(tutor.id) ?: false
@@ -126,11 +126,11 @@ class StudentViewModel : BaseViewModel<Tutor>() {
             observer()
         } else { // make
             ref.get().addOnSuccessListener { snapshot: DocumentSnapshot ->
-                if (snapshot.exists()) {
-                    student = snapshot.toObject(Student::class.java)
+                student = if (snapshot.exists()) {
+                    snapshot.toObject(Student::class.java)
                 } else {
-                    student = Student()
-//                    ref.set(student!!)
+                    Student()
+                    //                    ref.set(student!!)
                 }
                 observer()
             }

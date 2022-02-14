@@ -30,7 +30,7 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
     )
 
     fun addListener(fragmentName: String, requireContext: Context) {
-        model.addListener(fragmentName,requireContext) {
+        model.addListener(fragmentName, requireContext) {
             notifyDataSetChanged()
         }
     }
@@ -50,8 +50,13 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
                 if (isChecked) {
                     notifyCheckbox.isEnabled = false
                     Log.d("notify", "Notifying $studentName")
-                    val refNotification = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
-                    val notifToAdd = hashMapOf("sender" to Firebase.auth.uid, "receiver" to model.list[adapterPosition].sender, "receiverName" to model.list[adapterPosition].receiverName)
+                    val refNotification =
+                        Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
+                    val notifToAdd = hashMapOf(
+                        "sender" to Firebase.auth.uid,
+                        "receiver" to model.list[adapterPosition].sender,
+                        "receiverName" to model.list[adapterPosition].receiverName
+                    )
                     refNotification.add(notifToAdd)
                 }
             }

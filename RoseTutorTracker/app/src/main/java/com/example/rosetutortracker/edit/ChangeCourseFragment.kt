@@ -46,14 +46,4 @@ open class ChangeCourseFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
-
-    private fun updateView() {
-        if (adapter.model.list.last().isBlank()) {
-            binding.addCourse.isClickable = false
-            binding.addCourse.alpha = 0.5f
-        } else {
-            binding.addCourse.isClickable = true
-            binding.addCourse.alpha = 1.0f
-        }
-    }
 }

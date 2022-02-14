@@ -25,7 +25,7 @@ class TutorHomeFragment : Fragment() {
         adaptor = StudentHelpAdapter(this)
 //        adaptor.getMessages()
         adaptor.model.firstTime = true
-        adaptor.addListener(fragmentName,requireContext())
+        adaptor.addListener(fragmentName, requireContext())
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)

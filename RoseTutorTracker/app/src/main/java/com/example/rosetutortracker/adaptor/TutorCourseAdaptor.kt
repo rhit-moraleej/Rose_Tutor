@@ -22,7 +22,7 @@ class TutorCourseAdaptor(fragment: ChangeCourseFragment) : BaseAdapter<String>(f
     )
 
     fun setTutorCourses(courses: ArrayList<String>) {
-        var coursesCopy = ArrayList<String>()
+        val coursesCopy = ArrayList<String>()
         coursesCopy.addAll(courses)
         Log.d("course1.5", courses.toString())
         model.list.clear()

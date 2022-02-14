@@ -17,11 +17,6 @@ class FavTutorAdaptor(fragment: HomeFragment) : BaseAdapter<Tutor>(fragment) {
 
     override val model = ViewModelProvider(fragment.requireActivity())[StudentViewModel::class.java]
 
-    fun addTutor(tutor: Tutor?) {
-        model.addTutor(tutor)
-        notifyDataSetChanged()
-    }
-
     fun getFavTutors() {
         model.setupFavs {
             notifyDataSetChanged()

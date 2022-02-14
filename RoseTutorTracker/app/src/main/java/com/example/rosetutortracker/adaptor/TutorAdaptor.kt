@@ -19,11 +19,6 @@ class TutorAdaptor(fragment: FindTutorListFragment) : BaseAdapter<Tutor>(fragmen
         model
     )
 
-    fun addTutor(tutor: Tutor?) {
-        model.addTutor(tutor)
-        notifyDataSetChanged()
-    }
-
     fun findTutor(searchBy: Int, searchTerm: String) {
         model.findTutor(searchBy, searchTerm) {
             notifyDataSetChanged()

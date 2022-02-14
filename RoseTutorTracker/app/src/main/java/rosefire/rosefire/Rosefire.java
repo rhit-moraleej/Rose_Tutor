@@ -6,7 +6,7 @@ import android.content.Intent;
 
 public final class Rosefire {
 
-    static boolean DEBUG = false;
+    static final boolean DEBUG = false;
 
     public static Intent getSignInIntent(Context context, String registryToken) {
         Intent intent = new Intent(context, WebLoginActivity.class);

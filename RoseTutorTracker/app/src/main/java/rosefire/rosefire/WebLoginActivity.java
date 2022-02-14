@@ -1,5 +1,6 @@
 package rosefire.rosefire;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,24 +12,25 @@ import android.webkit.WebView;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+@SuppressWarnings("unused")
 public final class WebLoginActivity extends Activity {
 
     public static final String REGISTRY_TOKEN = "registry";
     public static final String JWT_TOKEN = "token";
     public static final String ERROR = "error";
-    private WebView mLoginScreen;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mLoginScreen = new WebView(this);
+        WebView mLoginScreen = new WebView(this);
         this.setContentView(mLoginScreen);
         String token = getIntent().getStringExtra(REGISTRY_TOKEN);
         try {
             mLoginScreen.loadUrl("https://rosefire.csse.rose-hulman.edu/webview/login?registryToken=" + URLEncoder.encode(token, "UTF-8") + "&platform=android");
         } catch (UnsupportedEncodingException e) {
             // TODO: Also catch loading errors
-            onLoginFail("Invalid registryToken");
+            onLoginFail();
         }
         WebSettings webSettings = mLoginScreen.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -44,10 +46,10 @@ public final class WebLoginActivity extends Activity {
         finish();
     }
 
-    private void onLoginFail(String message) {
-        if (Rosefire.DEBUG) Log.d("RFA", message);
+    private void onLoginFail() {
+        if (Rosefire.DEBUG) Log.d("RFA", "Invalid registryToken");
         Intent data = new Intent();
-        data.putExtra(ERROR, message);
+        data.putExtra(ERROR, "Invalid registryToken");
         setResult(RESULT_CANCELED, data);
         finish();
     }

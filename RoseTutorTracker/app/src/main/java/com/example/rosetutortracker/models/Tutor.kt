@@ -4,7 +4,6 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
-import kotlin.random.Random
 
 data class Tutor(
     var available: Boolean = false,
@@ -59,19 +58,6 @@ data class Tutor(
     }
 
     companion object {
-        val departments = arrayListOf(
-            "ANTHS",
-            "BE",
-            "BIO",
-            "CE",
-            "CHEM",
-            "CSSE",
-            "ECE",
-            "HISTH",
-            "MA",
-            "PH"
-        )
-
         fun from(snapshot: DocumentSnapshot): Tutor {
             val tutor = snapshot.toObject(Tutor::class.java)!!
             tutor.id = snapshot.id
@@ -87,14 +73,3 @@ fun daySetup(): ArrayList<TutorDate> {
     }
     return days
 }
-
-fun getRandomCourses(num: Int): ArrayList<String> {
-    val randomCourses = ArrayList<String>()
-    for (i in 0 until num) {
-        val index = Random.nextInt(Tutor.departments.size)
-        val s = Tutor.departments[index] + "${Random.nextInt(100, 500)}"
-        randomCourses.add(s)
-    }
-    return randomCourses
-}
-

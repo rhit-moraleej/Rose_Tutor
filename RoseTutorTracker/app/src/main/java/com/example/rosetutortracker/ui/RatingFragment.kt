@@ -14,7 +14,7 @@ import com.example.rosetutortracker.databinding.FragmentRatingBinding
 import com.example.rosetutortracker.models.RatingTutorViewModel
 
 
-class RatingFragment() : Fragment() {
+class RatingFragment : Fragment() {
     private lateinit var binding: FragmentRatingBinding
     private lateinit var model: RatingTutorViewModel
     override fun onCreateView(
@@ -35,9 +35,9 @@ class RatingFragment() : Fragment() {
             findNavController().navigate(R.id.nav_home)
         }
         binding.rateBtn.setOnClickListener {
-            if (binding.rating.text.isBlank() || !binding.rating.text.isDigitsOnly()){
+            if (binding.rating.text.isBlank() || !binding.rating.text.isDigitsOnly()) {
                 binding.ratingInstruction.text = getString(R.string.rating_error_inst)
-            }else{
+            } else {
                 val rating = binding.rating.text.toString().toDouble()
                 model.addRating(rating)
                 Log.d("debug", "rating btn pressed!!")

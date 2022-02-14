@@ -26,8 +26,8 @@ open class TutorEditDayTimeFragment : Fragment() {
     lateinit var tutorModel: TutorViewModel
     private lateinit var studentModel: StudentViewModel
     lateinit var updatedTutor: Tutor
-    var checkboxs = ArrayList<CheckBox>()
-    var buttons = ArrayList<Button>()
+    private var checkboxs = ArrayList<CheckBox>()
+    private var buttons = ArrayList<Button>()
     private var ref = Firebase.firestore.collection(Constants.COLLECTION_BY_TUTOR)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

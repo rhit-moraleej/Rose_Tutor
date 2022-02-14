@@ -109,13 +109,13 @@ class UserDetailsFragment : Fragment() {
         builder.setMessage("Would you like to take a new picture?\nOr choose an existing one?")
         builder.setPositiveButton("Take Picture") { _, _ ->
             binding.updateUserProfileButton.isEnabled = false
-            binding.updateUserProfileButton.text = "Loading image"
+            binding.updateUserProfileButton.text = getString(R.string.load_img)
             takeImage()
         }
 
         builder.setNegativeButton("Choose Picture") { _, _ ->
             binding.updateUserProfileButton.isEnabled = false
-            binding.updateUserProfileButton.text = "Loading image"
+            binding.updateUserProfileButton.text = getString(R.string.load_img)
             selectImageFromGallery()
         }
         builder.create().show()
