@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -63,6 +65,11 @@ class HomeFragment : Fragment() {
         }
 
         Log.d("rr", Firebase.auth.currentUser!!.uid)
+
+        if(activity?.intent?.getStringExtra("fragment") =="ratings") {
+            val bundle = bundleOf("tutorid" to activity?.intent!!.getStringExtra("tutorid"))
+            findNavController().navigate(R.id.nav_rating,bundle)
+        }
 
         return binding.root
     }

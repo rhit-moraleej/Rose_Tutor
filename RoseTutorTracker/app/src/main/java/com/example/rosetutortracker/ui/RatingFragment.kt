@@ -22,7 +22,8 @@ class RatingFragment() : Fragment() {
     ): View {
         binding = FragmentRatingBinding.inflate(inflater, container, false)
         model = ViewModelProvider(requireActivity())[RatingTutorViewModel::class.java]
-        model.getTutorInfo(savedInstanceState?.get("tutorid") as String) // get id from intent somehow
+
+        model.getTutorInfo(arguments?.getString("tutorid")!!) // get id from intent somehow
         updateView()
         setupButton()
         return binding.root
