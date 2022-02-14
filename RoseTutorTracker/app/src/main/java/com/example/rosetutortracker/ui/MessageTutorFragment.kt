@@ -38,6 +38,9 @@ class MessageTutorFragment : Fragment() {
         }
 
         binding.sendButton.setOnClickListener {
+            val useModel = if(model.size() == 0) homeModel else model
+            Log.d("debug", "size of model: ${model.size()}")
+            Log.d("debug", "size of studenTModel: ${homeModel.size()}")
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Send message?")
                 .setMessage("Are you sure you want to send this message?")
@@ -47,7 +50,7 @@ class MessageTutorFragment : Fragment() {
                         homeModel.tutorToSendMessage,
                         Firebase.auth.uid!!,
                         homeModel.student?.name!!,
-                        model.getCurrent().studentInfo.name
+                        useModel.getCurrent().studentInfo.name
                     )
                     Log.wtf("rr", message.message)
                     ref.add(message)
