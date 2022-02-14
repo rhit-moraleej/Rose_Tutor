@@ -32,24 +32,18 @@ class StudentViewModel : BaseViewModel<Tutor>() {
 
         val subscription = refMessage.addSnapshotListener { snapshot: QuerySnapshot?, error ->
             error?.let {
-                Log.d(Constants.TAG,"Error: $error")
+                Log.d(Constants.TAG, "Error: $error")
                 return@addSnapshotListener
             }
-
             snapshot?.documentChanges?.forEach {
-                Log.d("notify",it.type.toString())
-                Log.d("notify",it.document.data.toString())
-                if (it.document.data?.get("receiver")==Firebase.auth.uid && !firstTime && it.type.toString()=="ADDED") {
-
+                Log.d("notify", it.type.toString())
+                Log.d("notify", it.document.data.toString())
+                if (it.document.data["receiver"] == Firebase.auth.uid && !firstTime && it.type.toString() == "ADDED") {
                     NotificationUtils.createAndLaunch(
                         context,
-                        "${it.document.data?.get("receiverName")} is now ready to help you"
+                        "${it.document.data["receiverName"]} is now ready to help you"
                     )
-
                 }
-
-
-
             }
             firstTime = false
         }
@@ -57,30 +51,23 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         val subscriptionRemoved = Firebase.firestore.collection(Constants.COLLECTION_BY_MESSAGE)
             .addSnapshotListener { snapshot: QuerySnapshot?, error ->
                 error?.let {
-                    Log.d(Constants.TAG,"Error: $error")
+                    Log.d(Constants.TAG, "Error: $error")
                     return@addSnapshotListener
                 }
-
                 snapshot?.documentChanges?.forEach {
-                    Log.d("notify",it.type.toString())
-                    Log.d("notify",it.document.data.toString())
-
-
-                if (it.document.data?.get("sender")==Firebase.auth.uid && it.type.toString()=="REMOVED") {
-
-                    NotificationUtils.createAndLaunch(
-                        context,
-                        "${it.document.data?.get("receiverName")} has resolved your help request. Please leave a rating.",
-                        "Request complete",
-                        "${it.document.data?.get("receiver")}",
-                        "ratings"
-                    )
-                }
-
+                    Log.d("notify", it.type.toString())
+                    Log.d("notify", it.document.data.toString())
+                    if (it.document.data["sender"] == Firebase.auth.uid && it.type.toString() == "REMOVED") {
+                        NotificationUtils.createAndLaunch(
+                            context,
+                            "${it.document.data["receiverName"]} has resolved your help request. Please leave a rating.",
+                            "Request complete",
+                            "${it.document.data["receiver"]}",
+                            "ratings"
+                        )
+                    }
                 }
             }
-
-
         subscriptions[fragmentName] = subscription
         subscriptionsRemoved[fragmentName] = subscriptionRemoved
     }

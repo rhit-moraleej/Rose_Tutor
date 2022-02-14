@@ -8,7 +8,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class RatingTutorViewModel : ViewModel() {
-    lateinit var tutor: Tutor
+    var tutor = Tutor()
     lateinit var ref: CollectionReference
 
     fun tutorName() = tutor.studentInfo.name
