@@ -100,5 +100,9 @@ class StudentHelpAdapter(fragment: TutorHomeFragment) : BaseAdapter<StudentReque
             }
         }
 
+        override fun bindView(item: StudentRequests) {
+            TODO("Not yet implemented")
+        }
+
     }
 }

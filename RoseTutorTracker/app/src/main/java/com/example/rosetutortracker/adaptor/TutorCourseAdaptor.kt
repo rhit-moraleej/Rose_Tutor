@@ -58,5 +58,9 @@ class TutorCourseAdaptor(fragment: ChangeCourseFragment) : BaseAdapter<String>(f
             deleteIcon.setImageResource(close)
             editText.setText(item)
         }
+
+        override fun bindView(item: String) {
+            TODO("Not yet implemented")
+        }
     }
 }

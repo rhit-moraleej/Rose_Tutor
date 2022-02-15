@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -22,11 +23,11 @@ import com.example.rosetutortracker.utils.NotificationUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adaptor: FavTutorAdaptor
+    private lateinit var model: StudentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,17 +35,22 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+//        model = ViewModelProvider(requireActivity())[StudentViewModel::class.java]
 
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
         adaptor = FavTutorAdaptor(this)
         adaptor.getFavTutors()
         adaptor.model.firstTime = true
         adaptor.model.addListener("", requireContext())
         //option to drag and drop items
+//        val itemTouchHelper = ItemTouchHelper(simpleCallback)
+//        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+        adaptor.differ.submitList(adaptor.model.list)
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
-        val itemTouchHelper = ItemTouchHelper(simpleCallback)
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+
+
 
         NotificationUtils.createChannel(requireContext())
 
@@ -69,22 +75,51 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private var simpleCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP.or(ItemTouchHelper.DOWN), 0){
-        override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-        ): Boolean {
-            val startPos = viewHolder.adapterPosition
-            val endPos = target.adapterPosition
-            Collections.swap(adaptor.model.list, startPos, endPos)
-            recyclerView.adapter?.notifyItemMoved(startPos, endPos)
-            return true
-        }
+    private val itemTouchHelper by lazy {
+        val itemTouchCallback =
+            object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, 0) {
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    val adaptor = recyclerView.adapter as FavTutorAdaptor
+                    val startPos = viewHolder.adapterPosition
+                    val endPos = target.adapterPosition
 
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-        }
+                    adaptor.moveItem(startPos, endPos)
+                    adaptor.notifyItemMoved(startPos, endPos)
+                    return true
+                }
 
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+                }
+
+                override fun onSelectedChanged(
+                    viewHolder: RecyclerView.ViewHolder?,
+                    actionState: Int
+                ) {
+                    super.onSelectedChanged(viewHolder, actionState)
+                    if (actionState == ACTION_STATE_DRAG) {
+                        viewHolder?.itemView?.scaleY = 1.3f
+                        viewHolder?.itemView?.alpha = 0.7f
+
+                    }
+                }
+
+
+                override fun clearView(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder
+                ) {
+                    super.clearView(recyclerView, viewHolder)
+                    viewHolder.itemView.scaleY = 1.0f
+                    viewHolder.itemView.alpha = 1.0f
+                }
+            }
+        ItemTouchHelper(itemTouchCallback)
     }
+
 
 }
