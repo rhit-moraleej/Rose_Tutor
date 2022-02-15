@@ -37,4 +37,8 @@ open class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewMo
         }
     }
 
+    override fun bindView(item: Tutor) {
+        TODO("Not yet implemented")
+    }
+
 }

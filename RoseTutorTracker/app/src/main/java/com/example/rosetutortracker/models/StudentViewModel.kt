@@ -84,7 +84,7 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         }
     }
 
-    fun setupFavs(function: () -> Unit) {
+    fun setupFavs(function: () -> Unit): ArrayList<Tutor> {
         Log.d(Constants.TAG, "Getting favs")
         val refStudent = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
         list.clear()
@@ -99,6 +99,7 @@ class StudentViewModel : BaseViewModel<Tutor>() {
                 }
         }
         Log.d(Constants.TAG, "Current fav list: $list")
+        return list
     }
 
     private fun searchTutor(id: String, student: Student, function: () -> Unit) {
@@ -138,7 +139,8 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         }
     }
 
-    private fun updateFavs() {
+    fun updateFavs() {
+        Log.d("FAVDEBUG", "Curr favlist: ${student?.favoriteTutors}")
         ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
             .document(Firebase.auth.uid!!)
         ref.update("favoriteTutors", student?.favoriteTutors)
