@@ -24,6 +24,14 @@ class StudentViewModel : BaseViewModel<Tutor>() {
     private var subscriptionsRemoved = HashMap<String, ListenerRegistration>()
     private val refMessage = Firebase.firestore.collection(Constants.COLLECTION_BY_NOTIFICATIONS)
 
+    private fun listToString(): String {
+        val name = StringBuilder()
+        for (item in list){
+            name.append(item.studentInfo.name + ", ")
+        }
+        return name.toString()
+    }
+
     fun containsTutor(tutor: Tutor): Boolean {
         return student?.favoriteTutors?.contains(tutor.id) ?: false
     }
