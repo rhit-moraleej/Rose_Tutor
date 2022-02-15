@@ -9,7 +9,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.rosetutortracker.R
@@ -20,9 +22,11 @@ import com.example.rosetutortracker.utils.NotificationUtils
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
+    private lateinit var adaptor: FavTutorAdaptor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +35,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        val adaptor = FavTutorAdaptor(this)
+        adaptor = FavTutorAdaptor(this)
         adaptor.getFavTutors()
         adaptor.model.firstTime = true
         adaptor.model.addListener("", requireContext())
@@ -39,6 +43,8 @@ class HomeFragment : Fragment() {
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
+        val itemTouchHelper = ItemTouchHelper(simpleCallback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
         NotificationUtils.createChannel(requireContext())
 
@@ -61,6 +67,24 @@ class HomeFragment : Fragment() {
         Log.d("rr", Firebase.auth.currentUser!!.uid)
 
         return binding.root
+    }
+
+    private var simpleCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP.or(ItemTouchHelper.DOWN), 0){
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            val startPos = viewHolder.adapterPosition
+            val endPos = target.adapterPosition
+            Collections.swap(adaptor.model.list, startPos, endPos)
+            recyclerView.adapter?.notifyItemMoved(startPos, endPos)
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        }
+
     }
 
 }
