@@ -183,7 +183,6 @@ class StudentViewModel : BaseViewModel<Tutor>() {
 
     }
 
-
     fun removeTutor(tutor: Tutor) {
         list.remove(tutor)
         student?.favoriteTutors?.remove(tutor.id)

@@ -4,6 +4,8 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 data class Tutor(
     var available: Boolean = false,
@@ -30,22 +32,22 @@ data class Tutor(
 
     fun checkAvailability(): Boolean {
         val date = LocalDateTime.now()
+        val currTime = LocalTime.now()
         Log.d("Date", "${date.dayOfWeek}")
         Log.d(
             "Date",
             "Index of the day:${TutorDate.Day.valueOf(date.dayOfWeek.toString()).dayOfWeek}."
         )
         val index = TutorDate.Day.valueOf(date.dayOfWeek.toString()).dayOfWeek
-        val hour = LocalDateTime.now().hour
-        val min = LocalDateTime.now().minute
-        Log.d("Date", "currTime: $hour : $min")
-        Log.d(
-            "Date",
-            "Hour check:${days[index!!].startHour <= hour && hour <= days[index].endHour} "
-        )
-        Log.d("Date", "Min check: ${days[index].startMin <= min}")
-        return days[index].working && (days[index].startHour <= hour
-                && hour <= days[index].endHour) && (days[index].startMin <= min && days[index].endMin>=min)
+        val start = String.format("%02d:%02d:00", days[index!!].startHour, days[index].startMin)
+        val end = String.format("%02d:%02d:00", days[index].endHour, days[index].endMin)
+        Log.d("Time", "start: $start, end: $end")
+        val startTime = LocalTime.parse(start)
+        val endTime = LocalTime.parse(end)
+        Log.d("Time", "Tutor workday: ${days[index].working}")
+        Log.d("Time", "After start time: ${currTime.isAfter(startTime)}")
+        Log.d("Time", "Before end time: ${currTime.isBefore(endTime)}")
+        return days[index].working && currTime.isAfter(startTime) && currTime.isBefore(endTime)
     }
 
     fun coursesToString(): String {
