@@ -26,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rating_instruction"
+        android:inputType="number"
         android:hint="Rate From 0 to 5" />
 
     <Button

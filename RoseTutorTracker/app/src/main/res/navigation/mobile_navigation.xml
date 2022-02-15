@@ -93,4 +93,14 @@
         android:name="com.example.rosetutortracker.ui.RatingFragment"
         android:label="Tutor Rating"
         tools:layout="@layout/fragment_rating" />
+    <fragment
+        android:id="@+id/nav_update_user_details"
+        android:name="com.example.rosetutortracker.setup.UpdateUserDetailsFragment"
+        android:label="Update User Details"
+        tools:layout="@layout/fragment_user_details" />
+    <fragment
+        android:id="@+id/nav_view_my_ratings"
+        android:name="com.example.rosetutortracker.ui.FragmentViewMyRatings"
+        android:label="My Ratings"
+        tools:layout="@layout/fragment_view_my_ratings" />
 </navigation>

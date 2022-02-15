@@ -42,6 +42,7 @@ open class ChangeCourseFragment : Fragment() {
     open fun setupDoneButton() {
         binding.completeBtn.setOnClickListener {
             tutorModel.updateTutorCourses(adapter.model.list)
+            Log.d("updateCourse","${adapter.model.list}")
             KeyBoardUtils.hideKeyboard(requireView(), requireActivity())
             findNavController().popBackStack()
         }

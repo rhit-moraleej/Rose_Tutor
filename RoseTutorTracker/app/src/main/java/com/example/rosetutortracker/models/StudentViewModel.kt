@@ -171,6 +171,17 @@ class StudentViewModel : BaseViewModel<Tutor>() {
         }
     }
 
+    fun update(updatedStudent: Student) {
+        ref = Firebase.firestore.collection(Constants.COLLECTION_BY_STUDENT)
+            .document(Firebase.auth.uid!!)
+        if (student!=null) {
+            student = updatedStudent
+            ref.set(updatedStudent)
+        }
+
+    }
+
+
     fun removeTutor(tutor: Tutor) {
         list.remove(tutor)
         student?.favoriteTutors?.remove(tutor.id)

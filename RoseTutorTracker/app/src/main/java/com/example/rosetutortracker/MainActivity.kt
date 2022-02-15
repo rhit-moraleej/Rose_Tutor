@@ -3,6 +3,7 @@ package com.example.rosetutortracker
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
@@ -117,11 +118,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         navView.menu[3].setOnMenuItemClickListener {
-            Snackbar.make(navView, "PLACEHOLDER NAV ITEM", Snackbar.LENGTH_LONG)
-                .setAction("Continue") {
-                    drawerLayout.closeDrawer(GravityCompat.START)
-                    navController.popBackStack()
-                }.show()
+//            Snackbar.make(navView, "PLACEHOLDER NAV ITEM", Snackbar.LENGTH_LONG)
+//                .setAction("Continue") {
+//                    drawerLayout.closeDrawer(GravityCompat.START)
+//                    navController.popBackStack()
+//                }.show()
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_view_my_ratings)
             false
         }
 
@@ -140,6 +143,12 @@ class MainActivity : AppCompatActivity() {
         if (intent.getStringExtra("fragment") == "ratings") {
             val bundle = bundleOf("tutorid" to intent.getStringExtra("tutorid"),"tutorName" to intent.getStringExtra("tutorName"))
             navController.navigate(R.id.nav_rating, bundle)
+        }
+
+        val userProfile: ImageView = navView.getHeaderView(0).findViewById(R.id.user_profile)
+        userProfile.setOnClickListener {
+            drawerLayout.closeDrawer(GravityCompat.START)
+            navController.navigate(R.id.nav_update_user_details)
         }
     }
 

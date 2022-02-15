@@ -53,7 +53,8 @@ open class TutorDetailFragment : Fragment() {
         binding.location.text = getString(R.string.location, tutor.location)
         binding.tutorDetailAvailability.text = tutor.availabilityToString()
         binding.tutorRating.text =
-            getString(R.string.tutor_rating, tutor.overRating, tutor.numRatings)
+            "Rating based on ${tutor.numRatings} ratings:"
+        binding.ratingsBar.rating = ("%.1f".format(tutor.overRating)).toFloat()
         Log.d(Constants.TAG, "Students favs: ${homeModel.student?.favoriteTutors}")
         Log.d(Constants.TAG, "Current tutors id: ${tutor.id}")
         if (!homeModel.containsTutor(tutor))

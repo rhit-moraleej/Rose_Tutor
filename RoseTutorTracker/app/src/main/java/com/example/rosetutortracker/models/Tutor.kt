@@ -41,11 +41,11 @@ data class Tutor(
         Log.d("Date", "currTime: $hour : $min")
         Log.d(
             "Date",
-            "Hour check:${days[index!!].startHour <= hour && hour < days[index].endHour} "
+            "Hour check:${days[index!!].startHour <= hour && hour <= days[index].endHour} "
         )
         Log.d("Date", "Min check: ${days[index].startMin <= min}")
         return days[index].working && (days[index].startHour <= hour
-                && hour < days[index].endHour) && (days[index].startMin <= min)
+                && hour <= days[index].endHour) && (days[index].startMin <= min && days[index].endMin>=min)
     }
 
     fun coursesToString(): String {

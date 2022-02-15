@@ -135,5 +135,6 @@
         android:id="@+id/complete_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Update days and times"
         android:layout_below="@id/sundayButton" />
 </RelativeLayout>
