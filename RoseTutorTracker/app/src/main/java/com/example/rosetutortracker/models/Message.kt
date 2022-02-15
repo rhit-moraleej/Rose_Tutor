@@ -1,3 +1,5 @@
+@file:Suppress("unused", "unused", "unused", "unused", "unused", "unused", "unused")
+
 package com.example.rosetutortracker.models
 
 import com.google.firebase.Timestamp

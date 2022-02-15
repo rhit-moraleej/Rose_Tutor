@@ -6,20 +6,15 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.view.animation.AnticipateOvershootInterpolator
-import android.view.animation.OvershootInterpolator
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.rosetutortracker.adaptor.StudentHelpAdapter
 import com.example.rosetutortracker.databinding.FragmentTutorHomeBinding
 import com.example.rosetutortracker.utils.NotificationUtils
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.LandingAnimator
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 
 
 class TutorHomeFragment : Fragment() {

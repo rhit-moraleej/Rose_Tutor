@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
         //option to drag and drop items
 //        val itemTouchHelper = ItemTouchHelper(simpleCallback)
 //        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-        adaptor.differ.submitList(adaptor.model.list)
+//        adaptor.differ.submitList(adaptor.model.list)
         binding.recyclerView.adapter = adaptor
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.setHasFixedSize(true)
@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
 
     private val itemTouchHelper by lazy {
         val itemTouchCallback =
-            object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, 0) {
+            object : ItemTouchHelper.SimpleCallback(UP or DOWN or START or END, (LEFT or RIGHT)) {
                 override fun onMove(
                     recyclerView: RecyclerView,
                     viewHolder: RecyclerView.ViewHolder,
@@ -93,7 +93,14 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
+                    when(direction){
+                        LEFT -> {
+                            adaptor.removeTutor(viewHolder.adapterPosition)
+                        }
+                        RIGHT -> {
+                            adaptor.getDetails(viewHolder.adapterPosition)
+                        }
+                    }
                 }
 
                 override fun onSelectedChanged(
@@ -104,7 +111,6 @@ class HomeFragment : Fragment() {
                     if (actionState == ACTION_STATE_DRAG) {
                         viewHolder?.itemView?.scaleY = 1.3f
                         viewHolder?.itemView?.alpha = 0.7f
-
                     }
                 }
 

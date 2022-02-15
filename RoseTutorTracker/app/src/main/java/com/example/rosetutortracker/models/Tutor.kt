@@ -62,9 +62,11 @@ data class Tutor(
         message.append("Available: \n")
         for (day in days){
             if (day.working){
+                val length = 30 - day.day.length
                 val start = String.format("%s:%02d", day.startHour, day.startMin)
                 val end = String.format("%s:%02d", day.endHour, day.endMin)
-                message.append("\t\t\t• ${day.day}: \t$start - $end \n")
+                val line = String.format("%-$length.20s%5s - %s\n", "${day.day}:", start, end)
+                message.append("\t\t\t• $line")
             }
         }
 
