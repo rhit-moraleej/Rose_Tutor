@@ -41,7 +41,7 @@ class TutorHomeFragment : Fragment() {
 
         NotificationUtils.createChannel(requireContext())
 
-//        binding.recyclerView.layoutManager = FadeInLinearLayoutManager(context)
+        binding.recyclerView.layoutManager = FadeInLinearLayoutManager(context)
 
         binding.recyclerView.itemAnimator = LandingAnimator()
         binding.recyclerView.itemAnimator?.apply {

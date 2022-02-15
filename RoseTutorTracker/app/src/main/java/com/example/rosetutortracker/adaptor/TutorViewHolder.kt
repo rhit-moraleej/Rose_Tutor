@@ -1,5 +1,6 @@
 package com.example.rosetutortracker.adaptor
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,8 +32,10 @@ open class TutorViewHolder(itemView: View, fragment: Fragment, model: BaseViewMo
         tutorMajor.text = "Major: ${item.studentInfo.major}"
         tutorLocation.text = "Location: ${item.location}"
         if (item.checkAvailability()) {
+            Log.d("avail","true here")
             tutorAvailability.setImageResource(available)
         } else {
+            Log.d("avail","false here")
             tutorAvailability.setImageResource(unavailable)
         }
     }

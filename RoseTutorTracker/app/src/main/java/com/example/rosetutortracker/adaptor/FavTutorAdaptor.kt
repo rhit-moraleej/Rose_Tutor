@@ -43,6 +43,7 @@ class FavTutorAdaptor(fragment: HomeFragment) : BaseAdapter<Tutor>(fragment) {
     fun removeTutor(adapterPosition: Int) {
         model.updatePos(adapterPosition)
         model.removeTutor(model.getCurrent())
+        notifyItemRemoved(adapterPosition)
         model.updateFavs()
     }
 
