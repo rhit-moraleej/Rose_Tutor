@@ -70,7 +70,6 @@ class HomeFragment : Fragment() {
             size(200, 200)
         }
 
-        Log.d("rr", Firebase.auth.currentUser!!.uid)
 
         return binding.root
     }

@@ -36,7 +36,9 @@ class RatingFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.rateBtn.setOnClickListener {
-            if (binding.rating.text.isBlank() || !binding.rating.text.isDigitsOnly()) {
+            val text = binding.rating.text
+            if (text.isBlank() || !text.isDigitsOnly() || text.toString().toInt()<0 || text.toString().toInt()>5
+                ) {
                 binding.ratingInstruction.text = getString(R.string.rating_error_inst)
             } else {
                 val rating = binding.rating.text.toString().toDouble()
